@@ -10,7 +10,18 @@
 
 <body>
     <header>
-        <h2>header here</h2>
+        <ul>
+            <li><a href="#" target="_self"> {{ __('public.home') }} </a></li>
+            <li><a href="#" target="_self"> {{ __('public.about') }} </a></li>
+            <li><a href="#" target="_self"> {{ __('public.contact') }} </a></li>
+            <ul>
+
+                <li><a href="#" target="_self"> {{ __('public.language') }} </a></li>
+                @foreach (config('app.available_lacale') as $locale)
+                    <li><a href={{ request()->url() }}/{{$locale}}> {{ __('public.'.$locale) }} </a></li>
+                @endforeach
+            </ul>
+        </ul>
     </header>
 
     @yield('content')
