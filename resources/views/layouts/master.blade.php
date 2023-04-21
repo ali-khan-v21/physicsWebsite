@@ -17,7 +17,7 @@
             <ul>
 
                 <li><a href="#" target="_self"> {{ __('public.language') }} </a></li>
-                @foreach (config('app.available_lacale') as $locale)
+                @foreach (config('app.available_lacales') as $locale)
                     <li><a href={{ request()->url() }}/{{$locale}}> {{ __('public.'.$locale) }} </a></li>
                 @endforeach
             </ul>
