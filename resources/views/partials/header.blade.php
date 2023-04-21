@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="./images/logo.svg" alt="{{ __('public.site_name') }}"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -22,23 +22,24 @@
                         <a class="nav-link mx-3" href="#">{{ __('public.part3') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="/about">{{ __('public.about') }}</a>
+                        <a class="nav-link mx-3" href="/#about">{{ __('public.about') }}</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link mx-3" href="/contactus">{{ __('public.contact') }}</a>
+                        <a class="nav-link mx-3" href="/#contact">{{ __('public.contact') }}</a>
                     </li>
                     {{-- @foreach (config('app.available_lacales') as $locale)
                         <li class="nav-item"><a href=/lang/{{ $locale }}  class="nav-link @php if (app()->getLocale()==$locale){echo "border-bottom active border-dark";} @endphp  mx-3"> {{ __('public.' . $locale) }} </a>
                         </li>
                     @endforeach --}}
                     <li class="nav-item dropdown mx-3 ">
-                        <a class="nav-link dropdown-toggle active border-bottom border-dark" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active border-bottom border-dark" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ __('public.' . app()->getLocale()) }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @foreach (config('app.available_lacales') as $locale)
-                                <li><a href=/lang/{{ $locale }} class="dropdown-item @php if (app()->getLocale()==$locale){echo "border-left active border-dark";} @endphp">
+                                <li><a href=/lang/{{ $locale }}
+                                        class="dropdown-item @php if (app()->getLocale()==$locale){echo "border-left active border-dark";} @endphp">
                                         {{ __('public.' . $locale) }} </a></li>
                             @endforeach
 
@@ -57,25 +58,7 @@
     </nav>
 
 
-    <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="text-uppercase fw-semibold text-white display-1">{{ __('public.site_name') }}</h1>
-                    <h4 class="text-white mt-3">{{ __('public.hero_text') }}</h4>
-                    <div class="mt-5 col-sm-12 col-lg-5 mx-auto">
-                        <form class="d-flex mt-3">
-                            <input class="form-control me-2" name="s" type="search"
-                                placeholder="{{ __('public.search') }}" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                        </form>
-                    </div>
 
-
-                </div>
-            </div>
-        </div>
-    </section>
 
 
 </header>

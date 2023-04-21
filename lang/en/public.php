@@ -15,5 +15,15 @@ return [
     "signup"=>'sign up',
     "signin"=>'sign in',
     "signin_up"=>'sign in/sign up',
+    "about_writer"=>'about writer',
+    "subjects"=>'article subjects',
+    'enter_firstName'=>'Enter first name',
+    'enter_lastName'=>'Enter last name',
+    'enter_email'=>'Enter email address',
+    'enter_subject'=>'Enter subject',
+    'enter_message'=>'Enter your message',
+    'submit'=>'submit',
+
+
 ]
 ?>

@@ -15,6 +15,14 @@ return [
     'signup'=>'ثبت نام',
     'signin'=>'ورود',
     "signin_up"=>'ورود/ثبت نام',
+    "about_writer"=>'درباره نویسنده',
+    "subjects"=>'موضوعات مقالات',
+    'enter_firstName'=>'نام ',
+    'enter_lastName'=>'نام خانوادگی',
+    'enter_email'=>'ایمیل',
+    'enter_subject'=>'موضوع',
+    'enter_message'=>'متن پیام',
+    'submit'=>'ارسال',
 ]
 
 ?>
