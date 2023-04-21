@@ -6,5 +6,7 @@ return [
     'language'=>'زبان',
     'en'=>'english',
     'fa'=>'فارسی',
+    "search"=>'جست و جو',
+    'site_name'=>'سایت من',
 ]
 ?>

@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('title',"about page")
+
+
+
 @section('content')
+
 <h1>about page</h1>
 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae
     , ex consequatur et cumque at error consectetur, nemo nisi reici

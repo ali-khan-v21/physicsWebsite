@@ -6,5 +6,7 @@ return [
     'language'=>'language',
     'en'=>'english',
     'fa'=>'فارسی',
+    "search"=>'Search',
+    'site_name'=>'my site',
 ]
 ?>
