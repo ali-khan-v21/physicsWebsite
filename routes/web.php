@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,4 @@ Route::get('/about', function () {
 Route::get('/contactus', function () {
     return view('contactus');
 });
+Route::get("/lang/{locale}",[LocalizationController::class,'setLang']);
