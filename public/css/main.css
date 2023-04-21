@@ -1,0 +1,16 @@
+@import url('fonts.css');
+body{
+    font-family: Vazir, sans-serif;
+    font-size: medium;
+}
+h1,
+h2 {
+    font-family: Yekan;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: Iran Sans;
+}

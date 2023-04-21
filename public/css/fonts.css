@@ -1,0 +1,36 @@
+@font-face {
+    font-family: Sahel;
+    src: url("../fonts/sahel/Sahel.eot");
+    src: url("../fonts/sahel/Sahel.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/sahel/Sahel.woff2") format("woff2"),
+        url("../fonts/sahel/Sahel.woff") format("woff"),
+        url("../fonts/sahel/Sahel.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/vazir/Vazir.eot");
+    src: url("../fonts/vazir/vazir.eot?#iefirefox") format("embedded-opentype"),
+        url("../fonts/vazir/Vazir.woff2") format("woff2"),
+        url("../fonts/vazir/Vazir.woff") format("woff"),
+        url("../fonts/vazir/Vazir.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Yekan;
+    src: url("../fonts/yekan/Yekan.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Iran Sans;
+    src: url("../fonts/iranianSans/IranianSans.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: Logirent;
+    src: url("../fonts/Logiren.otf");
+    font-weight: normal;
+}
