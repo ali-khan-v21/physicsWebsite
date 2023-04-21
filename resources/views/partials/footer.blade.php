@@ -1,5 +1,6 @@
 <footer class="bg-dark border-top pt-5 pb-4 text-white">
     <div class="footer-top">
+
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-3 col-sm-6">
@@ -47,4 +48,20 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-sm-10 col-md-6">
+                    <h4 class="text-white">developed by __ADMIN</h4>
+                </div>
+                <div class="col-sm-10 col-md-6 ">
+                    <h5 class="text-white">all rights reserved</h5>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </footer>

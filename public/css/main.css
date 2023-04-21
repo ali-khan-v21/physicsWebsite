@@ -1,4 +1,5 @@
 @import url('fonts.css');
+
 :root {
     --c-dark: #212529;
     --c-dark-rgb: 33, 37, 41;
@@ -7,37 +8,45 @@
     --c-brand-rgb: 78, 87, 212;
     --c-body: #727272;
     --font-base: 'Vazir', sans-serif;
-    --box-shadow: 0px 15px 25px rgba(0,0,0,0.08);
+    --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
     --transition: all 0.5s ease;
 }
 
-body{
+body {
     font-family: var(--font-base);
     line-height: 1.7;
     color: var(--c-body);
 }
-h1,h2 {
+
+h1,
+h2 {
     font-family: Yekan;
     font-weight: 600;
     color: var(--c-dark);
 }
 
-h3,h4,h5,h6 {
+h3,
+h4,
+h5,
+h6 {
     font-family: Iran Sans;
     font-weight: 600;
     color: var(--c-dark);
 }
+
 a {
     text-decoration: none;
     color: var(--c-brand);
     transition: var(--transition);
 }
-.section-link{
+
+.section-link {
     text-decoration: none;
     color: var(--c-dark);
 
 }
-.footer-link{
+
+.footer-link {
     text-decoration: none;
     color: var(--c-brand-light);
 }
@@ -52,8 +61,8 @@ img {
 }
 
 .section-padding {
-    padding-top: 140px;
-    padding-bottom: 140px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 .theme-shadow {
@@ -95,12 +104,15 @@ img {
     border-color: var(--c-brand-light);
     color: white;
 }
+
 /* HERO */
 #hero {
     background: linear-gradient(rgba(var(--c-dark-rgb), 0.507), rgba(var(--c-dark-rgb), 0.438)), url(../images/hero-3.jpg);
     background-position: center;
     background-size: cover;
 }
+
+
 
 
 /* SECTION TITLE */
@@ -134,6 +146,7 @@ img {
     font-size: 34px;
     flex: none;
 }
+
 /* SERVICE */
 .subject {
     position: relative;
@@ -166,9 +179,10 @@ img {
 }
 
 .subject:hover .iconbox {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
 }
+
 /* #contact::after {
     content: "";
     width: 100%;
@@ -190,3 +204,58 @@ img {
     box-shadow: none;
     border-color: var(--c-brand);
 } */
+
+/* card carousel */
+
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card {
+    margin: 0 0.5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+    border-radius: 0;
+}
+
+@media (min-width: 768px) {
+    .card img {
+        height: 11em;
+    }
+}
+/* FOOTER */
+footer {
+    padding-top: 120px;
+}
+
+.footer-top {
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-bottom {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+footer li,
+footer p,
+footer a {
+    color: rgba(255,255,255,0.7);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer .line {
+    width: 40px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin-top: 12px;
+    margin-bottom: 24px;
+}

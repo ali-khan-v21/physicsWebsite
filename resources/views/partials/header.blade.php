@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="./images/logo.svg" alt="{{ __('public.site_name') }}"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,13 +13,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#">{{ __('public.part1') }}</a>
+                        <a class="nav-link mx-3" href="#cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#">{{ __('public.part2') }}</a>
+                        <a class="nav-link mx-3" href="#neurophilosophy">{{ __('public.neurophilosophy') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#">{{ __('public.part3') }}</a>
+                        <a class="nav-link mx-3" href="#beginner_tutorials">{{ __('public.beginner_tutorials') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="#news">{{ __('public.news') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-3" href="/#about">{{ __('public.about') }}</a>
