@@ -1,23 +1,33 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">{{__("public.site_name")}}</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="./images/logo.svg" alt="{{__("public.site_name")}}"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">{{ __('public.home') }}</a>
+                        <a class="nav-link active mx-3" aria-current="page" href="/#hero">{{ __('public.home') }}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="#">{{ __('public.part1') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about">{{ __('public.about') }}</a>
+                        <a class="nav-link mx-3" href="#">{{ __('public.part2') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contactus">{{ __('public.contact') }}</a>
+                        <a class="nav-link mx-3" href="#">{{ __('public.part3') }}</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/about">{{ __('public.about') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/contactus">{{ __('public.contact') }}</a>
+                    </li>
+                    <li class="nav-item dropdown mx-3">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{ __('public.language') }}
@@ -30,17 +40,36 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="{{__('public.search')}}" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                    </form>
+                <div class="navbar-nav">
+                    <a href="#" class="btn btn-primary">{{__("public.signin_up")}}</a>
+
                 </div>
-            </nav>
+
+            </div>
+
+
         </div>
     </nav>
+
+
+    <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-uppercase fw-semibold text-white display-1">{{__("public.site_name")}}</h1>
+                    <h4 class="text-white mt-3">{{__("public.hero_text")}}</h4>
+                    <div class="mt-5 col-sm-12 col-lg-5 mx-auto">
+                        <form class="d-flex mt-3">
+                            <input class="form-control me-2" name="s" type="search" placeholder="{{__('public.search')}}" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 </header>
