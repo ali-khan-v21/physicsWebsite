@@ -50,7 +50,7 @@
                 </div>
                 <div>
 
-                    <button type="submit " class="mx-auto btn btn-primary my-3 ">{{ __('public.submit') }}</button>
+                    <button type="submit " class="btn btn-primary my-3 mx-auto">{{ __('public.submit') }}</button>
                 </div>
 
             </form>
