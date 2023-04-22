@@ -13,16 +13,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
+                        <a class="nav-link mx-3" href="/#cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#neurophilosophy">{{ __('public.neurophilosophy') }}</a>
+                        <a class="nav-link mx-3" href="/#neurophilosophy">{{ __('public.neurophilosophy') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#beginner_tutorials">{{ __('public.beginner_tutorials') }}</a>
+                        <a class="nav-link mx-3" href="/#beginner_tutorials">{{ __('public.beginner_tutorials') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="#news">{{ __('public.news') }}</a>
+                        <a class="nav-link mx-3" href="/#news">{{ __('public.news') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-3" href="/#about">{{ __('public.about') }}</a>
@@ -50,7 +50,7 @@
                     </li>
                 </ul>
                 <div class="navbar-nav">
-                    <a href="#" class="btn btn-primary">{{ __('public.signin_up') }}</a>
+                    <a href="{{route('login-form')}}" class="btn btn-primary">{{ __('public.signin_up') }}</a>
 
                 </div>
 

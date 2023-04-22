@@ -23,6 +23,7 @@ return [
     'enter_email'=>'Enter email address',
     'enter_subject'=>'Enter subject',
     'enter_message'=>'Enter your message',
+    'enter_password'=>'Enter Password',
     'submit'=>'submit',
     'more'=>'more',
 

@@ -23,6 +23,7 @@ return [
     'enter_email'=>'ایمیل',
     'enter_subject'=>'موضوع',
     'enter_message'=>'متن پیام',
+    'enter_password'=>'پسورد را وارد کنید',
     'submit'=>'ارسال',
     'more'=>'بیشتر',
 ]
