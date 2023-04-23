@@ -33,8 +33,8 @@
                 @endif
 
                 <div class="form-group my-4 p-3">
-                    <input class="form-control" type="email" name="email"
-                        placeholder="{{ __('public.enter_email') }}">
+                    <input class="form-control" type="text" name="email"
+                        placeholder="{{ __('public.enter_email') }}" value="{{old('email')}}">
 
                     @if ($errors->has('email'))
                         <span class="text-danger">{{ $errors->first('email') }}</span>

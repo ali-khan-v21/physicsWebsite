@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as BaseValidator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Validator::extend('password_validator', function ($attr, $value, $params = [], BaseValidator $validator) {
+            $uppercase    = preg_match('@[A-Z]@', $value);
+            $lowercase    = preg_match('@[a-z]@', $value);
+            $number       = preg_match('@[0-9]@', $value);
+
+
+            if (!$uppercase || !$lowercase || !$number  || strlen($value) < 8) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ':attribute به اندازه کافی قوی نیست');
     }
 }

@@ -37,7 +37,7 @@ return [
     'distinct' => ':attribute دارای مقدار تکراری است.',
     'doesnt_end_with' => 'ورودی :attribute نباید با موارد زیر خاتمه یابد : :values .',
     'doesnt_start_with' => 'ورودی :attribute نباید با یکی از موارد زیر آغاز شود : :values .',
-    'email' => ':attribute ایمیل آدرس معتبر نیست.',
+    'email' => ':attribute یک ایمیل معتبر نیست.',
     'ends_with' => ':attribute آخرین مقدار باید شامل این موارد باشد: :values',
     'exists' => ':attribute مورد انتخاب شده معتبر نیست.',
     'enum' => 'مورد انتخاب شده ی  :attribute صحیح نیست .',
@@ -145,7 +145,7 @@ return [
 
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => ':attribute باید مقدار UUID معتبر باشد',
-
+    'password_notstrong'=>':attribute به اندازه کافی قوی نیست.',
 
     'custom' => [
         'attribute-name' => [
