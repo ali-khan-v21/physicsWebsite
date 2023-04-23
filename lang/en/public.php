@@ -34,6 +34,9 @@ return [
     "choose_image"=>'choose image for post',
     "created_at"=>'created at',
     "writer"=>'writer',
+    "delete"=>'delete',
+    "edit"=>'edit',
+    
 
 
 ]

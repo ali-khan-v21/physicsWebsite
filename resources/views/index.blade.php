@@ -132,11 +132,11 @@
                     ->get();
             @endphp
             <div class="row justify-content-between align-items-center mx-auto">
-            @foreach ($posts as $post)
-                @php
+                @foreach ($posts as $post)
+                    @php
 
-                    $writer = Writer::find($post['writer_id']);
-                @endphp
+                        $writer = Writer::find($post['writer_id']);
+                    @endphp
                     <div class="col-lg-3 col-sm-10 col-md-6">
                         <div class="card" style="width: 18rem;">
                             <img src="./images/writer.jpg" class="card-img-top" alt="writer">
@@ -145,8 +145,9 @@
                                 <p class="card-text">@php echo mb_strimwidth($post['text_' . $locale], 0, 125, "..."); @endphp</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{__("public.created_at")}}  : {{ $post['created_at'] }}</li>
-                                <li class="list-group-item">{{__("public.writer")}} : {{ $writer['firstname_'.$locale] . ' ' . $writer['lastname_'.$locale] }}</li>
+                                <li class="list-group-item">{{ __('public.created_at') }} : {{ $post['created_at'] }}</li>
+                                <li class="list-group-item">{{ __('public.writer') }} :
+                                    {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
                                 <li class="list-group-item">A third item</li>
                             </ul>
                             <div class="card-body">
@@ -155,17 +156,16 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                @endforeach
 
-                    <div class="text-center pt-5">
-                        <a href="/article/{{ $category['category_key'] }}"
-                            class="btn btn-secondary mx-auto p-2 fw-semibold ">
-                            <h5 class="text-white">{{ __('public.more') }}</h5>
-                        </a>
-                    </div>
-
-
+                <div class="text-center pt-5">
+                    <a href="/article/{{ $category['category_key'] }}" class="btn btn-secondary mx-auto p-2 fw-semibold ">
+                        <h5 class="text-white">{{ __('public.more') }}</h5>
+                    </a>
                 </div>
+
+
+            </div>
 
 
 
