@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('title', __('public.home'))
-
+@php
+    $lacale = $app->getLocale();
+@endphp
 @section('content')
 
     <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
