@@ -1,8 +1,8 @@
+@php
+    $locale = $app->getLocale();
+@endphp
 @extends('layouts.master')
 @section('title', __('public.home'))
-@php
-    $lacale = $app->getLocale();
-@endphp
 @section('content')
 
     <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
@@ -88,65 +88,37 @@
 
                 </div>
             </div>
+
             <div class="row">
+                @foreach ($categories as $category)
 
                 <div class="col-lg-3 col-sm-6 text-center">
-                    <a href="#cognitive_neuroscience" class="section-link">
-                        <div class="subject theme-shadow p-lg-5 p-4">
-                            <div class="iconbox">
-                                <i class="bi bi-book-fill"></i>
-                            </div>
-                            <h5 class="mt-4 mb-3">{{ __('public.cognitive_neuroscience') }}</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, assumenda.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 text-center">
-                    <a href="#neurophilosophy" class="section-link">
+                    <a href="#{{$category['category_key']}}" class="section-link">
                         <div class="subject theme-shadow p-lg-5 p-4">
                             <div class="iconbox">
                                 <i class="bi bi-book"></i>
                             </div>
-                            <h5 class="mt-4 mb-3">{{ __('public.neurophilosophy') }}</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, assumenda.</p>
+                            <h5 class="mt-4 mb-3">{{$category['name_'.$locale]}}</h5>
+                            <p>{{$category['desc_'.$locale]}}</p>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3 col-sm-6 text-center">
-                    <a href="#beginner_tutorials" class="section-link">
-                        <div class="subject theme-shadow p-lg-5 p-4">
-                            <div class="iconbox">
-                                <i class="bi bi-book-fill"></i>
-                            </div>
-                            <h5 class="mt-4 mb-3">{{ __('public.beginner_tutorials') }}</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, assumenda.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 text-center">
-                    <a href="#news" class="section-link">
-                        <div class="subject theme-shadow p-lg-5 p-4">
-                            <div class="iconbox">
-                                <i class="bi bi-book-fill"></i>
-                            </div>
-                            <h5 class="mt-4 mb-3">{{ __('public.news') }}</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, assumenda.</p>
-                        </div>
-                    </a>
-                </div>
+
+                @endforeach
             </div>
+
         </div>
 
     </div>
     @foreach ($categories as $category)
-        <li>{{ $category['id'] }}-{{ $category['name_' . $lacale] }}</li>
+
         <section id="{{$category['category_key']}}" class="section-padding border-top">
             <div class="container">
 
                 <div class="row">
                     <div class="col-12 text-center">
                         <div class="section-title">
-                            <h1 class="display-4 fw-semibold">{{ $category['name_' . $lacale] }}</h1>
+                            <h1 class="display-4 fw-semibold">{{ $category['name_' . $locale] }}</h1>
                             <div class="line"></div>
 
                         </div>
@@ -154,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row jostify-content-between align-items-center mx-auto">
+            <div class="row justify-content-between align-items-center mx-auto">
                 <div class="col-lg-3 col-sm-10 col-md-6">
                     <div class="card" style="width: 18rem;">
                         <img src="./images/writer.jpg" class="card-img-top" alt="writer">
@@ -169,7 +141,7 @@
                             <li class="list-group-item">A third item</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary">Go to</a>
+                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
 
                         </div>
                     </div>
@@ -188,7 +160,7 @@
                             <li class="list-group-item">A third item</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary">Go to</a>
+                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
 
                         </div>
                     </div>
@@ -207,7 +179,7 @@
                             <li class="list-group-item">A third item</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary">Go to</a>
+                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
 
                         </div>
                     </div>
@@ -226,13 +198,13 @@
                             <li class="list-group-item">A third item</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary">Go to</a>
+                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
 
                         </div>
                     </div>
                 </div>
                 <div class="text-center pt-5">
-                    <a href="/article/cognitive_neuroscience" class="btn btn-secondary mx-auto p-2 fw-semibold ">
+                    <a href="/article/{{$category['category_key']}}" class="btn btn-secondary mx-auto p-2 fw-semibold ">
                         <h5 class="text-white">{{ __('public.more') }}</h5>
                     </a>
                 </div>

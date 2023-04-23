@@ -9,7 +9,9 @@ class ArticleController extends Controller
 {
     public function all($subject){
         $categories=Category::all();
-        return view('page',["categories"=>$categories]);
+
+        $category=Category::where("category_key",$subject)->get(['id','name_fa','name_en']);
+        return view('page',["category"=>$category[0],'categories'=>$categories]);
     }
     public function show($subject,$id){
         return $subject." - ".$id;

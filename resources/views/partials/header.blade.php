@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="./images/logo.svg" alt="{{ __('public.site_name') }}"></a>
+            <a class="navbar-brand" href="#"><img src="images\logo.svg" alt="{{ __('public.site_name') }}"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -11,11 +11,17 @@
                     <li class="nav-item">
                         <a class="nav-link active mx-3" aria-current="page" href="/#hero">{{ __('public.home') }}</a>
                     </li>
-
+{{-- 
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="/#cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
-                    </li>
-                    <li class="nav-item">
+                        <a class="nav-link mx-3"
+                            href="/#cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
+                    </li> --}}
+                    @foreach ($categories as $category)
+                        <li class="nav-item">
+                            <a class="nav-link mx-3" href="/article/{{$category['category_key']}}">{{$category['name_'.$locale]}}</a>
+                        </li>
+                    @endforeach
+                    {{-- <li class="nav-item">
                         <a class="nav-link mx-3" href="/#neurophilosophy">{{ __('public.neurophilosophy') }}</a>
                     </li>
                     <li class="nav-item">
@@ -23,7 +29,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-3" href="/#news">{{ __('public.news') }}</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link mx-3" href="/#about">{{ __('public.about') }}</a>
                     </li>
@@ -50,7 +56,7 @@
                     </li>
                 </ul>
                 <div class="navbar-nav">
-                    <a href="{{route('login-form')}}" class="btn btn-primary">{{ __('public.signin_up') }}</a>
+                    <a href="{{ route('login-form') }}" class="btn btn-primary">{{ __('public.signin_up') }}</a>
 
                 </div>
 
@@ -58,7 +64,7 @@
 
 
         </div>
-        
+
     </nav>
 
 

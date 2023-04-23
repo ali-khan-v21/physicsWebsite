@@ -26,6 +26,7 @@ return [
     'enter_password'=>'Enter Password',
     'submit'=>'submit',
     'more'=>'more',
+    "goTo"=>'Go To',
 
 
 ]
