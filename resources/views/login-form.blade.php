@@ -1,3 +1,6 @@
+@php
+    $locale = $app->getLocale();
+@endphp
 <!DOCTYPE html>
 <html lang="en" dir=@php if(app()->getLocale()=='fa'){echo 'rtl';}else{echo 'ltr';} @endphp>
 

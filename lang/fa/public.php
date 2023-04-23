@@ -27,6 +27,11 @@ return [
     'submit'=>'ارسال',
     'more'=>'بیشتر',
     "goTo"=>'مشاهده',
+    'sign_out'=>'خروج',
+    'new_post'=>'پست جدید',
+    'dashboard'=>'داشبورد',
+    "choose_category"=>'انتخاب دسته بندی پست',
+    "choose_image"=>"انتخاب عکس برای پست"
 ]
 
 ?>

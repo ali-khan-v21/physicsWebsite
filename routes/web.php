@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ArticleController;
 
 use App\Http\Controllers\HomeController;
@@ -15,6 +16,12 @@ Route::prefix('/article')->group(function(){
 
     Route::get("/{subject}",[ArticleController::class,"all"]);
     Route::get("/{subject}/{id}",[ArticleController::class,"show"]);
+});
+Route::prefix('/admin')->group(function(){
+
+    Route::get("/",[AdminController::class,"index"])->name("admin_dashboard");
+    Route::get("/newpost",[AdminController::class,"newpost"])->name("admin_newpost");
+
 });
 
 Route::get("/login-form",[HomeController::class,"loginForm"])->name('login-form');

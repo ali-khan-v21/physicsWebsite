@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
+use App\Models\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 
 class HomeController extends Controller
 {
@@ -13,11 +14,16 @@ class HomeController extends Controller
         return view('index',['categories'=>$categories]);
     }
     public function loginForm(){
-        return view('login-form');
+        $categories=Category::all();
+        return view('login-form',['categories'=>$categories]);
     }
 
     public function loginUser(LoginRequest $request){
 
-        return $request->all();
+        if(true){
+
+            return redirect()->route('admin_dashboard');
+        }
+
     }
 }

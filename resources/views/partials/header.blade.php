@@ -11,32 +11,28 @@
                     <li class="nav-item">
                         <a class="nav-link active mx-3" aria-current="page" href="/#hero">{{ __('public.home') }}</a>
                     </li>
-{{-- 
+
                     <li class="nav-item">
                         <a class="nav-link mx-3"
-                            href="/#cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
-                    </li> --}}
-                    @foreach ($categories as $category)
-                        <li class="nav-item">
-                            <a class="nav-link mx-3" href="/article/{{$category['category_key']}}">{{$category['name_'.$locale]}}</a>
-                        </li>
-                    @endforeach
-                    {{-- <li class="nav-item">
-                        <a class="nav-link mx-3" href="/#neurophilosophy">{{ __('public.neurophilosophy') }}</a>
+                            href="/cognitive_neuroscience">{{ __('public.cognitive_neuroscience') }}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/neurophilosophy">{{ __('public.neurophilosophy') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="/#beginner_tutorials">{{ __('public.beginner_tutorials') }}</a>
+                        <a class="nav-link mx-3" href="/beginner_tutorials">{{ __('public.beginner_tutorials') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-3" href="/#news">{{ __('public.news') }}</a>
-                    </li> --}}
+                        <a class="nav-link mx-3" href="/news">{{ __('public.news') }}</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link mx-3" href="/#about">{{ __('public.about') }}</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link mx-3" href="/#contact">{{ __('public.contact') }}</a>
                     </li>
-                    {{-- @foreach (config('app.available_lacales') as $locale)
+                     {{-- @foreach (config('app.available_lacales') as $locale)
                         <li class="nav-item"><a href=/lang/{{ $locale }}  class="nav-link @php if (app()->getLocale()==$locale){echo "border-bottom active border-dark";} @endphp  mx-3"> {{ __('public.' . $locale) }} </a>
                         </li>
                     @endforeach --}}
