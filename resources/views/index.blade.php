@@ -24,7 +24,6 @@
             </div>
         </div>
     </section>
-
     <section id="about" class="section-padding">
         <div class="container">
 
@@ -139,432 +138,116 @@
         </div>
 
     </div>
+    @foreach ($categories as $category)
+        <li>{{ $category['id'] }}-{{ $category['name_' . $lacale] }}</li>
+        <section id="{{$category['category_key']}}" class="section-padding border-top">
+            <div class="container">
 
-    <section id="cognitive_neuroscience" class="section-padding border-top">
-        <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="section-title">
+                            <h1 class="display-4 fw-semibold">{{ $category['name_' . $lacale] }}</h1>
+                            <div class="line"></div>
 
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">{{ __('public.cognitive_neuroscience') }}</h1>
-                        <div class="line"></div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row jostify-content-between align-items-center mx-auto">
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
+                        </div>
 
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
+            <div class="row jostify-content-between align-items-center mx-auto">
+                <div class="col-lg-3 col-sm-10 col-md-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">publish date</li>
+                            <li class="list-group-item">writer</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-primary">Go to</a>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
+                <div class="col-lg-3 col-sm-10 col-md-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">publish date</li>
+                            <li class="list-group-item">writer</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-primary">Go to</a>
 
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-5">
-                <a href="/article/cognitive_neuroscience" class="btn btn-secondary mx-auto p-2 fw-semibold ">
-                    <h5 class="text-white">{{ __('public.more') }}</h5>
-                </a>
-            </div>
-
-
-        </div>
-
-
-
-
-
-    </section>
-
-    <section id="neurophilosophy" class="section-padding border-top">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">{{ __('public.neurophilosophy') }}</h1>
-                        <div class="line"></div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row jostify-content-between align-items-center mx-auto">
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
+                <div class="col-lg-3 col-sm-10 col-md-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">publish date</li>
+                            <li class="list-group-item">writer</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-primary">Go to</a>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
+                <div class="col-lg-3 col-sm-10 col-md-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">publish date</li>
+                            <li class="list-group-item">writer</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-primary">Go to</a>
 
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-5">
-                <a href="/article/neurophilosophy" class="btn btn-secondary mx-auto p-2 fw-semibold ">
-                    <h5 class="text-white">{{ __('public.more') }}</h5>
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-    </section>
-    <section id="beginner_tutorials" class="section-padding border-top">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">{{ __('public.beginner_tutorials') }}</h1>
-                        <div class="line"></div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row jostify-content-between align-items-center mx-auto">
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
-                    </div>
+                <div class="text-center pt-5">
+                    <a href="/article/cognitive_neuroscience" class="btn btn-secondary mx-auto p-2 fw-semibold ">
+                        <h5 class="text-white">{{ __('public.more') }}</h5>
+                    </a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-5">
-                <a href="/article/beginner_tutorials" class="btn btn-secondary mx-auto p-2 fw-semibold ">
-                    <h5 class="text-white">{{ __('public.more') }}</h5>
-                </a>
 
             </div>
 
 
-        </div>
 
 
 
+        </section>
 
+    @endforeach
 
-    </section>
-
-    <section id="news" class="section-padding border-top">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">{{ __('public.news') }}</h1>
-                        <div class="line"></div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row jostify-content-between align-items-center mx-auto">
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-10 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">publish date</li>
-                        <li class="list-group-item">writer</li>
-                        <li class="list-group-item">A third item</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Go to</a>
-
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-5">
-                <a href="/article/news" class="btn btn-secondary mx-auto p-2 fw-semibold ">
-                    <h5 class="text-white">{{ __('public.more') }}</h5>
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-    </section>
 
     <section id="contact" class="section-padding border-top bg-dark">
         <div class="container">
