@@ -51,7 +51,7 @@
 
 
                     <button type="submit" class="btn btn-primary">{{__('public.submit')}}</button>
-                    <button type="submit" form="a-form">Submit</button>
+                    {{-- <button type="submit" form="a-form">Submit</button> --}}
                 </div>
 
             </div>

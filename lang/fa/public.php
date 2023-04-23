@@ -31,7 +31,9 @@ return [
     'new_post'=>'پست جدید',
     'dashboard'=>'داشبورد',
     "choose_category"=>'انتخاب دسته بندی پست',
-    "choose_image"=>"انتخاب عکس برای پست"
+    "choose_image"=>"انتخاب عکس برای پست",
+    "created_at"=>'زمان انتشار',
+    "writer"=>'نویسنده',
 ]
 
 ?>

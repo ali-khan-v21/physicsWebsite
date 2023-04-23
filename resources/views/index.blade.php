@@ -1,4 +1,6 @@
 @php
+    use App\Models\Writer;
+    use App\Models\Article;
     $locale = $app->getLocale();
 @endphp
 @extends('layouts.master')
@@ -91,19 +93,17 @@
 
             <div class="row">
                 @foreach ($categories as $category)
-
-                <div class="col-lg-3 col-sm-6 text-center">
-                    <a href="#{{$category['category_key']}}" class="section-link">
-                        <div class="subject theme-shadow p-lg-5 p-4">
-                            <div class="iconbox">
-                                <i class="bi bi-book"></i>
+                    <div class="col-lg-3 col-sm-6 text-center">
+                        <a href="#{{ $category['category_key'] }}" class="section-link">
+                            <div class="subject theme-shadow p-lg-5 p-4">
+                                <div class="iconbox">
+                                    <i class="bi bi-book"></i>
+                                </div>
+                                <h5 class="mt-4 mb-3">{{ $category['name_' . $locale] }}</h5>
+                                <p>{{ $category['desc_' . $locale] }}</p>
                             </div>
-                            <h5 class="mt-4 mb-3">{{$category['name_'.$locale]}}</h5>
-                            <p>{{$category['desc_'.$locale]}}</p>
-                        </div>
-                    </a>
-                </div>
-
+                        </a>
+                    </div>
                 @endforeach
             </div>
 
@@ -111,9 +111,9 @@
 
     </div>
     @foreach ($categories as $category)
-
-        <section id="{{$category['category_key']}}" class="section-padding border-top">
+        <section id="{{ $category['category_key'] }}" class="section-padding border-top">
             <div class="container">
+
 
                 <div class="row">
                     <div class="col-12 text-center">
@@ -126,98 +126,52 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-between align-items-center mx-auto">
-                <div class="col-lg-3 col-sm-10 col-md-6">
-                    <div class="card" style="width: 18rem;">
-                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">publish date</li>
-                            <li class="list-group-item">writer</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
+            @php
+                $posts = Article::where('category_id', $category['id'])
+                    ->take(4)
+                    ->get();
+            @endphp
+            @foreach ($posts as $post)
+                @php
 
+                    $writer = Writer::find($post['writer_id']);
+                @endphp
+                <div class="row justify-content-between align-items-center mx-auto">
+                    <div class="col-lg-3 col-sm-10 col-md-6">
+                        <div class="card" style="width: 18rem;">
+                            <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post['title_' . $locale] }}</h5>
+                                <p class="card-text">@php echo mb_strimwidth($post['text_' . $locale], 0, 125, "..."); @endphp</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{__("public.created_at")}}  : {{ $post['created_at'] }}</li>
+                                <li class="list-group-item">{{__("public.writer")}} : {{ $writer['firstname_'.$locale] . ' ' . $writer['lastname_'.$locale] }}</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="btn btn-primary">{{ __('public.goTo') }}</a>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-10 col-md-6">
-                    <div class="card" style="width: 18rem;">
-                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">publish date</li>
-                            <li class="list-group-item">writer</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
 
-                        </div>
+                    <div class="text-center pt-5">
+                        <a href="/article/{{ $category['category_key'] }}"
+                            class="btn btn-secondary mx-auto p-2 fw-semibold ">
+                            <h5 class="text-white">{{ __('public.more') }}</h5>
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-10 col-md-6">
-                    <div class="card" style="width: 18rem;">
-                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">publish date</li>
-                            <li class="list-group-item">writer</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-10 col-md-6">
-                    <div class="card" style="width: 18rem;">
-                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">publish date</li>
-                            <li class="list-group-item">writer</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">{{__("public.goTo")}}</a>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center pt-5">
-                    <a href="/article/{{$category['category_key']}}" class="btn btn-secondary mx-auto p-2 fw-semibold ">
-                        <h5 class="text-white">{{ __('public.more') }}</h5>
-                    </a>
-                </div>
 
 
-            </div>
+                </div>
+            @endforeach
 
 
 
 
 
         </section>
-
     @endforeach
 
 

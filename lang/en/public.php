@@ -32,6 +32,8 @@ return [
     'dashboard'=>'dashboard',
     "choose_category"=>'choose post category',
     "choose_image"=>'choose image for post',
+    "created_at"=>'created at',
+    "writer"=>'writer',
 
 
 ]
