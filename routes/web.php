@@ -21,6 +21,7 @@ Route::prefix('/admin')->group(function(){
 
     Route::get("/",[AdminController::class,"index"])->name("admin_dashboard");
     Route::get("/newpost",[AdminController::class,"newpost"])->name("admin_newpost");
+    Route::post("/newpost",[AdminController::class,"addPost"]);
 
 });
 

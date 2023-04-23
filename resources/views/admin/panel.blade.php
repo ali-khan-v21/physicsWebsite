@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ __('public.site_name') }} | @yield('title')</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.24.7/jodit.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.24.7/jodit.min.js"></script>
 
 
     @vite(['resources/sass/app.scss'])
@@ -196,6 +198,11 @@
     </script>
 
     <script src="{{ asset('js/dashboard.js') }}"></script>
+
+    <script>
+        const editor = Jodit.make('#editor1');
+        const editor = Jodit.make('#editor2');
+    </script>
 </body>
 
 </html>

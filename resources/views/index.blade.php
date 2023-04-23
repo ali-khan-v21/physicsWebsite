@@ -131,12 +131,12 @@
                     ->take(4)
                     ->get();
             @endphp
+            <div class="row justify-content-between align-items-center mx-auto">
             @foreach ($posts as $post)
                 @php
 
                     $writer = Writer::find($post['writer_id']);
                 @endphp
-                <div class="row justify-content-between align-items-center mx-auto">
                     <div class="col-lg-3 col-sm-10 col-md-6">
                         <div class="card" style="width: 18rem;">
                             <img src="./images/writer.jpg" class="card-img-top" alt="writer">
@@ -155,6 +155,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
                     <div class="text-center pt-5">
                         <a href="/article/{{ $category['category_key'] }}"
@@ -165,7 +166,6 @@
 
 
                 </div>
-            @endforeach
 
 
 
