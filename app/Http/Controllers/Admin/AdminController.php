@@ -4,20 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $posts=Article::all();
+        $posts=Article::orderBy("created_at","DESC")->get();
         return view('admin.dashboard',['posts'=>$posts]);
     }
     public function newpost()
     {
         return view('admin.newpost');
     }
-    public function addPost(Request $request)
+    public function addPost(PostRequest $request)
     {
         $article = new Article();
         $article->title_fa = $request->get('title_fa');
@@ -30,7 +31,11 @@ class AdminController extends Controller
         $article->save();
         if ($article->exists) {
             // checking for image and adding it to asset('/images/posts/'.$article->id.".jpg"')
+            if($request->hasFile('post_img')){
+                dd($request->files());
+            }
             // $fileName=$article->id;
         }
+        return redirect('admin/');
     }
 }

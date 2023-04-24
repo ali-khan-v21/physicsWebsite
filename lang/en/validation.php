@@ -181,6 +181,11 @@ return [
     */
 
     'attributes' => [
+        'text_fa'=>'persian text',
+        'text_en'=>'english text',
+        'title_en'=>'english title',
+        'title_fa'=>'persian title',
+        'post_img'=>'post image',
         "name" => "name",
         "username" => "user name",
         "email" => "email",

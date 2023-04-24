@@ -19,12 +19,16 @@
 
                     <div class="form-group col-lg-6 col-sm-10 ">
 
-                        <input type="text" placeholder="عنوان فارسی پست" class="form-control " name="title_fa">
+                        <input type="text" placeholder="عنوان فارسی پست" class="form-control " name="title_fa" value="{{old("title_fa")}}">
+                        @if ($errors->has('title_fa'))
+
+                        <span class="text-danger">{{$errors->first('title_fa')}}</span>
+                        @endif
                     </div>
                     <div class="form-group  col-lg-6 col-sm-10">
 
                         <select class="form-select" name="category_id" aria-label="Default select example">
-                            <option selected>{{ __('public.choose_category') }}</option>
+                            {{-- <option selected>{{ __('public.choose_category') }}</option> --}}
                             @foreach ($categories as $category)
                                 <option value="{{ $category['id'] }}">{{ $category['name_' . $app->getLocale()] }}</option>
                             @endforeach
@@ -38,6 +42,9 @@
                     <script>
                         const editor = Jodit.make('#editor');
                     </script>
+                    @if ($errors->has('text_fa'))
+                        <span class="text-danger">{{$errors->first('text_fa')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-6 col-sm-10">
@@ -47,6 +54,13 @@
                     <div class="form-group col-lg-12 col-sm-12 text-start">
 
                         <input type="text" name="title_en" placeholder="english title" class="form-control ">
+                        @if ($errors->has('title_en'))
+
+                        <span class="text-danger">
+                            {{$errors->first('title_en')}}
+                        </span>
+
+                        @endif
                     </div>
 
                 </div>
@@ -56,6 +70,10 @@
                     <script>
                         const editor2 = Jodit.make('#editor2');
                     </script>
+                    @if ($errors->has('text_en'))
+                    <span class="text_en">{{$errors->first('text_en')}}</span>
+
+                    @endif
                 </div>
             </div>
             <div class="row my-3 align-items-center">
@@ -63,6 +81,13 @@
 
                     <label for="formFile" class="form-label">{{ __('public.choose_image') }}</label>
                     <input class="form-control" name="post_img" type="file" id="formFile">
+                    @if ($errors->has('post_img'))
+
+                    <span class="text-danger">
+                        {{$errors->first('post_img')}}
+                    </span>
+
+                    @endif
 
 
                 </div>
