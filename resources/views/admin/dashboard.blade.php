@@ -30,8 +30,8 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-primary">{{ __('public.goTo') }}</a>
-                        <a href="#" class="btn btn-warning">{{ __('public.edit') }}</a>
-                        <a href="#" class="btn btn-danger">{{ __('public.delete') }}</a>
+                        <a href="/admin/edit/{{$post['id']}}" class="btn btn-warning">{{ __('public.edit') }}</a>
+                        <a href="/admin/softDelete/{{$post['id']}}" class="btn btn-danger">{{ __('public.delete') }}</a>
 
                     </div>
                 </div>

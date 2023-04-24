@@ -22,6 +22,9 @@ Route::prefix('/admin')->group(function(){
     Route::get("/",[AdminController::class,"index"])->name("admin_dashboard");
     Route::get("/newpost",[AdminController::class,"newpost"])->name("admin_newpost");
     Route::post("/newpost",[AdminController::class,"addPost"]);
+    Route::get("/edit/{id}",[AdminController::class,"editPost"]);
+    Route::get("/softDelete/{id}",[AdminController::class,"softDelete"]);
+    Route::get("/forceDelete/{id}",[AdminController::class,"forceDelete"]);
 
 });
 

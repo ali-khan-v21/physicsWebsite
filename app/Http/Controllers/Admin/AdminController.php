@@ -45,4 +45,13 @@ class AdminController extends Controller
         }
         return redirect('admin/');
     }
+    public function editPost($id){
+        return 'editing '.$id;
+    }
+    public function softDelete($id){
+        return 'soft deleting '.$id;
+    }
+    public function froceDelete($id){
+        return 'force deleting '.$id;
+    }
 }
