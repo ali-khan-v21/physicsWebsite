@@ -36,7 +36,14 @@ return [
     "writer"=>'writer',
     "delete"=>'delete',
     "edit"=>'edit',
-    
+    "members"=>'members',
+    "users"=>'weblsite users',
+    "trashbin"=>'trash bin',
+    "writers"=>'writers',
+    "pending_posts"=>'pending posts',
+    "comments"=>'comments',
+    "managing_users"=>'managing users'
+
 
 
 ]
