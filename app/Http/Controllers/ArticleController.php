@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
     public function all($subject){
-        $categories=Category::all();
+        $category=Category::where("category_key",$subject)->get();
+        $category=$category[0];
 
-        $category=Category::where("category_key",$subject)->get(['id','name_fa','name_en']);
-        return view('page',["category"=>$category[0],'categories'=>$categories]);
+        $posts=Article::where('category_id',$category['id'])->orderBy('updated_at','DESC')->get();
+
+        return view('page',["category"=>$category,'posts'=>$posts]);
     }
+
     public function show($subject,$id){
         return $subject." - ".$id;
     }

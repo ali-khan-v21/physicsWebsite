@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $posts=Article::orderBy("created_at","DESC")->get();
+        $posts=Article::orderBy("updated_at","DESC")->get();
         return view('admin.dashboard',['posts'=>$posts]);
     }
     public function newpost()
