@@ -54,4 +54,8 @@ class AdminController extends Controller
     public function froceDelete($id){
         return 'force deleting '.$id;
     }
+    public function trashed(){
+        $posts=Article::onlyTrashed()->get();;
+        return view('admin.trash',['posts'=>$posts]);
+    }
 }

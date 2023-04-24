@@ -18,6 +18,11 @@ class ArticleController extends Controller
     }
 
     public function show($subject,$id){
-        return $subject." - ".$id;
+        $category=Category::where("category_key",$subject)->get();
+        $category=$category[0];
+
+        $post=Article::where('id',$id)->get();
+        $post=$post[0];
+        return view('article',['post'=>$post,"category"=>$category]);
     }
 }

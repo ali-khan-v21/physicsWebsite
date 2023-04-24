@@ -25,6 +25,7 @@ Route::prefix('/admin')->group(function(){
     Route::get("/edit/{id}",[AdminController::class,"editPost"]);
     Route::get("/softDelete/{id}",[AdminController::class,"softDelete"]);
     Route::get("/forceDelete/{id}",[AdminController::class,"forceDelete"]);
+    Route::get("/trashed",[AdminController::class,"trashed"]);
 
 });
 

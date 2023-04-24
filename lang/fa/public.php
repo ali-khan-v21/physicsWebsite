@@ -43,6 +43,8 @@ return [
     "pending_posts"=>'پست های در انتظار تایید',
     "comments"=>'کامنت ها',
     "managing_users"=>'مدیریت اعضا',
+    'category'=>'موضوع ',
+    'return'=>'بازگشت',
 ]
 
 ?>

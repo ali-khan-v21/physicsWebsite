@@ -42,7 +42,10 @@ return [
     "writers"=>'writers',
     "pending_posts"=>'pending posts',
     "comments"=>'comments',
-    "managing_users"=>'managing users'
+    "managing_users"=>'managing users',
+    'category'=>'subject',
+    'return'=>'return',
+
 
 
 
