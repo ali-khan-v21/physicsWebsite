@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -32,9 +33,15 @@ class AdminController extends Controller
         if ($article->exists) {
             // checking for image and adding it to asset('/images/posts/'.$article->id.".jpg"')
             if($request->hasFile('post_img')){
-                dd($request->files());
+                $tmp_path=$request->file('post_img')->path();
+                $fileName=$article->id;
+                $file_extension=$request->file('post_img')->getClientOriginalExtension();
+                // dd($tmp_path,$file_extension);
+                // Storage::disk()->move(
+                //     $tmp_path,
+                //     asset('/images/posts/').$article->id.".".$file_extension);
             }
-            // $fileName=$article->id;
+
         }
         return redirect('admin/');
     }

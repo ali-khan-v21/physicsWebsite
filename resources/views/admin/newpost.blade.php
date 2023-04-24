@@ -10,7 +10,7 @@
 @section('maincontent')
     <div class="row">
 
-        <form action="{{ url()->current() }}" method="POST" class="row">
+        <form action="{{ url()->current() }}" method="POST" class="row" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="col-lg-6 col-sm-10">
