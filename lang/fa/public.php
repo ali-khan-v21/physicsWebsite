@@ -45,6 +45,9 @@ return [
     "managing_users"=>'مدیریت اعضا',
     'category'=>'موضوع ',
     'return'=>'بازگشت',
+    'forceDelete'=>'حذف دائم',
+    'softDelete'=>'حذف موقت',
+    'restore'=>'بازیابی',
 ]
 
 ?>

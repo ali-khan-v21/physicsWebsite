@@ -49,10 +49,42 @@ class AdminController extends Controller
         return 'editing '.$id;
     }
     public function softDelete($id){
-        return 'soft deleting '.$id;
+        $result=Article::find($id)->delete();
+        if($result){
+            //on success
+
+            return redirect(route("admin_dashboard"));
+        }else{
+            //on fail
+            return redirect(route("admin_dashboard"));
+
+        }
     }
-    public function froceDelete($id){
-        return 'force deleting '.$id;
+    public function forceDelete($id){
+
+        $result=Article::withTrashed()->find($id)->forceDelete();
+
+        if($result){
+            //on success
+            return redirect()->back();
+
+        }else{
+            //on fail
+            return redirect()->back();
+        }
+
+    }
+    public function restore($id){
+        $result =Article::withTrashed()->find($id)->restore();
+        if($result){
+            //on success
+            return redirect()->back();
+
+        }else{
+            //on fail
+            return redirect()->back();
+
+        }
     }
     public function trashed(){
         $posts=Article::onlyTrashed()->get();;

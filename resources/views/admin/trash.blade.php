@@ -14,7 +14,7 @@
 
     <section id="" class="section-padding border-top px-4">
 
- 
+
         <div class="row justify-content-start align-items-start gy-5 mx-auto">
             @foreach ($posts as $post)
                 @php
@@ -56,7 +56,14 @@
 
                         </ul>
                         <div class="card-body">
-                            {{-- <a href="/article/{{$category['category_key']}}/{{$post['id']}}" class="btn btn-primary">{{ __('public.goTo') }}</a> --}}
+                            <a href="/admin/forceDelete/{{$post['id']}}" class="btn btn-danger">
+                                <i class="bi bi-trash3-fill"></i>
+                                {{ __('public.forceDelete') }}
+                            </a>
+                            <a href="/admin/restore/{{$post['id']}}" class="btn btn-warning">
+                                <i class="bi bi-recycle"></i>
+                                {{ __('public.restore') }}
+                            </a>
 
                         </div>
                     </div>

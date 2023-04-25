@@ -45,6 +45,9 @@ return [
     "managing_users"=>'managing users',
     'category'=>'subject',
     'return'=>'return',
+    'forceDelete'=>'permenant delete',
+    'softDelete'=>'temporary delete',
+    'restore'=>'restore',
 
 
 
