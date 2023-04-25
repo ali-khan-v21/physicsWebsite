@@ -29,6 +29,7 @@ return [
     "goTo"=>'مشاهده',
     'sign_out'=>'خروج',
     'new_post'=>'پست جدید',
+    'edit_post'=>'ادیت پست',
     'dashboard'=>'داشبورد',
     "choose_category"=>'انتخاب دسته بندی پست',
     "choose_image"=>"انتخاب عکس برای پست",

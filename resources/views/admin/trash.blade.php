@@ -6,7 +6,9 @@
 @endphp
 
 @extends('admin.panel')
-@section('pagetitle','public.trash')
+@section('pagetitle')
+{{__('public.trashbin')}}
+@endsection
 
 
 @section('maincontent')

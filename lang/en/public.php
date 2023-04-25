@@ -29,6 +29,7 @@ return [
     "goTo"=>'Go To',
     'sign_out'=>'sign out',
     'new_post'=>'new post',
+    'edit_post'=>'new post',
     'dashboard'=>'dashboard',
     "choose_category"=>'choose post category',
     "choose_image"=>'choose image for post',

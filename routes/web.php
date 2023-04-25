@@ -23,6 +23,7 @@ Route::prefix('/admin')->group(function(){
     Route::get("/newpost",[AdminController::class,"newpost"])->name("admin_newpost");
     Route::post("/newpost",[AdminController::class,"addPost"]);
     Route::get("/edit/{id}",[AdminController::class,"editPost"]);
+    Route::post("/edit/{id}",[AdminController::class,"updatePost"]);
     Route::get("/softDelete/{id}",[AdminController::class,"softDelete"]);
     Route::get("/forceDelete/{id}",[AdminController::class,"forceDelete"]);
     Route::get("/restore/{id}",[AdminController::class,"restore"]);

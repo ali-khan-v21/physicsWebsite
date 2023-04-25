@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditRequest;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         $posts=Article::orderBy("updated_at","DESC")->get();
-        return view('admin.dashboard',['posts'=>$posts]);
+        return view('admin.dashboard',$data=['posts'=>$posts]);
     }
     public function newpost()
     {
@@ -46,7 +47,28 @@ class AdminController extends Controller
         return redirect('admin/');
     }
     public function editPost($id){
-        return 'editing '.$id;
+        $post =Article::where('id',$id)->get();
+        $post=$post[0];
+
+        return view('admin.editPost',['post'=>$post]);
+    }
+    public function updatePost(EditRequest $request){
+        $result=Article::find($request['post_id'])->update([
+            'title_fa'=>$request['title_fa'],
+            'text_fa'=>$request['text_fa'],
+            'title_en'=>$request['title_en'],
+            'text_en'=>$request['text_en'],
+            'category_id'=>$request['category_id']
+
+        ]);
+        if($result){
+            //on success
+            return redirect(route('admin_dashboard'));
+
+        }else{
+            //on failure
+            return redirect()->back();
+        }
     }
     public function softDelete($id){
         $result=Article::find($id)->delete();
