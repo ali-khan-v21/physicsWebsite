@@ -14,6 +14,7 @@
         <form action="{{ url()->current() }}" method="POST" class="row" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="post_id" value="{{$post['id']}}">
+            <input type="hidden" name="image_url" value="{{$post['image_url']}}">
 
             <div class="col-lg-6 col-sm-10">
                 <div class="row  my-3">
@@ -84,11 +85,11 @@
                 <div class="col-9  ">
 
                     <label for="formFile" class="form-label">{{ __('public.choose_image') }}</label>
-                    <input class="form-control" name="post_img" type="file" id="formFile">
-                    @if ($errors->has('post_img'))
+                    <input class="form-control" name="new_img" type="file" id="formFile">
+                    @if ($errors->has('new_img'))
 
                     <span class="text-danger">
-                        {{$errors->first('post_img')}}
+                        {{$errors->first('new_img')}}
                     </span>
 
                     @endif

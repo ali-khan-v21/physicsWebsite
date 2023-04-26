@@ -33,34 +33,20 @@ class AdminController extends Controller
         $article->save();
         if ($article->exists) {
             // checking for image and adding it to asset('/images/posts/'.$article->id.".jpg"')
+            // dd($request->hasFile("post_img"));
             if ($request->hasFile('post_img')) {
                 $tmp_path = $request->file('post_img')->path();
 
                 $file_extension = $request->file('post_img')->getClientOriginalExtension();
 
 
-                $result=move_uploaded_file($tmp_path,$_SERVER["DOCUMENT_ROOT"].'/images/posts/'.$article->id.".".$file_extension);
-                if($result){
+                $result = move_uploaded_file($tmp_path, $_SERVER["DOCUMENT_ROOT"] . '/images/posts/' . $article->id . "." . $file_extension);
+                if ($result) {
                     //upload success
                     Article::find($article->id)->update([
-                        'image_url'=>$article->id.".".$file_extension,
+                        'image_url' => $article->id . "." . $file_extension,
                     ]);
-                    // dd($article->id);
-
-                }else{
-                    // dd($result);
-                    //on upload failed
-                    Article::find($article->id)->update([
-                        'image_url'=>'default.jpg'
-                    ]);
-
                 }
-
-            }else{
-                //when no image uploaded
-                Article::find($article->id)->update([
-                    'image_url'=>'default.jpg'
-                ]);
             }
         }
         return redirect('admin/');
@@ -86,6 +72,30 @@ class AdminController extends Controller
             'category_id' => $request['category_id']
 
         ]);
+        // dd($request->file('new_img'));
+        if ($request->hasFile('new_img')) {
+            $tmp_path = $request->file('new_img')->path();
+
+            $file_extension = $request->file('new_img')->getClientOriginalExtension();
+            $images_path = $_SERVER["DOCUMENT_ROOT"] . '/images/posts/';
+            $new_fileName = $images_path . $request['post_id'] . "." . $file_extension;
+
+            if ($request['image_url'] != null) {
+                if (file_exists($new_fileName)) {
+                    chmod($new_fileName, 0755); //Change the file permissions if allowed
+                    unlink($new_fileName); //remove the file
+                }
+            }
+
+
+            $result = move_uploaded_file($tmp_path, $new_fileName);
+            if ($result) {
+                //upload success
+                Article::find($request['post_id'])->update([
+                    'image_url' => $request['post_id'] . "." . $file_extension,
+                ]);
+            }
+        }
         if ($result) {
             //on success
             return redirect(route('admin_dashboard'));
@@ -109,8 +119,16 @@ class AdminController extends Controller
     public function forceDelete($id)
     {
 
-        $result = Article::withTrashed()->find($id)->forceDelete();
+        $article = Article::withTrashed()->find($id);
+        $images_path = $_SERVER["DOCUMENT_ROOT"] . '/images/posts/';
 
+        if ($article->image_url != null) {
+            if (file_exists($images_path . $article->image_url)) {
+                chmod($images_path . $article->image_url, 0755); //Change the file permissions if allowed
+                unlink($images_path . $article->image_url); //remove the file
+            }
+        }
+        $result = $article->forceDelete();
         if ($result) {
             //on success
             return redirect()->back();
