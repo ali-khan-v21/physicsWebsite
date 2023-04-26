@@ -14,7 +14,7 @@
 @section('maincontent')
 
 
-    <section id="" class="section-padding border-top px-4">
+    <section id="" class="section-padding  px-4">
 
 
         <div class="row justify-content-start align-items-start gy-5 mx-auto">

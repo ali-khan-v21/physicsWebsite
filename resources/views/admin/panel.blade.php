@@ -89,6 +89,7 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/admin/">
+                                <i class="bi bi-house-door"></i>
                                 <span data-feather="home"></span>
                                 {{ __('public.dashboard') }}
                             </a>
@@ -98,19 +99,22 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">
+                                <i class="bi bi-question-octagon"></i>
                                 <span data-feather="file"></span>
                                 {{__('public.pending_posts')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
+                                <i class="bi bi-chat-right-text"></i>
                                 <span data-feather="shopping-cart"></span>
                                 {{__('public.comments')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/trashed">
-                                <span data-feather="users"></span>
+                                <i class="bi bi-trash3 "></i>
+                                <span data-feather="trash"></span>
                                 {{__('public.trashbin')}}
                             </a>
                         </li>
@@ -128,18 +132,21 @@
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
                             <a class="nav-link" href="#">
+                                <i class="bi bi-person-bounding-box"></i>
                                 <span data-feather="file-text"></span>
                                 {{__('public.members')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
+                                <i class="bi bi-people"></i>
                                 <span data-feather="file-text"></span>
                              {{__('public.users')}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
+                                <i class="bi bi-pen"></i>
                                 <span data-feather="file-text"></span>
                                 {{__('public.writers')}}
 

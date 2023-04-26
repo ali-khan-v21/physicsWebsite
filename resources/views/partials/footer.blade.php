@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-3 col-sm-6">
-                    <a href="#"><img src="/images/logo.svg" class="bg-secondary" alt="site-logo"></a>
+                    <a href="#"><img src="/images/logo4.svg" alt="site-logo"></a>
                     <div class="border-top border-3 my-3"></div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum, possimus!</p>
                     <div>
