@@ -35,7 +35,8 @@
                 @endphp
                 <div class="col-lg-3 col-sm-10 col-md-6">
                     <div class="card" style="width: 18rem;">
-                        <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+                    <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
+                    class="card-img-top" alt="post">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @if ($post['title_' . $locale] != null)
@@ -59,14 +60,16 @@
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item border-bottom-0">{{ __('public.created_at') }} : {{ $post['created_at'] }}
-                                <br>
-                                {{ __('public.writer') }}
-                                :{{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
-                            </li>
+                            <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}</li>
 
+                            {{ __('public.writer') }} :
+                            {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
 
                         </ul>
+                        <div class="card-footer text-muted">
+                            {{ __('public.lastupdate') }} :
+                            {{ $post['updated_at'] }}
+                        </div>
                         <div class="card-body">
                             <a href="/article/{{$category['category_key']}}/{{$post['id']}}" class="btn btn-primary">{{ __('public.goTo') }}</a>
 

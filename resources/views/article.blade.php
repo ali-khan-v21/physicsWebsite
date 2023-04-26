@@ -45,35 +45,37 @@
         @endphp
 
         <div class="card col-lg-8 col-sm-12 col-md-10">
-            <img src="./images/writer.jpg" class="card-img-top" alt="writer">
+            <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
+                        class="card-img-top h-auto" alt="post">
             <div class="card-body">
-                <h5 class="card-title">
+                <h5 class="card-title my-5">
                     @if ($post['title_' . $locale] != null)
-                        {{ $post['title_' . $locale] }}
+                        {!! $post['title_' . $locale] !!}
                     @else
                         <span class="text-danger"><sub>only persain title available for this post</sub></span>
                         <br />
 
-                        {{ $post['title_fa'] }}
+                        {!! $post['title_fa'] !!}
                     @endif
                 </h5>
                 <p class="card-text">
                     @if ($post['text_' . $locale] != null)
-                        {{ $post['text_' . $locale] }}
+                        {!! $post['text_' . $locale] !!}
                     @else
                         <span class="text-danger"><sub>only persain text available for this post</sub></span>
                         <br />
 
-                        {{ $post['text_fa'] }}
+                        {!! $post['text_fa'] !!}
                     @endif
                 </p>
 
                 <footer class="blockquote-footer">
-                    {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</footer>
+                    {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                </footer>
             </div>
             <div class="card-footer text-muted">
-                {{ __('public.created_at') }} :
-                {{ $post['created_at'] }}
+                {{ __('public.lastupdate') }} :
+                {{ $post['updated_at'] }}
             </div>
         </div>
 

@@ -34,6 +34,7 @@ return [
     "choose_category"=>'انتخاب دسته بندی پست',
     "choose_image"=>"انتخاب عکس برای پست",
     "created_at"=>'زمان انتشار',
+    "lastupdate"=>'آخرین آپدیت',
     "writer"=>'نویسنده',
     "delete"=>'حذف',
     "edit"=>'ویرایش',

@@ -34,6 +34,7 @@ return [
     "choose_category"=>'choose post category',
     "choose_image"=>'choose image for post',
     "created_at"=>'created at',
+    "lastupdate"=>'last update',
     "writer"=>'writer',
     "delete"=>'delete',
     "edit"=>'edit',

@@ -22,16 +22,16 @@
                     <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
                         class="card-img-top" alt="post">
                     <div class="card-body">
-                        <h5 class="card-title">
-                            @if ($post['title_' . $locale] != null)
-                                {{ $post['title_' . $locale] }}
-                            @else
-                                <span class="text-danger"><sub>only persain title available for this post</sub></span>
-                                <br />
 
-                                {{ $post['title_fa'] }}
-                            @endif
-                        </h5>
+                        @if ($post['title_' . $locale] != null)
+                            <h5 class="card-title my-3"> {{ $post['title_' . $locale] }} </h5>
+                        @else
+                            <span class="text-danger"><sub>only persain title available for this post</sub></span>
+                            <br />
+
+                            <h5 class="card-title  my-3"> {{ $post['title_fa'] }} </h5>
+                        @endif
+
                         <p class="card-text">
                             @if ($post['text_' . $locale] != null)
                                 @php echo mb_strimwidth($post['text_' . $locale], 0, 125, "..."); @endphp
@@ -43,17 +43,15 @@
                             @endif
                         </p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}</li>
-
-                        {{ __('public.writer') }} :
-                        {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
+                    <ul class="list-group list-group-flush py-2">
+                        <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}
+                            <br>
+                            {{ __('public.writer') }} :
+                            {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                        </li>
 
                     </ul>
-                    <div class="card-footer text-muted">
-                        {{ __('public.created_at') }} :
-                        {{ $post['created_at'] }}
-                    </div>
+
                     <div class="card-body">
                         <a href="/article/{{ $category['category_key'] }}/{{ $post['id'] }}"
                             class="btn btn-primary">{{ __('public.goTo') }}</a>
@@ -61,6 +59,10 @@
                         <a href="/admin/softDelete/{{ $post['id'] }}"
                             class="btn btn-danger">{{ __('public.delete') }}</a>
 
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{ __('public.lastupdate') }} :
+                        {{ $post['updated_at'] }}
                     </div>
                 </div>
             </div>
