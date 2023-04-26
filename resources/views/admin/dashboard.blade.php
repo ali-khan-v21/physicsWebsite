@@ -19,7 +19,7 @@
             @endphp
             <div class="col-lg-3 col-sm-10 col-md-6">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('/images/posts/' . $post['id'] . '.jpg') }}" class="card-img-top" alt="writer">
+                    <img src="{{ asset('/images/posts/' . $post['image_url']) }}" class="card-img-top" alt="post">
                     <div class="card-body">
                         <h5 class="card-title"> @if ($post['title_' . $locale] != null)
                             {{ $post['title_' . $locale] }}
@@ -40,7 +40,7 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{__('public.category')}} : {{$category['name_'.$locale]}}</li>
-                       
+
                         {{ __('public.writer') }} :
                             {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
 

@@ -13,8 +13,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $posts=Article::orderBy("updated_at","DESC")->get();
-        return view('admin.dashboard',$data=['posts'=>$posts]);
+        $posts = Article::orderBy("updated_at", "DESC")->get();
+        return view('admin.dashboard', $data = ['posts' => $posts]);
     }
     public function newpost()
     {
@@ -33,83 +33,106 @@ class AdminController extends Controller
         $article->save();
         if ($article->exists) {
             // checking for image and adding it to asset('/images/posts/'.$article->id.".jpg"')
-            if($request->hasFile('post_img')){
-                $tmp_path=$request->file('post_img')->path();
-                $fileName=$article->id;
-                $file_extension=$request->file('post_img')->getClientOriginalExtension();
-                // dd($tmp_path,$file_extension);
-                // Storage::disk()->move(
-                //     $tmp_path,
-                //     asset('/images/posts/').$article->id.".".$file_extension);
-            }
+            if ($request->hasFile('post_img')) {
+                $tmp_path = $request->file('post_img')->path();
 
+                $file_extension = $request->file('post_img')->getClientOriginalExtension();
+
+
+                $result=move_uploaded_file($tmp_path,$_SERVER["DOCUMENT_ROOT"].'/images/posts/'.$article->id.".".$file_extension);
+                if($result){
+                    //upload success
+                    Article::find($article->id)->update([
+                        'image_url'=>$article->id.".".$file_extension,
+                    ]);
+                    // dd($article->id);
+
+                }else{
+                    // dd($result);
+                    //on upload failed
+                    Article::find($article->id)->update([
+                        'image_url'=>'default.jpg'
+                    ]);
+
+                }
+
+            }else{
+                //when no image uploaded
+                Article::find($article->id)->update([
+                    'image_url'=>'default.jpg'
+                ]);
+            }
         }
         return redirect('admin/');
     }
-    public function editPost($id){
-        $post =Article::where('id',$id)->get();
-        $post=$post[0];
+    public function editPost($id)
+    {
+        // $test=Article::where("id",1)->where('name','test')->toSql();
+        // dd($test);
 
-        return view('admin.editPost',['post'=>$post]);
+        $post = Article::where('id', $id)->get();
+        $post = $post[0];
+
+        return view('admin.editPost', ['post' => $post]);
     }
-    public function updatePost(EditRequest $request){
-        $result=Article::find($request['post_id'])->update([
-            'title_fa'=>$request['title_fa'],
-            'text_fa'=>$request['text_fa'],
-            'title_en'=>$request['title_en'],
-            'text_en'=>$request['text_en'],
-            'category_id'=>$request['category_id']
+    public function updatePost(EditRequest $request)
+    {
+
+        $result = Article::find($request['post_id'])->update([
+            'title_fa' => $request['title_fa'],
+            'text_fa' => $request['text_fa'],
+            'title_en' => $request['title_en'],
+            'text_en' => $request['text_en'],
+            'category_id' => $request['category_id']
 
         ]);
-        if($result){
+        if ($result) {
             //on success
             return redirect(route('admin_dashboard'));
-
-        }else{
+        } else {
             //on failure
             return redirect()->back();
         }
     }
-    public function softDelete($id){
-        $result=Article::find($id)->delete();
-        if($result){
+    public function softDelete($id)
+    {
+        $result = Article::find($id)->delete();
+        if ($result) {
             //on success
 
             return redirect(route("admin_dashboard"));
-        }else{
+        } else {
             //on fail
             return redirect(route("admin_dashboard"));
-
         }
     }
-    public function forceDelete($id){
+    public function forceDelete($id)
+    {
 
-        $result=Article::withTrashed()->find($id)->forceDelete();
+        $result = Article::withTrashed()->find($id)->forceDelete();
 
-        if($result){
+        if ($result) {
             //on success
             return redirect()->back();
-
-        }else{
+        } else {
             //on fail
             return redirect()->back();
         }
-
     }
-    public function restore($id){
-        $result =Article::withTrashed()->find($id)->restore();
-        if($result){
+    public function restore($id)
+    {
+        $result = Article::withTrashed()->find($id)->restore();
+        if ($result) {
             //on success
             return redirect()->back();
-
-        }else{
+        } else {
             //on fail
             return redirect()->back();
-
         }
     }
-    public function trashed(){
-        $posts=Article::onlyTrashed()->get();;
-        return view('admin.trash',['posts'=>$posts]);
+    public function trashed()
+    {
+        $posts = Article::onlyTrashed()->get();;
+        return view('admin.trash', ['posts' => $posts]);
     }
 }

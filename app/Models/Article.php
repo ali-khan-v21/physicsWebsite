@@ -10,7 +10,7 @@ class Article extends Model
 {
     use HasFactory;
     protected $table ='articles';
-    protected $fillable=['text_fa',"title_fa","title_en","text_en","category_id"];
+    protected $fillable=['text_fa',"title_fa","title_en","text_en","category_id",'image_url'];
     use SoftDeletes;
 
 }
