@@ -60,19 +60,20 @@
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}</li>
+                            <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}
+                                <br>
 
                             {{ __('public.writer') }} :
                             {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
 
                         </ul>
-                        <div class="card-footer text-muted">
-                            {{ __('public.lastupdate') }} :
-                            {{ $post['updated_at'] }}
-                        </div>
                         <div class="card-body">
                             <a href="/article/{{$category['category_key']}}/{{$post['id']}}" class="btn btn-primary">{{ __('public.goTo') }}</a>
 
+                        </div>
+                        <div class="card-footer text-muted">
+                            {{ __('public.lastupdate') }} :
+                            {{ $post['updated_at'] }}
                         </div>
                     </div>
                 </div>

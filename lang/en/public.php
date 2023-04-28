@@ -7,7 +7,7 @@ return [
     'en'=>'english',
     'fa'=>'فارسی',
     "search"=>'Search',
-    'site_name'=>'congnitive neuroscience Association',
+    'site_name'=>'cognitive neuroscience Association',
     'cognitive_neuroscience'=>'cognitive neuroscience ',
     'neurophilosophy'=>'neurophilosophy',
     'news'=>'news',

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Morilog\Jalali\Jalalian;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,15 +16,9 @@ class Article extends Model
 
     public function getUpdatedAtAttribute($value)
     {
-        // $now=time();
-        // $last_update=strtotime($value);
-        // $ago=$now-$last_update;
-        // dd();
-        // time_elapsed_string()
         $dt = Carbon::parse($value);
         return $dt->diffForHumans();
-        // return Jalalian::forge($last_update)->ago();
-
     }
+
 
 }

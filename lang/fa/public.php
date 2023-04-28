@@ -17,7 +17,7 @@ return [
     'signin'=>'ورود',
     "signin_up"=>'ورود/ثبت نام',
     "about_writer"=>'درباره نویسنده',
-    "subjects"=>'موضوعات مقالات',
+    "subjects"=> 'عناوین',
     'enter_firstName'=>'نام ',
     'enter_lastName'=>'نام خانوادگی',
     'enter_email'=>'ایمیل',

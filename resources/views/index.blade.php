@@ -34,9 +34,7 @@
                     <div class="section-title">
                         <h1 class="display-4 fw-semibold">{{ __('public.about') }}</h1>
                         <div class="line"></div>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam hic voluptatum soluta
-                            exercitationem aspernatur natus harum nulla dignissimos, ex quidem. Quaerat libero a
-                            delectus</p>
+                        <p>انجمن علوم و اعصاب شناختی دانشگاه علوم پزشکی کرمان</p>
                     </div>
 
                 </div>
@@ -47,17 +45,15 @@
                 </div>
                 <div class="col-lg-5">
                     <h1>{{ __('public.about_writer') }}</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde alias vitae corporis ipsam illo
-                        eius impedit quos quasi quisquam praesentium.</p>
+                    <p>محمد رضا واحد</p>
 
                     <div class="d-flex pt-3 mb-2">
                         <div class="iconbox mx-4">
                             <i class="bi bi-bookmark-star"></i>
                         </div>
                         <div>
-                            <h4>item</h4>
-                            <p class="mt-3 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
-                                vitae!</p>
+                            <h4>بنیانگذار ودبیر انجمن</h4>
+                            <p class="mt-3 mb-4"></p>
                         </div>
                     </div>
 
@@ -66,9 +62,8 @@
                             <i class="bi bi-bookmark-star"></i>
                         </div>
                         <div>
-                            <h4>item 2</h4>
-                            <p class="mt-3 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
-                                vitae!</p>
+                            <h4>فیزیک پزشک </h4>
+                            <p class="mt-3 mb-4">متخصص علوم اعصاب شناختی</p>
                         </div>
                     </div>
                 </div>
