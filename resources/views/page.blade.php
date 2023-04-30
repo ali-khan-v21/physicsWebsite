@@ -34,7 +34,7 @@
                     $writer = Writer::find($post['writer_id']);
                 @endphp
                 <div class="col-lg-3 col-sm-10 col-md-6">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 22rem;">
                     <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
                     class="card-img-top" alt="post">
                         <div class="card-body">

@@ -11,6 +11,9 @@
                     <li class="nav-item">
                         <a class="nav-link active mx-3" aria-current="page" href="/#hero">{{ __('public.home') }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/about">{{ __('public.about') }}</a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link mx-3"
@@ -26,9 +29,7 @@
                     <li class="nav-item">
                         <a class="nav-link mx-3" href="/article/news">{{ __('public.news') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-3" href="/#about">{{ __('public.about') }}</a>
-                    </li>
+
                     <li class="nav-item ">
                         <a class="nav-link mx-3" href="/#contact">{{ __('public.contact') }}</a>
                     </li>

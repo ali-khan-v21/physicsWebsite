@@ -18,8 +18,8 @@ return new class extends Migration
             $table->char('image_url',100)->nullable();
             $table->char('title_fa',150);
             $table->text('text_fa');
-            $table->char('title_en',150);
-            $table->text('text_en');
+            $table->char('title_en',150)->nullable();
+            $table->text('text_en')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -17,5 +17,7 @@ class AdminSeeder extends Seeder
             'username'=>'alighanbari113@gmail.com',
             'password'=>'password'
         ]);
+        //CREATE TABLE admin ;
+        //INSERT INTO admin VALUES ();
     }
 }

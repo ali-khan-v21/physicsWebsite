@@ -15,6 +15,14 @@ class CategorySeeder extends Seeder
     {
         Category::create([
 
+            "category_key"=>'article_analyzation',
+            "name_fa"=>'تحلیل مقالات',
+            "desc_fa"=>'توضیحات فارسی',
+            "name_en"=>'article analyzation',
+            "desc_en"=>'english description',
+        ]);
+        Category::create([
+
             "category_key"=>'cognitive_neuroscience',
             "name_fa"=>'علوم و اعصاب شناختی',
             "desc_fa"=>'توضیحات فارسی',
@@ -31,12 +39,37 @@ class CategorySeeder extends Seeder
         ]);
         Category::create([
 
-            "category_key"=>'begginer_tutorials',
-            "name_fa"=>'آموزش مقدماتی',
+            "category_key"=>'parapsychology',
+            "name_fa"=>'فراراوانشناسی',
+            "desc_fa"=>'فراروانشناسی|تجربیات نزدیک به مرگ و تجربه خروج از بدن ',
+            "name_en"=>'parapsychology',
+            "desc_en"=>'NDE & OBE',
+        ]);
+        Category::create([
+
+            "category_key"=>'resarchlabs',
+            "name_fa"=>'مراکز تحقیقاتی',
+            "desc_fa"=>'آشنایی با مراکر تحقیقاتی',
+            "name_en"=>'research labs',
+            "desc_en"=>'NDE & OBE',
+        ]);
+        Category::create([
+
+            "category_key"=>'seminars',
+            "name_fa"=>'گردهمایی ها',
             "desc_fa"=>'توضیحات فارسی',
-            "name_en"=>'begginer tutorials',
+            "name_en"=>'seminars',
             "desc_en"=>'english description',
         ]);
+        Category::create([
+
+            "category_key"=>'association_meetings',
+            "name_fa"=>'جلسات انجمن',
+            "desc_fa"=>' توضیحات فارسی',
+            "name_en"=>'association meeting',
+            "desc_en"=>'english description',
+        ]);
+       
         Category::create([
 
             "category_key"=>'news',

@@ -8,6 +8,7 @@ use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,"index"])->name('index');
+Route::get('/about', [HomeController::class,"aboutus"])->name('about');
 
 
 Route::get("/lang/{locale}",[LocalizationController::class,'setLang']);

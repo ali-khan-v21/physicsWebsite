@@ -34,4 +34,7 @@ class HomeController extends Controller
             return redirect()->route('admin_dashboard');
         }
     }
+    public function aboutus(){
+        return view ('aboutus');
+    }
 }
