@@ -50,6 +50,8 @@ return [
     'forceDelete'=>'permenant delete',
     'softDelete'=>'temporary delete',
     'restore'=>'restore',
+    'updated_at'=>'updated at',
+    'deactivate'=>'deactivate',
 
 
 

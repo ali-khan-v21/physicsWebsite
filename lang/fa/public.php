@@ -50,6 +50,8 @@ return [
     'forceDelete'=>'حذف دائم',
     'softDelete'=>'حذف موقت',
     'restore'=>'بازیابی',
+    'updated_at'=>'ویرایش شده',
+    'deactivate'=>'غیرفعالسازی',
 ]
 
 ?>

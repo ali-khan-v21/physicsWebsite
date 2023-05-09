@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -156,8 +157,17 @@ class AdminController extends Controller
     }
     public function users(){
         $users=User::all();
-        
+
         return view('admin.users',['users'=>$users]);
 
+    }
+    public function editRole(Request $request ){
+        $user_id=$request->get('user_id');
+        $role_id=$request->get('role_id');
+        $user=User::find($user_id);
+        $role=Role::find($role_id);
+        $result=$user->roles()->sync($role);
+       
+        return redirect()->back();
     }
 }

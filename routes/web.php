@@ -30,6 +30,7 @@ Route::prefix('/admin')->group(function(){
     Route::get("/restore/{id}",[AdminController::class,"restore"]);
     Route::get("/trashed",[AdminController::class,"trashed"]);
     Route::get("/users",[AdminController::class,'users'])->name('users');
+    Route::post("/users",[AdminController::class,'editRole'])->name('editrole');
 
 });
 
