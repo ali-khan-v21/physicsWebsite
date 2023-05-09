@@ -52,6 +52,17 @@ return [
     'restore'=>'restore',
     'updated_at'=>'updated at',
     'deactivate'=>'deactivate',
+    'enter_name'=>'full name',
+    'sendcomment'=>'send comment',
+    'accept'=>'accept',
+
+    'reply'=>'reply',
+    'name'=>'name',
+    'email'=>'email',
+    'text'=>'text',
+    'time'=>'time',
+    'action'=>'actions',
+    'article_title'=>'article title'
 
 
 

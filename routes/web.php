@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,"index"])->name('index');
 Route::get('/about', [HomeController::class,"aboutus"])->name('about');
-
+Route::post('/postcomment',[HomeController::class,"postcomment"]);
 
 Route::get("/lang/{locale}",[LocalizationController::class,'setLang']);
 
@@ -30,9 +30,17 @@ Route::prefix('/admin')->group(function(){
     Route::get("/restore/{id}",[AdminController::class,"restore"]);
     Route::get("/trashed",[AdminController::class,"trashed"]);
     Route::get("/users",[AdminController::class,'users'])->name('users');
+    Route::get("/comments",[AdminController::class,'comments'])->name('comments');
     Route::post("/users",[AdminController::class,'editRole'])->name('editrole');
+    Route::get("/deletecomment/{id}",[AdminController::class,'deletecomment']);
+    Route::get("/acceptcomment/{id}",[AdminController::class,'acceptcomment']);
+    Route::post("/replytocomment/{id}",[AdminController::class,'replytocomment']);
+    Route::get("/users/edit/{id}",[AdminController::class,'edituser']);
+    Route::get("/users/deactivate/{id}",[AdminController::class,'deactivateuser']);
+    Route::get("/users/delete/{id}",[AdminController::class,'deleteuser']);
 
 });
+
 
 Route::get("/login-form",[HomeController::class,"loginForm"])->name('login-form');
 Route::post("/login-user",[HomeController::class,"loginUser"])->name('login-user');

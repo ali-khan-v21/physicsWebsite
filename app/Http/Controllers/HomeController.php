@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\CommentRequest;
 
 class HomeController extends Controller
 {
@@ -36,5 +38,18 @@ class HomeController extends Controller
     }
     public function aboutus(){
         return view ('aboutus');
+    }
+    public function postcomment(CommentRequest $request){
+
+
+        Comment::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'body'=>$request->body,
+            'article_id'=>$request->article_id
+
+        ]);
+        return redirect()->back();
+
     }
 }

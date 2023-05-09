@@ -20,7 +20,7 @@
 
 
                         @forelse ($user->roles as $role)
-                            <li>{{ $role['name_'.$locale] }}</li>
+                            <li>{{ $role['name_' . $locale] }}</li>
                         @empty
                             no role found
                         @endforelse
@@ -37,9 +37,11 @@
                                 // dd($user->roles->first->role_value->id);
                             @endphp
                             <select name="role_id" id="">
+
                                 @foreach (Role::all() as $role)
                                     <option value="{{ $role->id }}"
-                                        @if ($role->id == $user->roles->first->role_value->id)selected @endif >
+                                        @if ($role->id == $user->roles->first->role_value->id) selected
+                                        @endif >
                                         {{ $role['name_' . $locale] }}</option>
                                 @endforeach
                             </select>

@@ -102,27 +102,37 @@
                     </div>
 
                 </div>
-                <div class="col-9">
-                    <form action="" method="post" class="row">
-                        <div class="form-group col-sm-10 col-lg-4">
-                            <label for="name">{{__('public.enter_name')}}</label>
-                            <input type="text" name="name" id="name" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-10 col-lg-4">
-                            <label for="email" class="form-label">{{__('public.enter_email')}}</label>
 
-                            <input type="email" name="email" id="email" class="form-control">
+            </div>
+            <div class="col-9">
+                <form action="/postcomment" method="post" class="row">
+                    @if($errors->all())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+
+                            @endforeach
                         </div>
-                        <div class="form-group col-sm-10 col-lg-8">
-                            <textarea class="form-control" name="message" id="message" cols="10" rows="5" placeholder="{{__('public.enter_message')}}"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">@lang('public.submit')</button>
-                        </div>
+                    @endif
+                    {{csrf_field()}}
+                    <input type="hidden" name="article_id" value="{{$post->id}}">
+                    <div class="form-group col-sm-10 col-lg-4 my-3">
+
+                        <input type="text" name="name" value="{{old('name')}}" id="name"  placeholder='{{__('public.enter_name')}}' class="form-control">
+                    </div>
+                    <div class="form-group col-sm-10 col-lg-4  my-3">
+
+                        <input value="{{old('email')}}" type="email" name="email" id="email" placeholder='{{__('public.enter_email')}}' class="form-control">
+                    </div>
+                    <div class="form-group col-sm-10 col-lg-8  my-3">
+                        <textarea class="form-control" name="body" id="body" cols="10" rows="5" placeholder="{{__('public.enter_message')}}">{{old('body')}}</textarea>
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary mx-3">@lang('public.submit')</button>
+                    </div>
 
 
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
 

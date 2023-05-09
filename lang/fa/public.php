@@ -52,6 +52,16 @@ return [
     'restore'=>'بازیابی',
     'updated_at'=>'ویرایش شده',
     'deactivate'=>'غیرفعالسازی',
+    'enter_name'=>'نام و نام خانوادگی',
+    'sendcomment'=>'ارسال نظرات',
+    'accept'=>'تایید',
+    'reply'=>'پاسخ',
+    'name'=>'نام',
+    'email'=>'ایمیل',
+    'text'=>"متن",
+    'time'=>'زمان',
+    'action'=>'عملیات ها',
+    'article_title'=>'عنوان مقاله'
 ]
 
 ?>

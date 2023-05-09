@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditRequest;
 use App\Http\Requests\PostRequest;
@@ -167,7 +168,43 @@ class AdminController extends Controller
         $user=User::find($user_id);
         $role=Role::find($role_id);
         $result=$user->roles()->sync($role);
-       
+
         return redirect()->back();
+    }
+    public function comments(){
+        $allcomments=Comment::where('status',1)->orderBy('created_at',"DESC")->get();
+        $newcomments=Comment::where('status',0)->orderBy('created_at',"DESC")->get();
+        return view('admin.comments',['allcomments'=>$allcomments,'newcomments'=>$newcomments]);
+    }
+    public function deletecomment($id){
+        $result=Comment::find($id)->delete();
+
+        return redirect(route('comments'));
+
+    }
+    public function acceptcomment($id){
+        $result=Comment::find($id)->update([
+            "status"=>1,
+        ]);
+
+
+        return redirect(route('comments'));
+
+    }
+    public function replytocomment($id){
+        dd('reply managment here in admin controller ');
+        return redirect(route('comments'));
+    }
+    public function edituser($id){
+        dd($id);
+        return redirect(route('users'));
+    }
+    public function deleteuser($id){
+        dd($id);
+        return redirect(route('users'));
+    }
+    public function deactivateuser($id){
+        dd($id);
+        return redirect(route('users'));
     }
 }
