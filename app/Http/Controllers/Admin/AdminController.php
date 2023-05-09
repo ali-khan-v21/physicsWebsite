@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditRequest;
@@ -152,5 +153,11 @@ class AdminController extends Controller
     {
         $posts = Article::onlyTrashed()->get();;
         return view('admin.trash', ['posts' => $posts]);
+    }
+    public function users(){
+        $users=User::all();
+        
+        return view('admin.users',['users'=>$users]);
+
     }
 }

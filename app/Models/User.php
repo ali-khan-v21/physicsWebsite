@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
 use App\Models\Profile;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -45,5 +46,8 @@ class User extends Authenticatable
 
     public function profile(){
         $this->hasOne(Profile::class,'user_id','id');
+    }
+    public function roles(){
+        return $this->belongsToMany(Role::class);
     }
 }
