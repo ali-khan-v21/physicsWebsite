@@ -14,8 +14,8 @@
         @foreach ($posts as $post)
             @php
 
-                $writer = Writer::find($post['writer_id']);
-                $category = Category::find($post['category_id']);
+                $writer = $post->writer;
+                $category = $post->category;
             @endphp
             <div class="col-lg-3 col-sm-10 col-md-6">
                 <div class="card" style="width: 18rem;">

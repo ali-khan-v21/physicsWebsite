@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Writer;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +20,13 @@ class Article extends Model
     {
         $dt = Carbon::parse($value);
         return $dt->diffForHumans();
+    }
+
+    public function writer(){
+        return $this->belongsTo(Writer::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
 

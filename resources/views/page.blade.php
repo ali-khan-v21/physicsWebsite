@@ -31,7 +31,7 @@
             @foreach ($posts as $post)
                 @php
 
-                    $writer = Writer::find($post['writer_id']);
+                    $writer = $post->writer;
                 @endphp
                 <div class="col-lg-3 col-sm-10 col-md-6">
                     <div class="card" style="width: 22rem;">

@@ -26,7 +26,7 @@
             </div>
         </div>
     </section>
-   
+
 
 
     <div id="subjects" class="section-padding border-top">
@@ -79,9 +79,9 @@
                 </div>
             </div>
             @php
-                $posts = Article::where('category_id', $category['id'])
-                    ->take(4)
-                    ->get();
+                $posts = $category->articles
+                    ->take(4);
+
             @endphp
             <div class="row justify-content-start align-items-start mx-auto">
                 @foreach ($posts as $post)

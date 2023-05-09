@@ -41,7 +41,7 @@
 
         @php
 
-            $writer = Writer::find($post['writer_id']);
+            $writer = $post->writer;
         @endphp
 
         <div class="card col-lg-8 col-sm-12 col-md-10">
