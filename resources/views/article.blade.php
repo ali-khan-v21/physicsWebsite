@@ -88,4 +88,43 @@
 
 
     </section>
+    <section id="comment-form" class="section-padding border-top px-4">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-3 ">
+                    <div class="section-title">
+                        <h1 class="display-4 fw-semibold">{{__('public.sendcomment')}}</h1>
+                        <div class="border border-3 border-primary w-25 my-4"></div>
+                        {{-- <div class="line"></div> --}}
+
+                    </div>
+
+                </div>
+                <div class="col-9">
+                    <form action="" method="post" class="row">
+                        <div class="form-group col-sm-10 col-lg-4">
+                            <label for="name">{{__('public.enter_name')}}</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-10 col-lg-4">
+                            <label for="email" class="form-label">{{__('public.enter_email')}}</label>
+
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-10 col-lg-8">
+                            <textarea class="form-control" name="message" id="message" cols="10" rows="5" placeholder="{{__('public.enter_message')}}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">@lang('public.submit')</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
 @endsection

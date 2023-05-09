@@ -18,6 +18,7 @@
             <div class="row">
                 <div class="col-12 ">
                     <div class="section-title">
+
                         <h1 class="display-4 fw-semibold">{{ $category['name_' . $locale] }}</h1>
                         <div class="border border-3 border-primary w-25 my-4"></div>
                         {{-- <div class="line"></div> --}}
@@ -39,6 +40,7 @@
                     class="card-img-top" alt="post">
                         <div class="card-body">
                             <h5 class="card-title">
+
                                 @if ($post['title_' . $locale] != null)
                                     {{ $post['title_' . $locale] }}
                                 @else
@@ -86,6 +88,7 @@
 
 
     </section>
+ 
     {{-- @foreach ($articles as $article)
 {{$row->id}}
 

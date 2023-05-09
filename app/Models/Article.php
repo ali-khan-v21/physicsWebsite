@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\Writer;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,6 +28,9 @@ class Article extends Model
     }
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+    public function comments(){
+        $this->hasMany(Comment::class,'article_id','id');
     }
 
 
