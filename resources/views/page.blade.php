@@ -1,5 +1,5 @@
 @php
-    use App\Models\Writer;
+   
 
     $locale = $app->getLocale();
 
@@ -88,7 +88,7 @@
 
 
     </section>
- 
+
     {{-- @foreach ($articles as $article)
 {{$row->id}}
 

@@ -15,16 +15,20 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name_fa'=>'علی قنبری',
-            'name_en'=>'ali ghanbari',
+            'firstname_fa'=>'علی',
+            'lastname_fa'=>'قنبری',
+            'firstname_en'=>'ali',
+            'lastname_en'=>'ghanbari',
             'password'=>'123456',
             "email"=>'alighanbari113@gmail.com'
 
         ]);
-        
+
         User::create([
-            'name_fa'=>'محمدرضا واحد',
-            'name_en'=>'mohammadreza Vahed',
+            'firstname_fa'=>'محمدرضا',
+            'lastname_fa'=>'واحد',
+            'firstname_en'=>'mohammadreza',
+            'lastname_en'=>'Vahed',
             'email'=>'example@gmail.com',
             'password'=>'123456'
         ]);

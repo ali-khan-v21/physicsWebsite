@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Writer;
 use App\Models\Comment;
 use App\Models\Category;
@@ -24,7 +25,7 @@ class Article extends Model
     }
 
     public function writer(){
-        return $this->belongsTo(Writer::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
     public function category(){
         return $this->belongsTo(Category::class);

@@ -1,5 +1,5 @@
 @php
-    use App\Models\Writer;
+    
 
     $locale = $app->getLocale();
     if ($post['title_' . $locale] != null) {

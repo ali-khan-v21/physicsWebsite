@@ -12,7 +12,7 @@
                 <div class="card-body p-1">
                     <img src="{{ asset('images/users/default.jpg') }}" alt="user image" class="card-img-top">
 
-                    <h4 class="card-title my-3">{{ $user['name_' . $locale] }}</h4>
+                    <h4 class="card-title my-3">{{ $user['firstname_' . $locale]." ".$user['lastname_' . $locale] }}</h4>
                     <h5 class="card-subtitle my-2 ">{{ $user->email }}</h5>
                     <hr>
                     <div class="card-text">

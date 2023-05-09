@@ -23,7 +23,7 @@ class ArticleSeeder extends Seeder
 
         for ($i = 0; $i < 15; $i++) {
             Article::create([
-                "writer_id" => 1,
+                "user_id" => 1,
                 "category_id" => rand(1, 4),
 
 
