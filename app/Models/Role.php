@@ -13,4 +13,5 @@ class Role extends Model
     public function users(){
         return $this->belongsToMany(User::class);
     }
+    protected $fillable=['role_value','name_fa','name_en'];
 }

@@ -8,8 +8,10 @@
                     <img src="{{ asset('images/users/default.jpg') }}" alt="user image" class="card-img-top">
 
                     <h4 class="card-title my-3">{{ $user->name }}</h4>
-                    <h5 class="card-subtitle my-2 wrap">{{$user->email}}</h5>
+                    <h5 class="card-subtitle my-2 ">{{$user->email}}</h5>
+                    <hr>
                     <div class="card-text">
+
 
 
                         @forelse ($user->roles as $role)
@@ -18,6 +20,10 @@
                             no role found
                         @endforelse
 
+                    </div>
+                    <div class="card-footer">
+                        <li>{{$user->created_at}}</li>
+                        <li>{{$user->updated_at}}</li>
                     </div>
                     <div class="container">
 
