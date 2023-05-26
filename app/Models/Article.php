@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Writer;
@@ -36,6 +37,9 @@ class Article extends Model
     }
     public function image(){
         return $this->morphOne(Image::class,'imageable');
+    }
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
     }
 
 
