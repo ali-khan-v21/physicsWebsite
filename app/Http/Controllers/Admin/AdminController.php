@@ -101,10 +101,14 @@ class AdminController extends Controller
         }
         if ($result) {
             //on success
+            session()->flash('status_message','update successful');
+            session()->flash('status_type','success');
             return redirect(route('admin_dashboard'));
         } else {
             //on failure
-            return redirect()->back();
+            session()->flash('status_message','update failed');
+            session()->flash('status_type','danger');
+            return redirect(route('admin_dashboard'));
         }
     }
     public function softDelete($id)
@@ -112,10 +116,13 @@ class AdminController extends Controller
         $result = Article::find($id)->delete();
         if ($result) {
             //on success
-
+            session()->flash('status_message','delete successful');
+            session()->flash('status_type','warning');
             return redirect(route("admin_dashboard"));
         } else {
             //on fail
+            session()->flash('status_message','delete failed');
+            session()->flash('status_type','danger');
             return redirect(route("admin_dashboard"));
         }
     }
@@ -134,9 +141,13 @@ class AdminController extends Controller
         $result = $article->forceDelete();
         if ($result) {
             //on success
+            session()->flash('status_message','force delete successful');
+            session()->flash('status_type','warning');
             return redirect()->back();
         } else {
             //on fail
+            session()->flash('status_message','force delete failed');
+            session()->flash('status_type','danger');
             return redirect()->back();
         }
     }
@@ -145,9 +156,13 @@ class AdminController extends Controller
         $result = Article::withTrashed()->find($id)->restore();
         if ($result) {
             //on success
+            session()->flash('status_message','restore successful');
+            session()->flash('status_type','success');
             return redirect()->back();
         } else {
             //on fail
+            session()->flash('status_message','restore failed');
+            session()->flash('status_type','danger');
             return redirect()->back();
         }
     }
@@ -168,6 +183,16 @@ class AdminController extends Controller
         $user=User::find($user_id);
         $role=Role::find($role_id);
         $result=$user->roles()->sync($role);
+        if ($result) {
+            // onsuccess
+            session()->flash('status_message','user role edit successfull');
+            session()->flash('status_type','success');
+
+        }else{
+            //on failure
+            session()->flash('status_message','user role edit failed');
+            session()->flash('status_type','danger');
+        }
 
         return redirect()->back();
     }
@@ -179,6 +204,17 @@ class AdminController extends Controller
     public function deletecomment($id){
         $result=Comment::find($id)->delete();
 
+        if($result){
+            //on success
+            session()->flash('status_message','comment delete successful');
+            session()->flash('status_type','success');
+        }
+        else{
+            //on failure
+            session()->flash('status_message','comment delete failed');
+            session()->flash('status_type','danger');
+        }
+
         return redirect(route('comments'));
 
     }
@@ -186,6 +222,15 @@ class AdminController extends Controller
         $result=Comment::find($id)->update([
             "status"=>1,
         ]);
+        if($result){
+            //on success
+            session()->flash('status_message','comment acceptance successful');
+            session()->flash('status_type','success');
+        }else{
+            //on failure
+            session()->flash('status_message','acceptance failed');
+            session()->flash('status_type','danfer');
+        }
 
 
         return redirect(route('comments'));

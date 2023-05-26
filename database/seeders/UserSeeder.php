@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'lastname_fa'=>'قنبری',
             'firstname_en'=>'ali',
             'lastname_en'=>'ghanbari',
-            'password'=>'123456',
+            'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci',
             "email"=>'alighanbari113@gmail.com'
 
         ]);
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'firstname_en'=>'mohammadreza',
             'lastname_en'=>'Vahed',
             'email'=>'example@gmail.com',
-            'password'=>'123456'
+            'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci'
         ]);
     }
 }

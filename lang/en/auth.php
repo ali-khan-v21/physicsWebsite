@@ -1,7 +1,24 @@
 <?php
 
 return [
-
+    "Login"=>'Login',
+    "Register"=>'Register',
+    'enterPassword'=>'password',
+    'email'=>"Email adress",
+    'forgot'=>'Forgot your password ?',
+    'remember'=>'remember me',
+    'ConfirmPassword'=>'Confirm Password',
+    "Name"=>'Name',
+    "resetPassword"=>'Reset Password',
+    "sendResetLink"=>'send password reset link',
+    'resetPassword'=>'reset Password',
+    'plsConfirm'=>'please confirm your password before continuing',
+    'verifyEmail'=>'Verify your email address',
+    'freshLink'=>'a fresh verification link has been sent to your email address.',
+    'beforeProceed'=>'Before proceeding, please check your email for a verification link.',
+    'notRecived'=>"If you did not receive the email",
+    'anotherReq'=>'click here to request another',
+    'Logout'=>'Logout',
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines

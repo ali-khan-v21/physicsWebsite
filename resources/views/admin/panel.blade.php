@@ -78,7 +78,14 @@
             </ul>
         </li>
         <div class="nav-item text-nowrap">
-            <a class="nav-link " href="#">{{ __('public.sign_out') }}</a>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                {{ __('auth.Logout') }}
+
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
     </header>
 
@@ -101,21 +108,21 @@
                             <a class="nav-link" href="#">
                                 <i class="bi bi-question-octagon"></i>
                                 <span data-feather="file"></span>
-                                {{__('public.pending_posts')}}
+                                {{ __('public.pending_posts') }}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('comments')}}">
+                            <a class="nav-link" href="{{ route('comments') }}">
                                 <i class="bi bi-chat-right-text"></i>
                                 <span data-feather="shopping-cart"></span>
-                                {{__('public.comments')}}
+                                {{ __('public.comments') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/trashed">
                                 <i class="bi bi-trash3 "></i>
                                 <span data-feather="trash"></span>
-                                {{__('public.trashbin')}}
+                                {{ __('public.trashbin') }}
                             </a>
                         </li>
 
@@ -124,31 +131,31 @@
 
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>{{__('public.managing_users')}}</span>
+                        <span>{{ __('public.managing_users') }}</span>
                         <a class="link-secondary" href="#" aria-label="Add a new report">
                             <span data-feather="plus-circle"></span>
                         </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('users')}}">
+                            <a class="nav-link" href="{{ route('users') }}">
                                 <i class="bi bi-person-bounding-box"></i>
                                 <span data-feather="file-text"></span>
-                                {{__('public.members')}}
+                                {{ __('public.members') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="bi bi-people"></i>
                                 <span data-feather="file-text"></span>
-                             {{__('public.users')}}
+                                {{ __('public.users') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="bi bi-pen"></i>
                                 <span data-feather="file-text"></span>
-                                {{__('public.writers')}}
+                                {{ __('public.writers') }}
 
                             </a>
                         </li>
@@ -161,6 +168,12 @@
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">@yield('pagetitle')</h1>
+                    @if (session()->get('status_message'))
+                        <span
+                            class="alert alert-{{ session('status_type') }}">{{ session()->get('status_message') }}</span>
+                    @endif
+
+
                     <div class="btn-toolbar mb-2 mb-md-0">
 
                         @php

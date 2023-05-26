@@ -62,7 +62,8 @@ return [
     'text'=>'text',
     'time'=>'time',
     'action'=>'actions',
-    'article_title'=>'article title'
+    'article_title'=>'article title',
+    'panel'=>'dashboard',
 
 
 
