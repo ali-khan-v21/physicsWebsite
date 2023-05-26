@@ -10,7 +10,7 @@
         @forelse ($users as $user)
             <div class="card col-sm-10 col-lg-3" style="width: 18rem;">
                 <div class="card-body p-1">
-                    <img src="{{ asset('images/users/default.jpg') }}" alt="user image" class="card-img-top">
+                    <img src="{{ asset('images/'.$user->profile->image->image_url) }}" alt="user image" class="card-img-top">
 
                     <h4 class="card-title my-3">{{ $user['firstname_' . $locale]." ".$user['lastname_' . $locale] }}</h4>
                     <h5 class="card-subtitle my-2 ">{{ $user->email }}</h5>
@@ -18,12 +18,12 @@
                     <div class="card-text">
 
 
+                        @php
 
-                        @forelse ($user->roles as $role)
+                        $role=$user->role
+                        @endphp
                             <li>{{ $role['name_' . $locale] }}</li>
-                        @empty
-                            no role found
-                        @endforelse
+
 
                     </div>
 
@@ -40,7 +40,7 @@
 
                                 @foreach (Role::all() as $role)
                                     <option value="{{ $role->id }}"
-                                        @if ($role->id == $user->roles->first->role_value->id) selected
+                                        @if ($role->id == $user->role->id) selected
                                         @endif >
                                         {{ $role['name_' . $locale] }}</option>
                                 @endforeach

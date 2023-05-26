@@ -19,6 +19,7 @@ return [
     'notRecived'=>"If you did not receive the email",
     'anotherReq'=>'click here to request another',
     'Logout'=>'Logout',
+    'panel'=>'dashboard',
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines

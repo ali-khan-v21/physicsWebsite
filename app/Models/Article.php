@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Writer;
 use App\Models\Comment;
 use App\Models\Category;
@@ -15,7 +16,7 @@ class Article extends Model
 {
     use HasFactory;
     protected $table ='articles';
-    protected $fillable=['text_fa',"title_fa","title_en","text_en","category_id",'image_url'];
+    protected $fillable=['text_fa',"title_fa","title_en","text_en","category_id"];
     use SoftDeletes;
 
     public function getUpdatedAtAttribute($value)
@@ -31,7 +32,10 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
     public function comments(){
-        $this->hasMany(Comment::class,'article_id','id');
+        return $this->hasMany(Comment::class,'article_id','id');
+    }
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
     }
 
 

@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'firstname_fa','lastname_fa','firstname_en','lastname_en',
+        'firstname_fa','lastname_fa','firstname_en','lastname_en','role_id',
         'email',
         'password',
     ];
@@ -48,10 +48,10 @@ class User extends Authenticatable
     ];
 
     public function profile(){
-        $this->hasOne(Profile::class,'user_id','id');
+        return $this->hasOne(Profile::class,'user_id','id');
     }
-    public function roles(){
-        return $this->belongsToMany(Role::class);
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
     public function articles(){
         return $this->hasMany(Article::class);

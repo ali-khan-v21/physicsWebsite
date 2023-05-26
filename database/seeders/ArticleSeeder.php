@@ -22,7 +22,7 @@ class ArticleSeeder extends Seeder
 
 
         for ($i = 0; $i < 15; $i++) {
-            Article::create([
+            $res=Article::create([
                 "user_id" => 1,
                 "category_id" => rand(1, 4),
 
@@ -33,6 +33,8 @@ class ArticleSeeder extends Seeder
                 'text_en' => $faker->paragraph(),
 
             ]);
+            $res->image()->create(['image_url'=>'posts/default.jpg']);
+
         }
     }
 }

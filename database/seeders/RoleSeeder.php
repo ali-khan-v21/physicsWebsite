@@ -14,31 +14,31 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Role::create([
-            'role_value'=>'superadmin',
+            'role_value'=>1,
             'name_fa'=>'سوپر ادمین',
             'name_en'=>'super admin'
 
         ]);
         Role::create([
-            'role_value'=>'admin',
+            'role_value'=>2,
             'name_fa'=>'ادمین',
             'name_en'=>'admin'
 
         ]);
         Role::create([
-            'role_value'=>'writer',
+            'role_value'=>3,
             'name_fa'=>'نویسنده',
             'name_en'=>'writer'
 
         ]);
         Role::create([
-            'role_value'=>'associationuser',
+            'role_value'=>4,
             'name_fa'=>'عضو انجمن',
-            'name_en'=>'association user'
+            'name_en'=>'association member'
 
         ]);
         Role::create([
-            'role_value'=>'siteuser',
+            'role_value'=>5,
             'name_fa'=>'عضو وبسایت',
             'name_en'=>'website user'
 

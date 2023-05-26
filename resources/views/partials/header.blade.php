@@ -70,7 +70,7 @@
                         </a>
 
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            @if(in_array(Auth::user()->roles[0]['role_value'],['superadmin','admin']))
+                            @if(Auth::user()->role['role_value']<=2)
 
                             <a class="dropdown-item" href="{{ route('admin_dashboard') }}">
                                 {{ __('auth.panel') }}
