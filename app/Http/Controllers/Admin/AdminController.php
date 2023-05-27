@@ -203,7 +203,7 @@ class AdminController extends Controller
     }
     public function comments(){
         $allcomments=Comment::where('status',1)->orderBy('created_at',"DESC")->get();
-        $newcomments=Comment::where('status',0)->orderBy('created_at',"DESC")->get();
+        $newcomments=Comment::withoutGlobalScope('status')->where('status',0)->orderBy('created_at',"DESC")->get();
         return view('admin.comments',['allcomments'=>$allcomments,'newcomments'=>$newcomments]);
     }
     public function deletecomment($id){
@@ -224,7 +224,7 @@ class AdminController extends Controller
 
     }
     public function acceptcomment($id){
-        $result=Comment::find($id)->update([
+        $result=Comment::withoutGlobalScope('status')->find($id)->update([
             "status"=>1,
         ]);
         if($result){

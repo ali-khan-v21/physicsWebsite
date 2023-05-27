@@ -15,6 +15,15 @@ class Comment extends Model
     protected $fillable=[
         'name','email','body','article_id','status','writer_status','parent_id'
     ];
+    protected static function boot(){
+        parent::boot();
+
+        static::addGlobalScope('status',function($query){
+            // dd($query);
+            $query->where('status',1);
+        });
+
+    }
 
     public function article(){
         return $this->belongsTo(Article::class,'article_id','id');

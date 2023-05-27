@@ -30,15 +30,22 @@ class HomeController extends Controller
     public function postcomment(CommentRequest $request){
 
         if(Auth::check()){
-            $wirter_staus=Auth::user()->role_id;
+            $writer_status=Auth::user()->role_id;
+            if ($writer_status<=2){
+                $status=1;
+            }else{
+                $status=0;
+            }
+
         }else{
-            $wirter_staus=6;
+            $writer_status=6;
+            $status=0;
 
         }
         Comment::create([
             'name'=>$request->name,
-            'writer_status'=>$wirter_staus,
-
+            'writer_status'=>$writer_status,
+            "status"=>$status,
             'email'=>$request->email,
             'body'=>$request->body,
             'article_id'=>$request->article_id
