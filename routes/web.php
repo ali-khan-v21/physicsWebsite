@@ -48,8 +48,7 @@ Route::prefix('/admin')->group(function(){
 });
 
 
-Route::get("/login-form",[HomeController::class,"loginForm"])->name('login-form');
-Route::post("/login-user",[HomeController::class,"loginUser"])->name('login-user');
+
 
 
 
