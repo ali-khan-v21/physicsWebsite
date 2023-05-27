@@ -21,9 +21,9 @@ class ArticleSeeder extends Seeder
         $faker_fa = new myFaker();
 
 
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $res=Article::create([
-                "user_id" => 1,
+                "user_id" => rand(1,2),
                 "category_id" => rand(1, 4),
 
 
@@ -34,6 +34,7 @@ class ArticleSeeder extends Seeder
 
             ]);
             $res->image()->create(['image_url'=>'posts/default.jpg']);
+            $res->tags()->attach(rand(1,9));
 
         }
     }

@@ -19,6 +19,11 @@ Route::prefix('/article')->group(function(){
     Route::get("/{subject}",[ArticleController::class,"all"]);
     Route::get("/{subject}/{id}",[ArticleController::class,"show"]);
 });
+Route::prefix('/tag')->group(function(){
+
+    Route::get("/{subject}",[ArticleController::class,"tag_all"]);
+    Route::get("/{subject}/{id}",[ArticleController::class,"tag_show"]);
+});
 Route::prefix('/admin')->group(function(){
 
     Route::get("/",[AdminController::class,"index"])->name("admin_dashboard");

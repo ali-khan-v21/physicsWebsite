@@ -12,7 +12,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable=[
-        'category_key','name_fa','desc_fa','name_en','desc_en',
+        'category_key','name_fa','desc_fa','name_en','desc_en','navbar'
     ];
     public function articles(){
         return $this->hasMany(Article::class);

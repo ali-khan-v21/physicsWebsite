@@ -1,5 +1,4 @@
 @php
-   
 
     $locale = $app->getLocale();
 
@@ -19,7 +18,9 @@
                 <div class="col-12 ">
                     <div class="section-title">
 
-                        <h1 class="display-4 fw-semibold">{{ $category['name_' . $locale] }}</h1>
+                        <h3 class="fw-semibold"><a href="{{ route('index') }}"
+                                style="text-decoration: none;">{{ __('public.home') }}</a>{{ ' > ' . $category['name_' . $locale] }}
+                        </h3>
                         <div class="border border-3 border-primary w-25 my-4"></div>
                         {{-- <div class="line"></div> --}}
 
@@ -28,63 +29,122 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-start align-items-start gy-5 mx-auto">
-            @foreach ($posts as $post)
-                @php
+        <div class="row">
 
-                    $writer = $post->writer;
-                @endphp
-                <div class="col-lg-3 col-sm-10 col-md-6">
-                    <div class="card" style="width: 22rem;">
-                    <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
-                    class="card-img-top" alt="post">
-                        <div class="card-body">
-                            <h5 class="card-title">
+            <div class="col-3 fixed">
 
-                                @if ($post['title_' . $locale] != null)
-                                    {{ $post['title_' . $locale] }}
-                                @else
-                                    <span class="text-danger"><sub>only persain title available for this post</sub></span>
-                                    <br />
+                <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+                    <a href="/"
+                        class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                        <svg class="bi me-2" width="30" height="24">
+                            <use xlink:href="#bootstrap" />
+                        </svg>
+                        <span class="fs-5 fw-semibold">{{$category['name_'.app()->getLocale()]}}</span>
+                    </a>
 
-                                    {{ $post['title_fa'] }}
-                                @endif
-                            </h5>
-                            <p class="card-text">
-                                @if ($post['text_' . $locale] != null)
-                                    @php echo mb_strimwidth($post['text_' . $locale], 0, 125, "..."); @endphp
-                                @else
-                                    <span class="text-danger"><sub>only persain text available for this post</sub></span>
-                                    <br />
 
-                                    @php echo mb_strimwidth($post['text_fa'], 0, 125, "..."); @endphp
-                                @endif
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}
-                                <br>
+                    <div class="list-group list-group-flush border-bottom scrollarea">
+                        @foreach ($category->tags as $tag)
+                        <a href="/tag/{{$tag->tag_key}}" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">{{$tag['name_'.app()->getLocale()]}}</strong>
+                                <small>{{count($tag->articles)}}</small>
+                            </div>
+                            <div class="col-10 mb-1 small">{{$tag['desc_'.app()->getLocale()]}}</div>
+                        </a>
+                        @endforeach
 
-                            {{ __('public.writer') }} :
-                            {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
 
-                        </ul>
-                        <div class="card-body">
-                            <a href="/article/{{$category['category_key']}}/{{$post['id']}}" class="btn btn-primary">{{ __('public.goTo') }}</a>
 
-                        </div>
-                        <div class="card-footer text-muted">
-                            {{ __('public.lastupdate') }} :
-                            {{ $post['updated_at'] }}
-                        </div>
+
+
                     </div>
                 </div>
-            @endforeach
+
+            </div>
+
+            <div class="col-9">
+                <div class="container">
+
+
+
+                    <div class="row justify-content-start align-items-start gy-5 mx-auto">
+                        @foreach ($posts as $post)
+                            @php
+
+                                $writer = $post->writer;
+                            @endphp
+
+
+                            <div class="col-lg-4 col-sm-10 col-md-6">
+                                <a href="/article/{{ $category['category_key'] }}/{{ $post['id'] }}"
+                                    style="text-decoration:none;color:black;">
+
+
+                                    <div class="card cardh" style="width: 22rem;">
+                                        <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
+                                            class="card-img-top" alt="post">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+
+                                                @if ($post['title_' . $locale] != null)
+                                                    {{ $post['title_' . $locale] }}
+                                                @else
+                                                    <span class="text-danger"><sub>only persain title available for this
+                                                            post</sub></span>
+                                                    <br />
+
+                                                    {{ $post['title_fa'] }}
+                                                @endif
+                                            </h5>
+                                            <p class="card-text">
+                                                @if ($post['text_' . $locale] != null)
+                                                    @php echo mb_strimwidth($post['text_' . $locale], 0, 125, "..."); @endphp
+                                                @else
+                                                    <span class="text-danger"><sub>only persain text available for this
+                                                            post</sub></span>
+                                                    <br />
+
+                                                    @php echo mb_strimwidth($post['text_fa'], 0, 125, "..."); @endphp
+                                                @endif
+                                            </p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{ __('public.category') }} :
+                                                <a href="/article/{{ $post->category['category_key'] }}"
+                                                    style="text-decoration: none;">{{ $post->category['name_' . $locale] }}</a>,
+                                                @foreach ($post->tags as $tag)
+                                                    <a href="/tag/{{ $tag['tag_key'] }}"
+                                                        style="text-decoration: none;">{{ $tag['name_' . $locale] }}</a>,
+                                                @endforeach
+                                                <br>
+
+                                                {{ __('public.writer') }} :
+                                                {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                                            </li>
+
+                                        </ul>
+                                        <div class="card-body">
+
+
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            {{ __('public.lastupdate') }} :
+                                            {{ $post['updated_at'] }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
 
 
 
 
+                    </div>
+                </div>
+            </div>
         </div>
+
 
 
     </section>

@@ -218,13 +218,29 @@ img {
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     border: none;
     border-radius: 0;
+    transition: .3s;
+
 }
+
+.cardh:hover {
+    box-shadow: 1px 2px 3px 4px rgba(12,12,12,0.2);
+    transform: scale(1.03);
+}
+
+/* .card {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    margin: 3rem;
+} */
+
 
 @media (min-width: 768px) {
     .card img {
         height: 11em;
     }
 }
+
 /* FOOTER */
 footer {
     padding-top: 120px;
@@ -232,7 +248,7 @@ footer {
 
 .footer-top {
     padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-bottom {
@@ -244,7 +260,7 @@ footer {
 footer li,
 footer p,
 footer a {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 footer ul {

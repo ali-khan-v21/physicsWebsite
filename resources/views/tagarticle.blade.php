@@ -1,12 +1,8 @@
 @php
 
 
-
-
     $locale = $app->getLocale();
-
     if ($post['title_' . $locale] != null) {
-        
         $title = $post['title_' . $locale];
     } else {
         $title = $post['title_fa'];
@@ -16,17 +12,17 @@
 @extends('layouts.master')
 @section('title')
     {{ $title }}
-    @endsection
-    @section('content')
-    <section id="{{ $category['category_key'] }}" class="section-padding border-top px-4">
+@endsection
 
+@section('content')
+    <section id="{{ $tag['tag_key'] }}" class="section-padding border-top px-4">
 
         <div class="container-fluid">
 
             <div class="row">
                 <div class="col-10 ">
                     <div class="section-title row">
-                        <h3 class=" fw-semibold"><a href="/article/{{$category->category_key}}" style="text-decoration: none">{{ $category['name_' . $locale] }}</a> - {{ $title }}
+                        <h3 class=" fw-semibold"><a href="/article/{{$tag->category->category_key}}" style="text-decoration: none">{{ $tag->category['name_' . $locale] }}</a> > <a href="/tag/{{$tag->tag_key}}" style="text-decoration: none">{{ $tag['name_' . $locale] }}</a> - {{ $title }}
                         </h3>
 
                         <div class="border border-3 border-primary w-25 my-4"></div>

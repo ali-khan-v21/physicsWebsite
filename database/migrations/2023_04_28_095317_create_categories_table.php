@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->char("category_key",150);
+            $table->boolean('navbar')->default(false);
             $table->char("name_fa",150);
             $table->text("desc_fa");
             $table->char("name_en",150);
