@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\Article;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,5 +23,11 @@ class Comment extends Model
     {
         $dt=Carbon::parse($value);
         return $dt->diffForHumans();
+    }
+    public function replies(){
+        return $this->hasMany(Comment::class,'parent_id');
+    }
+    public function role(){
+        return $this->belongsTo(Role::class,"writer_status","role_value");
     }
 }

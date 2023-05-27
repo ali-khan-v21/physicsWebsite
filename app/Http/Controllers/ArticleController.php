@@ -31,7 +31,7 @@ class ArticleController extends Controller
         $tags=Tag::where("tag_key",$subject)->get();
         $tag=$tags[0];
 
-        $post=Article::where('id',$id)->get();
+        $post=Article::where('id',$id)->with('comments')->get();
         $post=$post[0];
         return view('tagarticle',['post'=>$post,"tag"=>$tag]);
     }
@@ -39,7 +39,7 @@ class ArticleController extends Controller
         $categories=Category::where("category_key",$subject)->get();
         $category=$categories[0];
 
-        $post=Article::where('id',$id)->get();
+        $post=Article::where('id',$id)->with('comments.replies','comments.replies.replies')->get();
         $post=$post[0];
         return view('article',['post'=>$post,"category"=>$category]);
     }

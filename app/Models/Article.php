@@ -33,7 +33,7 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
     public function comments(){
-        return $this->hasMany(Comment::class,'article_id','id');
+        return $this->hasMany(Comment::class,'article_id','id')->whereNull('parent_id');
     }
     public function image(){
         return $this->morphOne(Image::class,'imageable');
