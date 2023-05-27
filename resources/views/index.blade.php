@@ -128,7 +128,8 @@
                                         <br>
 
                                     <li class="list-group-item">{{ __('public.writer') }} :
-                                        {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}</li>
+                                        {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}</li>
+                                        
 
                                 </ul>
 

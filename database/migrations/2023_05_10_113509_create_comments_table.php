@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('name');
             $table->text('email');
             $table->text('body');
@@ -20,6 +21,8 @@ return new class extends Migration
             $table->foreign('article_id')->references('id')->on('articles')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('status')->default(false);
+            $table->unsignedBigInteger('writer_status');
+            $table->foreign('writer_status')->references('role_value')->on("roles")->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }

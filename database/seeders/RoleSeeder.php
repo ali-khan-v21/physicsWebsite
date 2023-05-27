@@ -43,6 +43,12 @@ class RoleSeeder extends Seeder
             'name_en'=>'website user'
 
         ]);
+        Role::create([
+            'role_value'=>6,
+            'name_fa'=>'کاربر میهمان',
+            'name_en'=>'guest user'
+
+        ]);
 
     }
 }

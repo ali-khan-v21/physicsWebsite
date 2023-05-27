@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
 
 class HomeController extends Controller
@@ -22,28 +23,22 @@ class HomeController extends Controller
 
         return view('index', ['categories' => $categories]);
     }
-    public function loginForm()
-    {
-        $categories = Category::all();
-        return view('login-form', ['categories' => $categories]);
-    }
 
-    public function loginUser(LoginRequest $request)
-    {
-
-        if (true) {
-
-            return redirect()->route('admin_dashboard');
-        }
-    }
     public function aboutus(){
         return view ('aboutus');
     }
     public function postcomment(CommentRequest $request){
 
+        if(Auth::check()){
+            $wirter_staus=Auth::user()->role_id;
+        }else{
+            $wirter_staus=6;
 
+        }
         Comment::create([
             'name'=>$request->name,
+            'writer_status'=>$wirter_staus,
+
             'email'=>$request->email,
             'body'=>$request->body,
             'article_id'=>$request->article_id
