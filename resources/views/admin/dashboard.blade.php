@@ -19,8 +19,8 @@
             @endphp
             <div class="col-lg-3 col-sm-10 col-md-6">
                 <div class="card" style="width: 18rem;">
-                    <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
-                        class="card-img-top" alt="post">
+                    <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
+                        class="card-img-top h-auto" alt="{{ $post->image['image_url'] }}">
                     <div class="card-body">
 
                         @if ($post['title_' . $locale] != null)
@@ -44,10 +44,21 @@
                         </p>
                     </div>
                     <ul class="list-group list-group-flush py-2">
-                        <li class="list-group-item">{{ __('public.category') }} : {{ $category['name_' . $locale] }}
+                        <li class="list-group-item">{{ __('public.category') }} :
+                            <a href="/article/{{ $post->category['category_key'] }}"
+                                style="text-decoration: none;">{{ $post->category['name_' . $locale] }}</a>,
+                            @foreach ($post->tags as $tag)
+                                <a href="/tag/{{ $tag['tag_key'] }}"
+                                    style="text-decoration: none;">{{ $tag['name_' . $locale] }}</a>,
+                            @endforeach
                             <br>
+
                             {{ __('public.writer') }} :
-                            {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                            {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
+                        </li>
+                        <li>
+                            {{ __('public.writer') }} :
+                            {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
                         </li>
 
                     </ul>

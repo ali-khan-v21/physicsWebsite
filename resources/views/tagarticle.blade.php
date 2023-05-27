@@ -46,8 +46,8 @@
         @endphp
 
         <div class="card col-lg-8 col-sm-12 col-md-10">
-            <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
-                        class="card-img-top h-auto" alt="post">
+            <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
+            class="card-img-top h-auto" alt="{{$post->image['image_url']}}">
             <div class="card-body">
                 <h5 class="card-title my-5">
                     @if ($post['title_' . $locale] != null)

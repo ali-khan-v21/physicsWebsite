@@ -13,7 +13,7 @@ class ArticleController extends Controller
         $category=Category::where("category_key",$subject)->get();
         $category=$category[0];
 
-        $posts=Article::where('category_id',$category['id'])->orderBy('updated_at','DESC')->get();
+        $posts=Article::where('category_id',$category['id'])->get();
 
         return view('page',["category"=>$category,'posts'=>$posts]);
     }

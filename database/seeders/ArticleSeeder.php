@@ -33,7 +33,7 @@ class ArticleSeeder extends Seeder
                 'text_en' => $faker->paragraph(),
 
             ]);
-            $res->image()->create(['image_url'=>'posts/default.jpg']);
+            $res->image()->create(['image_url'=>null]);
             $res->tags()->attach(rand(1,9));
 
         }

@@ -82,8 +82,8 @@
 
 
                                     <div class="card cardh" style="width: 22rem;">
-                                        <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
-                                            class="card-img-top" alt="post">
+                                        <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
+                                        class="card-img-top h-auto" alt="{{$post->id}} post image">
                                         <div class="card-body">
                                             <h5 class="card-title">
 
@@ -120,7 +120,7 @@
                                                 <br>
 
                                                 {{ __('public.writer') }} :
-                                                {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                                                {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
                                             </li>
 
                                         </ul>

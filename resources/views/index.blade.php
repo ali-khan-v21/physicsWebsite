@@ -92,8 +92,8 @@
                         <a href="/article/{{ $category['category_key'] }}/{{ $post['id'] }}"
                             style="text-decoration:none;color:black;">
                             <div class="card cardh" style="width: 22rem;">
-                                <img src="@if ($post['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post['image_url']) }} @endif"
-                                    class="card-img-top" alt="post">
+                                <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
+                                class="card-img-top h-auto" alt="{{$post->id}} post image">
                                 <div class="card-body">
 
                                     @if ($post['title_' . $locale] != null)
@@ -129,7 +129,7 @@
 
                                     <li class="list-group-item">{{ __('public.writer') }} :
                                         {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}</li>
-                                        
+
 
                                 </ul>
 

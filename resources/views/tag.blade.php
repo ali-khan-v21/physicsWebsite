@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row justify-content-start align-items-start gy-5 mx-auto">
             @foreach ($posts as $post)
                 @php
@@ -38,8 +38,8 @@
                     <div class="col-lg-3 col-sm-10 col-md-6">
                         <a href="/tag/{{ $tag['tag_key'] }}/{{ $post['id'] }}" style="text-decoration:none;color:black;">
                         <div class="card cardh" style="width: 22rem;">
-                            <img src="@if ($post->image->image_url == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/' . $post->image->image_url) }} @endif"
-                                class="card-img-top" alt="post">
+                            <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
+                            class="card-img-top h-auto" alt="{{$post->id}} post image">
                             <div class="card-body">
                                 <h5 class="card-title">
 
@@ -76,7 +76,7 @@
                                     <br>
 
                                     {{ __('public.writer') }} :
-                                    {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                                    {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
                                 </li>
 
                             </ul>

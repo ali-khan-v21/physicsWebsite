@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EditRequest;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -21,7 +22,7 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $posts = Article::orderBy("updated_at", "DESC")->get();
+        $posts = Article::all();
         return view('admin.dashboard', $data = ['posts' => $posts]);
     }
     public function newpost()
@@ -30,14 +31,21 @@ class AdminController extends Controller
     }
     public function addPost(PostRequest $request)
     {
-        dd($request);
+
+        // echo count($request->get('tags'));
+        // foreach($request->get('tags') as $key=>$value){
+        //     echo $value;
+
+        // }
+        // dd($request);
         $article = Article::create([
             "title_fa" => $request->get('title_fa'),
             "title_en" => $request->get('title_en'),
-            "text_fa"=> $request->get('text_fa'),
-            "text_en"=> $request->get('text_en'),
+            "text_fa" => $request->get('text_fa'),
+            "text_en" => $request->get('text_en'),
             "category_id" => $request->get('category_id'),
-            "writer_id" => 1,
+            "user_id" => Auth::user()->id,
+
         ]);
 
 
@@ -46,6 +54,13 @@ class AdminController extends Controller
         if ($article->exists) {
             // checking for image and adding it to asset('/images/posts/'.$article->id.".jpg"')
             // dd($request->hasFile("post_img"));
+            if ($request->get('tags') > 0) {
+                // $article->tags()->attach($tags);
+                foreach ($request->get('tags') as $key => $value) {
+                    $article->tags()->attach($value);
+                }
+            }
+
             if ($request->hasFile('post_img')) {
                 $tmp_path = $request->file('post_img')->path();
 
@@ -55,7 +70,8 @@ class AdminController extends Controller
                 $result = move_uploaded_file($tmp_path, $_SERVER["DOCUMENT_ROOT"] . '/images/posts/' . $article->id . "." . $file_extension);
                 if ($result) {
                     //upload success
-                    Article::find($article->id)->update([
+                    Article::find($article->id)->image()->create([
+
                         'image_url' => $article->id . "." . $file_extension,
                     ]);
                 }
@@ -76,14 +92,26 @@ class AdminController extends Controller
     public function updatePost(EditRequest $request)
     {
 
-        $result = Article::find($request['post_id'])->update([
-            'title_fa' => $request['title_fa'],
-            'text_fa' => $request['text_fa'],
-            'title_en' => $request['title_en'],
-            'text_en' => $request['text_en'],
-            'category_id' => $request['category_id']
+        $article = Article::find($request['post_id']);
+
+        $article->update([
+            "title_fa" => $request->get('title_fa'),
+            "title_en" => $request->get('title_en'),
+            "text_fa" => $request->get('text_fa'),
+            "text_en" => $request->get('text_en'),
+            "category_id" => $request->get('category_id'),
+            "user_id" => Auth::user()->id,
 
         ]);
+        if ($request->get('tags') > 0) {
+            // $article->tags()->attach($tags);
+            $new_tags=[];
+            // $article->tags()->sync();
+            foreach ($request->get('tags') as $key => $value) {
+                array_push($new_tags,$value);
+            }
+            $article->tags()->sync($new_tags);
+        }
         // dd($request->file('new_img'));
         if ($request->hasFile('new_img')) {
             $tmp_path = $request->file('new_img')->path();
@@ -103,20 +131,21 @@ class AdminController extends Controller
             $result = move_uploaded_file($tmp_path, $new_fileName);
             if ($result) {
                 //upload success
-                Article::find($request['post_id'])->update([
-                    'image_url' => $request['post_id'] . "." . $file_extension,
+                Article::find($article->id)->image()->update([
+
+                    'image_url' => $article->id . "." . $file_extension,
                 ]);
             }
         }
         if ($result) {
             //on success
-            session()->flash('status_message','update successful');
-            session()->flash('status_type','success');
+            session()->flash('status_message', 'update successful');
+            session()->flash('status_type', 'success');
             return redirect(route('admin_dashboard'));
         } else {
             //on failure
-            session()->flash('status_message','update failed');
-            session()->flash('status_type','danger');
+            session()->flash('status_message', 'update failed');
+            session()->flash('status_type', 'danger');
             return redirect(route('admin_dashboard'));
         }
     }
@@ -125,13 +154,13 @@ class AdminController extends Controller
         $result = Article::find($id)->delete();
         if ($result) {
             //on success
-            session()->flash('status_message','delete successful');
-            session()->flash('status_type','warning');
+            session()->flash('status_message', 'delete successful');
+            session()->flash('status_type', 'warning');
             return redirect(route("admin_dashboard"));
         } else {
             //on fail
-            session()->flash('status_message','delete failed');
-            session()->flash('status_type','danger');
+            session()->flash('status_message', 'delete failed');
+            session()->flash('status_type', 'danger');
             return redirect(route("admin_dashboard"));
         }
     }
@@ -150,13 +179,13 @@ class AdminController extends Controller
         $result = $article->forceDelete();
         if ($result) {
             //on success
-            session()->flash('status_message','force delete successful');
-            session()->flash('status_type','warning');
+            session()->flash('status_message', 'force delete successful');
+            session()->flash('status_type', 'warning');
             return redirect()->back();
         } else {
             //on fail
-            session()->flash('status_message','force delete failed');
-            session()->flash('status_type','danger');
+            session()->flash('status_message', 'force delete failed');
+            session()->flash('status_type', 'danger');
             return redirect()->back();
         }
     }
@@ -165,13 +194,13 @@ class AdminController extends Controller
         $result = Article::withTrashed()->find($id)->restore();
         if ($result) {
             //on success
-            session()->flash('status_message','restore successful');
-            session()->flash('status_type','success');
+            session()->flash('status_message', 'restore successful');
+            session()->flash('status_type', 'success');
             return redirect()->back();
         } else {
             //on fail
-            session()->flash('status_message','restore failed');
-            session()->flash('status_type','danger');
+            session()->flash('status_message', 'restore failed');
+            session()->flash('status_type', 'danger');
             return redirect()->back();
         }
     }
@@ -180,84 +209,88 @@ class AdminController extends Controller
         $posts = Article::onlyTrashed()->get();;
         return view('admin.trash', ['posts' => $posts]);
     }
-    public function users(){
-        $users=User::all();
+    public function users()
+    {
+        $users = User::all();
 
-        return view('admin.users',['users'=>$users]);
-
+        return view('admin.users', ['users' => $users]);
     }
-    public function editRole(Request $request ){
-        $user_id=$request->get('user_id');
-        $role_id=$request->get('role_id');
-        $user=User::find($user_id);
-        $role=Role::find($role_id);
-        $result=$user->roles()->sync($role);
+    public function editRole(Request $request)
+    {
+        $user_id = $request->get('user_id');
+        $role_id = $request->get('role_id');
+        $user = User::find($user_id);
+        $role = Role::find($role_id);
+        $result = $user->roles()->sync($role);
         if ($result) {
             // onsuccess
-            session()->flash('status_message','user role edit successfull');
-            session()->flash('status_type','success');
-
-        }else{
+            session()->flash('status_message', 'user role edit successfull');
+            session()->flash('status_type', 'success');
+        } else {
             //on failure
-            session()->flash('status_message','user role edit failed');
-            session()->flash('status_type','danger');
+            session()->flash('status_message', 'user role edit failed');
+            session()->flash('status_type', 'danger');
         }
 
         return redirect()->back();
     }
-    public function comments(){
-        $allcomments=Comment::where('status',1)->orderBy('created_at',"DESC")->get();
-        $newcomments=Comment::withoutGlobalScope('status')->where('status',0)->orderBy('created_at',"DESC")->get();
-        return view('admin.comments',['allcomments'=>$allcomments,'newcomments'=>$newcomments]);
+    public function comments()
+    {
+        $allcomments = Comment::where('status', 1)->orderBy('created_at', "DESC")->get();
+        $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->orderBy('created_at', "DESC")->get();
+        return view('admin.comments', ['allcomments' => $allcomments, 'newcomments' => $newcomments]);
     }
-    public function deletecomment($id){
-        $result=Comment::find($id)->delete();
+    public function deletecomment($id)
+    {
+        $result = Comment::find($id)->delete();
 
-        if($result){
+        if ($result) {
             //on success
-            session()->flash('status_message','comment delete successful');
-            session()->flash('status_type','success');
-        }
-        else{
+            session()->flash('status_message', 'comment delete successful');
+            session()->flash('status_type', 'success');
+        } else {
             //on failure
-            session()->flash('status_message','comment delete failed');
-            session()->flash('status_type','danger');
+            session()->flash('status_message', 'comment delete failed');
+            session()->flash('status_type', 'danger');
         }
 
         return redirect(route('comments'));
-
     }
-    public function acceptcomment($id){
-        $result=Comment::withoutGlobalScope('status')->find($id)->update([
-            "status"=>1,
+    public function acceptcomment($id)
+    {
+        $result = Comment::withoutGlobalScope('status')->find($id)->update([
+            "status" => 1,
         ]);
-        if($result){
+        if ($result) {
             //on success
-            session()->flash('status_message','comment acceptance successful');
-            session()->flash('status_type','success');
-        }else{
+            session()->flash('status_message', 'comment acceptance successful');
+            session()->flash('status_type', 'success');
+        } else {
             //on failure
-            session()->flash('status_message','acceptance failed');
-            session()->flash('status_type','danfer');
+            session()->flash('status_message', 'acceptance failed');
+            session()->flash('status_type', 'danfer');
         }
 
 
         return redirect(route('comments'));
-
     }
-    public function replytocomment($id){
+    public function replytocomment($id)
+    {
         dd('reply managment here in admin controller ');
         return redirect(route('comments'));
     }
-    public function edituser($id){
+    public function edituser($id)
+    {
         dd($id);
         return redirect(route('users'));
     }
-    public function deleteuser($id){
+    public function deleteuser($id)
+    {
         dd($id);
         return redirect(route('users'));
     }
-    public function deactivateuser($id){
+    public function deactivateuser($id)
+    {
         dd($id);
         return redirect(route('users'));
     }
