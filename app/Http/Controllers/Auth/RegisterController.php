@@ -29,7 +29,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/email/verify';
+
 
     /**
      * Create a new controller instance.
@@ -65,7 +66,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'firstname_fa' => $data['name'],
+            'username' => $data['name'],
 
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

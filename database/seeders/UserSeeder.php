@@ -17,15 +17,18 @@ class UserSeeder extends Seeder
     {
         $usr=User::create([
             'role_id'=>1,
-            'firstname_fa'=>'علی',
-            'lastname_fa'=>'قنبری',
-            'firstname_en'=>'ali',
-            'lastname_en'=>'ghanbari',
+            'username'=>'ghanbari',
             'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci',
             "email"=>'alighanbari113@gmail.com'
 
         ]);
-        $prf=$usr->profile()->create();
+        $prf=$usr->profile()->create([
+            'firstname_fa'=>'علی',
+            'lastname_fa'=>'قنبری',
+            'firstname_en'=>'ali',
+            'lastname_en'=>'ghanbari',
+
+        ]);
         $prf->image()->create(['image_url'=>'users/default.jpg']);
 
         // $test->image()->create(["image_url"=>'test.jpg']);
@@ -34,14 +37,16 @@ class UserSeeder extends Seeder
 
         $usr=User::create([
             'role_id'=>2,
+            'username'=>'Vahed',
+            'email'=>'example@gmail.com',
+            'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci'
+        ]);
+        $prf=$usr->profile()->create([
             'firstname_fa'=>'محمدرضا',
             'lastname_fa'=>'واحد',
             'firstname_en'=>'mohammadreza',
             'lastname_en'=>'Vahed',
-            'email'=>'example@gmail.com',
-            'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci'
         ]);
-        $prf=$usr->profile()->create();
         $prf->image()->create(['image_url'=>'users/default.jpg']);
 
 

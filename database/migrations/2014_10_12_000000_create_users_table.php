@@ -16,10 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('role_id')->default(5);
             $table->foreign('role_id')->references('id')->on('roles')
             ->onDelete('cascade')->onUpdate('cascade');
-            $table->string('firstname_fa');
-            $table->string('lastname_fa');
-            $table->string('firstname_en');
-            $table->string('lastname_en');
+            $table->string('username');
+            
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

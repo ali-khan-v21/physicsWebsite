@@ -61,7 +61,7 @@ return [
     'text'=>"متن",
     'time'=>'زمان',
     'action'=>'عملیات ها',
-    'article_title'=>'عنوان مقاله'
-]
-
-?>
+    'article_title'=>'عنوان مقاله',
+    "newcomment"=>'کامنت های جدید',
+    "allcomments"=>'تمام کامنت ها',
+];

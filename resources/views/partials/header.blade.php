@@ -89,7 +89,7 @@ use App\Models\Category;
                     <li class="nav-item dropdown mx-5" style="list-style-type: none;">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->firstname_fa }}
+                            {{ Auth::user()->username }}
 
 
                             <i class="bi bi-person-circle"></i>

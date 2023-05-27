@@ -64,6 +64,8 @@ return [
     'action'=>'actions',
     'article_title'=>'article title',
     'panel'=>'dashboard',
+    "newcomment"=>'new comments',
+    "allcomments"=>'all comments',
 
 
 

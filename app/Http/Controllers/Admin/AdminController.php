@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('verified');
+    }
     public function index()
     {
         $posts = Article::orderBy("updated_at", "DESC")->get();
