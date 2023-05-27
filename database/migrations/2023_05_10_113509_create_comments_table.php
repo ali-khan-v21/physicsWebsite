@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('replied_to')->nullable();
             $table->text('name');
             $table->text('email');
             $table->text('body');

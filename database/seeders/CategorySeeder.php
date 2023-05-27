@@ -154,7 +154,7 @@ class CategorySeeder extends Seeder
             "desc_fa"=>'توضیحات فارسی',
             "name_en"=>'news',
             "desc_en"=>'english description',
-            "navbar"=>true
+            "navbar"=>false
         ]);
 
     }

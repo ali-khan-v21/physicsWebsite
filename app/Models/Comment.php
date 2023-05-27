@@ -13,7 +13,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable=[
-        'name','email','body','article_id','status','writer_status','parent_id'
+        'name','email','body','article_id','status','writer_status','parent_id','replied_to'
     ];
     protected static function boot(){
         parent::boot();

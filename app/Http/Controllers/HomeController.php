@@ -42,9 +42,17 @@ class HomeController extends Controller
             $status=0;
 
         }
+    //     if($request->has('parent_id')){
+    //         dd('parent_id');
+    //     }else{
+    //         dd($request,);
+
+    // }
         Comment::create([
             'name'=>$request->name,
             'writer_status'=>$writer_status,
+            "parent_id"=>$request->get('parent_id',null),
+            "replied_to"=>$request->get('replied_to',null),
             "status"=>$status,
             'email'=>$request->email,
             'body'=>$request->body,

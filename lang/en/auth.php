@@ -20,6 +20,7 @@ return [
     'anotherReq'=>'click here to request another',
     'Logout'=>'Logout',
     'panel'=>'dashboard',
+    
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines

@@ -1,6 +1,10 @@
 @php
+use App\Models\Tag;
     use App\Models\Category;
     $categories = Category::all();
+    $tags=Tag::all();
+    $locale=app()->getLocale();
+    $taged_categories=Category::where('navbar',1)->get();
 @endphp
 
 @extends('admin.panel')
@@ -19,10 +23,10 @@
 
                     <div class="form-group col-lg-6 col-sm-10 ">
 
-                        <input type="text" placeholder="عنوان فارسی پست" class="form-control " name="title_fa" value="{{old("title_fa")}}">
+                        <input type="text" placeholder="عنوان فارسی پست" class="form-control " name="title_fa"
+                            value="{{ old('title_fa') }}">
                         @if ($errors->has('title_fa'))
-
-                        <span class="text-danger">{{$errors->first('title_fa')}}</span>
+                            <span class="text-danger">{{ $errors->first('title_fa') }}</span>
                         @endif
                     </div>
                     <div class="form-group  col-lg-6 col-sm-10">
@@ -43,7 +47,7 @@
                         const editor = Jodit.make('#editor');
                     </script>
                     @if ($errors->has('text_fa'))
-                        <span class="text-danger">{{$errors->first('text_fa')}}</span>
+                        <span class="text-danger">{{ $errors->first('text_fa') }}</span>
                     @endif
                 </div>
             </div>
@@ -55,26 +59,42 @@
 
                         <input type="text" name="title_en" placeholder="english title" class="form-control ">
                         @if ($errors->has('title_en'))
-
-                        <span class="text-danger">
-                            {{$errors->first('title_en')}}
-                        </span>
-
+                            <span class="text-danger">
+                                {{ $errors->first('title_en') }}
+                            </span>
                         @endif
                     </div>
 
                 </div>
                 <div class="form-group">
 
-                    <textarea id="editor2" cols="30" name="text_en" rows="10" class="form-control" placeholder="english post text"></textarea>
+                    <textarea id="editor2" cols="30" name="text_en" rows="10" class="form-control"
+                        placeholder="english post text"></textarea>
                     <script>
                         const editor2 = Jodit.make('#editor2');
                     </script>
                     @if ($errors->has('text_en'))
-                    <span class="text_en">{{$errors->first('text_en')}}</span>
-
+                        <span class="text_en">{{ $errors->first('text_en') }}</span>
                     @endif
                 </div>
+            </div>
+
+
+
+            <div class="row my-2">
+                @foreach ($taged_categories as $category)
+
+                <div class="col-lg-3 col-sm-6 border border-1">
+                    <b>{{$category["name_".$locale]}}</b>
+                    @foreach ($category->tags as $tag)
+                    <div class="form-check">
+
+                        <input class="form-check-input " type="checkbox" name="tags[]" id="{{ $tag->tag_key }}" value="{{ $tag->id }}">
+                        <label class="form-check-label" for="{{ $tag->tag_key }}">{{ $tag['name_' . app()->getLocale()] }}</label>
+                    </div>
+                    @endforeach
+                </div>
+                @endforeach
             </div>
             <div class="row my-3 align-items-center">
                 <div class="col-9  ">
@@ -82,11 +102,9 @@
                     <label for="formFile" class="form-label">{{ __('public.choose_image') }}</label>
                     <input class="form-control" name="post_img" type="file" id="formFile">
                     @if ($errors->has('post_img'))
-
-                    <span class="text-danger">
-                        {{$errors->first('post_img')}}
-                    </span>
-
+                        <span class="text-danger">
+                            {{ $errors->first('post_img') }}
+                        </span>
                     @endif
 
 
@@ -101,5 +119,4 @@
             </div>
         </form>
     </div>
-
 @endsection

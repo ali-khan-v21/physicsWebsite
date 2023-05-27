@@ -64,4 +64,5 @@ return [
     'article_title'=>'عنوان مقاله',
     "newcomment"=>'کامنت های جدید',
     "allcomments"=>'تمام کامنت ها',
+    'repliedto'=>'پاسخ به :',
 ];

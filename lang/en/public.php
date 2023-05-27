@@ -66,6 +66,7 @@ return [
     'panel'=>'dashboard',
     "newcomment"=>'new comments',
     "allcomments"=>'all comments',
+    'repliedto'=>'replied to: ',
 
 
 
