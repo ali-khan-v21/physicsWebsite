@@ -21,6 +21,7 @@
                         @php
 
                         $role=$user->role
+
                         @endphp
                             <li>{{ $role['name_' . $locale] }}</li>
 
@@ -40,7 +41,9 @@
 
                                 @foreach (Role::all() as $role)
                                     <option value="{{ $role->id }}"
-                                        @if ($role->id == $user->role->id) selected
+                                        
+                                        @if ($role->role_value == $user->role->role_value)
+                                        selected
                                         @endif >
                                         {{ $role['name_' . $locale] }}</option>
                                 @endforeach

@@ -18,7 +18,8 @@
                 <div class="col-12 ">
                     <div class="section-title">
 
-                        <h3 class=" fw-semibold"><a style="text-decoration:none;" href="/article/{{ $tag->category->category_key }}">{{ $tag->category['name_' . $locale] }}</a>{{ ' > ' . $tag['name_' . $locale] }}
+                        <h3 class=" fw-semibold"><a style="text-decoration:none;"
+                                href="/article/{{ $tag->category->category_key }}">{{ $tag->category['name_' . $locale] }}</a>{{ ' > ' . $tag['name_' . $locale] }}
                         </h3>
                         <div class="border border-3 border-primary w-25 my-4"></div>
                         {{-- <div class="line"></div> --}}
@@ -35,11 +36,11 @@
 
                     $writer = $post->writer;
                 @endphp
-                    <div class="col-lg-3 col-sm-10 col-md-6">
-                        <a href="/tag/{{ $tag['tag_key'] }}/{{ $post['id'] }}" style="text-decoration:none;color:black;">
+                {{-- <div class="col-lg-3 col-sm-10 col-md-6">
+                    <a href="/tag/{{ $tag['tag_key'] }}/{{ $post['id'] }}" style="text-decoration:none;color:black;">
                         <div class="card cardh" style="width: 22rem;">
                             <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
-                            class="card-img-top h-auto" alt="{{$post->id}} post image">
+                                class="card-img-top h-auto" alt="{{ $post->id }} post image">
                             <div class="card-body">
                                 <h5 class="card-title">
 
@@ -81,8 +82,7 @@
 
                             </ul>
                             <div class="card-body">
-                                {{-- <a href="/article/{{ $tag['tag_key'] }}/{{ $post['id'] }}"
-                                    class="btn btn-primary">{{ __('public.goTo') }}</a> --}}
+
 
                             </div>
                             <div class="card-footer text-muted">
@@ -91,7 +91,14 @@
                             </div>
                         </div>
                     </a>
-                    </div>
+                </div> --}}
+                @component('components.articleCard',
+                ['writer'=>$writer,'category'=>$post->category,'post'=>$post,
+                'locale'=>$locale,'articleTag'=>$tag
+                ])
+
+                @endcomponent
+
             @endforeach
 
 

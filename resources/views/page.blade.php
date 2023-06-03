@@ -39,19 +39,20 @@
                         <svg class="bi me-2" width="30" height="24">
                             <use xlink:href="#bootstrap" />
                         </svg>
-                        <span class="fs-5 fw-semibold">{{$category['name_'.app()->getLocale()]}}</span>
+                        <span class="fs-5 fw-semibold">{{ $category['name_' . app()->getLocale()] }}</span>
                     </a>
 
 
                     <div class="list-group list-group-flush border-bottom scrollarea">
                         @foreach ($category->tags as $tag)
-                        <a href="/tag/{{$tag->tag_key}}" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
-                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                <strong class="mb-1">{{$tag['name_'.app()->getLocale()]}}</strong>
-                                <small>{{count($tag->articles)}}</small>
-                            </div>
-                            <div class="col-10 mb-1 small">{{$tag['desc_'.app()->getLocale()]}}</div>
-                        </a>
+                            <a href="/tag/{{ $tag->tag_key }}" class="list-group-item list-group-item-action py-3 lh-tight"
+                                aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">{{ $tag['name_' . app()->getLocale()] }}</strong>
+                                    <small>{{ count($tag->articles) }}</small>
+                                </div>
+                                <div class="col-10 mb-1 small">{{ $tag['desc_' . app()->getLocale()] }}</div>
+                            </a>
                         @endforeach
 
 
@@ -75,8 +76,12 @@
                                 $writer = $post->writer;
                             @endphp
 
-
-                            <div class="col-lg-4 col-sm-10 col-md-6">
+                            @component('components.articleCard',
+                            ['writer'=>$writer,'category'=>$category,'post'=>$post,
+                            'locale'=>$locale,'lgCol'=>4
+                            ])
+                            @endcomponent
+                            {{-- <div class="col-lg-4 col-sm-10 col-md-6">
                                 <a href="/article/{{ $category['category_key'] }}/{{ $post['id'] }}"
                                     style="text-decoration:none;color:black;">
 
@@ -134,7 +139,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> --}}
                         @endforeach
 
 

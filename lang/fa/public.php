@@ -7,7 +7,7 @@ return [
     'en'=>'english',
     'fa'=>'فارسی',
     "search"=>'جست و جو',
-    'site_name'=>'انجمن علوم و اعصاب شناختی',
+    'site_name'=>'انجمن علوم اعصاب شناختی',
     'cognitive_neuroscience'=>'علوم و اعصاب شناختی',
     'neurophilosophy'=>'فلسفه ذهن',
     'news'=>'اخبار',

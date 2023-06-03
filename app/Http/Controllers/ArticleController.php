@@ -27,20 +27,28 @@ class ArticleController extends Controller
         return view('tag',["tag"=>$tag,'posts'=>$posts]);
     }
 
-    public function tag_show($subject,$id){
-        $tags=Tag::where("tag_key",$subject)->get();
-        $tag=$tags[0];
+    // public function tag_show($subject,$id){
+    //     $tags=Tag::where("tag_key",$subject)->get();
+    //     $tag=$tags[0];
 
-        $post=Article::where('id',$id)->with('comments')->get();
-        $post=$post[0];
-        return view('tagarticle',['post'=>$post,"tag"=>$tag]);
-    }
+    //     $post=Article::where('id',$id)->with('comments')->get();
+    //     $post=$post[0];
+    //     return view('tagarticle',['post'=>$post,"tag"=>$tag]);
+    // }
     public function show($subject,$id){
+
         $categories=Category::where("category_key",$subject)->get();
         $category=$categories[0];
 
         $post=Article::where('id',$id)->with('comments.replies','comments.replies.replies')->get();
         $post=$post[0];
-        return view('article',['post'=>$post,"category"=>$category]);
+        if(request()->has('tagId')){
+            $tag=Tag::find(request()->input('tagId'));
+            return view('article',['post'=>$post,"category"=>$category,'tag'=>$tag]);
+            // dd(request()->input('tagId'));
+        }else{
+            return view('article',['post'=>$post,"category"=>$category]);
+
+        }
     }
 }

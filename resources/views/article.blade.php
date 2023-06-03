@@ -1,4 +1,5 @@
 @php
+
     use App\Models\Comment;
     use Illuminate\Support\Facades\Auth;
 
@@ -25,9 +26,16 @@
             <div class="row">
                 <div class="col-10 ">
                     <div class="section-title row">
-                        <h3 class=" fw-semibold"><a href="/article/{{ $category->category_key }}"
-                                style="text-decoration: none">{{ $category['name_' . $locale] }}</a> - {{ $title }}
+                        @unless (isset($tag))
+
+                        <h3 class=" fw-semibold pt-3"><a href="/article/{{ $category->category_key }}"
+                                style="text-decoration: none">{{ $category['name_' . $locale] }}</a>  <h3 class="pt-2">{{ $title }}</h3>
                         </h3>
+                        @else
+
+                        <h3 class=" fw-semibold"><a href="/article/{{$tag->category->category_key}}" style="text-decoration: none">{{ $tag->category['name_' . $locale] }}</a> > <a href="/tag/{{$tag->tag_key}}" style="text-decoration: none">{{ $tag['name_' . $locale] }}</a> <br><h3 class="pt-2"> {{ $title }}</h3>
+                        </h3>
+                        @endunless
 
                         <div class="border border-3 border-primary w-25 my-4"></div>
                         {{-- <div class="line"></div> --}}
@@ -50,7 +58,7 @@
 
         <div class="card col-lg-8 col-sm-12 col-md-10">
             <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
-                class="card-img-top h-auto" alt="{{$post->id}} image">
+                class="card-img-top h-auto" alt="{{ $post->id }} image">
             <div class="card-body">
                 <h5 class="card-title my-5">
                     @if ($post['title_' . $locale] != null)
@@ -74,7 +82,7 @@
                 </p>
 
                 <footer class="blockquote-footer">
-                    {{ $writer['firstname_' . $locale] . ' ' . $writer['lastname_' . $locale] }}
+                    {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
                 </footer>
             </div>
             <div class="card-footer text-muted">
@@ -229,11 +237,11 @@
                                                 <small
                                                     class="card-subtitle mb-2 text-muted">{{ $reply->role['name_' . $locale] }}</small>
                                                 @unless (is_null($reply->replied_to))
-                                                    <p class="my-1"><a
-                                                            href="#reply-container-{{ $reply->replied_to }}" style="text-decoration:none;">@lang('public.repliedto')
+                                                    <p class="my-1"><a href="#reply-container-{{ $reply->replied_to }}"
+                                                            style="text-decoration:none;">@lang('public.repliedto')
                                                             @php
 
-                                                                $mother_comment = Comment::where("id",$reply->replied_to)->get()[0];
+                                                                $mother_comment = Comment::where('id', $reply->replied_to)->get()[0];
                                                                 // $mother_body=$mother_comment["body"];
                                                                 // dd($mother_comment->body);
                                                                 // dd($reply->replied_to,$mother_comment);
@@ -249,7 +257,7 @@
                                             <div class="card-footer text-muted d-flex justify-content-between">
                                                 {{ $reply->created_at }}
                                                 <button class="card-link reply-btn"
-                                                    id="reply-{{ $reply->id }}">{{__('public.reply')}}<i
+                                                    id="reply-{{ $reply->id }}">{{ __('public.reply') }}<i
                                                         class="bi bi-reply"></i></button>
 
                                             </div>
@@ -258,7 +266,7 @@
                                     <div class="container hidden-form" style="display: none;"
                                         id="form-{{ $reply->id }}">
                                         @guest
-                                            <div >
+                                            <div>
                                                 <form action="/postcomment" method="post" class="row">
                                                     @if ($errors->all())
                                                         <div class="alert alert-danger">
@@ -352,7 +360,8 @@
                             @endif
                             <div class="card-footer text-muted d-flex justify-content-between">
                                 {{ $comment->created_at }}
-                                <button class="card-link reply-btn" id="reply-{{ $comment->id }}">{{__('public.reply')}}<i
+                                <button class="card-link reply-btn"
+                                    id="reply-{{ $comment->id }}">{{ __('public.reply') }}<i
                                         class="bi bi-reply"></i></button>
                             </div>
 
@@ -492,6 +501,5 @@
 
             })
         });
-
     </script>
 @endsection
