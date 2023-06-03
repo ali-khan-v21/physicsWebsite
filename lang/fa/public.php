@@ -43,7 +43,7 @@ return [
     "trashbin"=>'سطل زباله',
     "writers"=>'نویسندگان',
     "pending_posts"=>'پست های در انتظار تایید',
-    "comments"=>'کامنت ها',
+    "comments"=>'نظرات',
     "managing_users"=>'مدیریت اعضا',
     'category'=>'موضوع ',
     'return'=>'بازگشت',
@@ -62,7 +62,9 @@ return [
     'time'=>'زمان',
     'action'=>'عملیات ها',
     'article_title'=>'عنوان مقاله',
-    "newcomment"=>'کامنت های جدید',
-    "allcomments"=>'تمام کامنت ها',
+    "newcomment"=>'نظرات جدید',
+    "allcomments"=>'تمام نظرات ',
     'repliedto'=>'پاسخ به :',
+    'tags'=>'برچسب ها',
+    'noComments'=>'هیچ کامنتی یافت نشد !'
 ];

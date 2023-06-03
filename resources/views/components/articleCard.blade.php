@@ -1,12 +1,12 @@
 @php
-    $lgCol=isset($lgCol)?$lgCol:3
+    $lgCol = isset($lgCol) ? $lgCol : 3;
 @endphp
-<div class="col-lg-{{$lgCol}} col-sm-10 col-md-6">
-    <a href="/article/{{ $category['category_key'] }}/{{ $post['id'] }}@if (isset($articleTag)){{"?tagId=".$articleTag->id}}@endif"
+<div class="col-lg-{{ $lgCol }} col-sm-10 col-md-6">
+    <a href="/article/{{ $category['category_key'] }}/{{ $post['id'] }}@if (isset($articleTag)) {{ '?tagId=' . $articleTag->id }} @endif"
         style="text-decoration:none;color:black;">
         <div class="card cardh" style="width: 22rem;">
             <img src="@if ($post->image['image_url'] == null) {{ asset('/images/posts/default.jpg') }} @else {{ asset('/images/posts/' . $post->image['image_url']) }} @endif"
-            class="card-img-top h-auto" alt="{{$post->id}} post image">
+                class="card-img-top h-auto" alt="{{ $post->id }} post image">
             <div class="card-body">
 
                 @if ($post['title_' . $locale] != null)
@@ -32,12 +32,13 @@
                 </p>
             </div>
             <ul class="list-group list-group-flush p-2">
-                <li class="list-group-item">{{ __('public.category') }} :
-                    <a href="/article/{{$post->category['category_key']}}" style="text-decoration: none;">{{$post->category['name_'.$locale]}}</a>,
+                <li class="list-group-item">{{ __('public.tags') }} :
+                    <a href="/article/{{ $post->category['category_key'] }}"
+                        style="text-decoration: none;">{{ $post->category['name_' . $locale] }}</a>,
                     @foreach ($post->tags as $tag)
-                    <a href="/tag/{{$tag['tag_key']}}" style="text-decoration: none;">{{$tag['name_'.$locale]}}</a>,
-
-                @endforeach
+                        <a href="/tag/{{ $tag['tag_key'] }}"
+                            style="text-decoration: none;">{{ $tag['name_' . $locale] }}</a>,
+                    @endforeach
                     <br>
 
                 <li class="list-group-item">{{ __('public.writer') }} :

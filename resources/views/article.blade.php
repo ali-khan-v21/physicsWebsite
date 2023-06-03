@@ -90,6 +90,18 @@
                 {{ $post['updated_at'] }}
             </div>
         </div>
+        <div class="card col-lg-8 col-sm-12 col-md-10 mt-2">
+            <div class="card-footer">
+                <div class="card-text">
+                {{__('public.tags')}}:
+                    @foreach ($post->tags as $tag)
+                    <a href="/tag/{{$tag['tag_key']}}" style="text-decoration: none;">{{$tag['name_'.$locale]}}</a>,
+
+                @endforeach
+                </div>
+
+            </div>
+        </div>
 
 
 
@@ -471,7 +483,7 @@
 
                 @empty
 
-                    no comments found!
+                    <h4>{{__('public.noComments')}}</h4>
                 @endforelse
 
             </div>

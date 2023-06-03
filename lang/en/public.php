@@ -67,6 +67,8 @@ return [
     "newcomment"=>'new comments',
     "allcomments"=>'all comments',
     'repliedto'=>'replied to: ',
+    'tags'=>'tags',
+    'noComments'=>'no comments available !'
 
 
 
