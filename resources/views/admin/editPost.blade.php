@@ -6,6 +6,11 @@
     $tags = Tag::all();
     $locale = app()->getLocale();
     $taged_categories = Category::where('navbar', 1)->get();
+    $post_tag_ids=[];
+    foreach($post->tags as $oldTag){
+        array_push($post_tag_ids,$oldTag->id);
+    }
+    // dd($post->tags);
 @endphp
 
 @extends('admin.panel')
@@ -91,7 +96,7 @@
                             <div class="form-check">
 
                                 <input class="form-check-input " type="checkbox" name="tags[]" id="{{ $tag->tag_key }}"
-                                    value="{{ $tag->id }}">
+                                    value="{{ $tag->id }}" @if(in_array($tag->id,$post_tag_ids)){{"checked"}}@endif>
                                 <label class="form-check-label"
                                     for="{{ $tag->tag_key }}">{{ $tag['name_' . app()->getLocale()] }}</label>
                             </div>

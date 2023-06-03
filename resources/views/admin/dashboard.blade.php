@@ -53,8 +53,6 @@
                             @endforeach
                             <br>
 
-                            {{ __('public.writer') }} :
-                            {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
                         </li>
                         <li>
                             {{ __('public.writer') }} :

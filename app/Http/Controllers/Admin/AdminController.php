@@ -74,7 +74,17 @@ class AdminController extends Controller
 
                         'image_url' => $article->id . "." . $file_extension,
                     ]);
+                }else{
+                    Article::find($article->id)->image()->create([
+
+                        'image_url' =>null,
+                    ]);
                 }
+            }else{
+                Article::find($article->id)->image()->create([
+
+                    'image_url' =>null,
+                ]);
             }
         }
         return redirect('admin/');
@@ -94,7 +104,7 @@ class AdminController extends Controller
 
         $article = Article::find($request['post_id']);
 
-        $article->update([
+        $update_result=$article->update([
             "title_fa" => $request->get('title_fa'),
             "title_en" => $request->get('title_en'),
             "text_fa" => $request->get('text_fa'),
@@ -137,7 +147,7 @@ class AdminController extends Controller
                 ]);
             }
         }
-        if ($result) {
+        if ($update_result) {
             //on success
             session()->flash('status_message', 'update successful');
             session()->flash('status_type', 'success');
