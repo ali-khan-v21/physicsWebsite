@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+
+use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
+
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
 
@@ -14,14 +15,21 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if(request()->has('s')){
+            $query=request()->input('s');
+            $posts=Article::where('title_'.app()->getLocale(),'LIKE','%'.$query.'%')->get();
+            return view('search',['posts'=>$posts]);
+        }else{
+            $categories = Category::all();
+            return view('index', ['categories' => $categories]);
 
-        $categories = Category::all();
+        }
+
         // $posts = array();
         // foreach ($categories as $category) {
         //     $posts->array_push();
         // }
 
-        return view('index', ['categories' => $categories]);
     }
 
     public function aboutus(){

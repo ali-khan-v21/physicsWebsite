@@ -68,7 +68,9 @@ return [
     "allcomments"=>'all comments',
     'repliedto'=>'replied to: ',
     'tags'=>'tags',
-    'noComments'=>'no comments available !'
+    'noComments'=>'no comments available !',
+    'searchresults'=>'search results for ',
+    'noresults'=>'no results were found ! '
 
 
 

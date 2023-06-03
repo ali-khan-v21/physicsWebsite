@@ -66,5 +66,7 @@ return [
     "allcomments"=>'تمام نظرات ',
     'repliedto'=>'پاسخ به :',
     'tags'=>'برچسب ها',
-    'noComments'=>'هیچ کامنتی یافت نشد !'
+    'noComments'=>'هیچ کامنتی یافت نشد !',
+    'searchresults'=>'نتایج جستجو برای',
+    'noresults'=>'نتیجه ای یافت نشد !'
 ];
