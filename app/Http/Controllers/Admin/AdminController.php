@@ -31,6 +31,7 @@ class AdminController extends Controller
     }
     public function addPost(PostRequest $request)
     {
+        $this->authorize('create',Article::class);
 
         // echo count($request->get('tags'));
         // foreach($request->get('tags') as $key=>$value){
@@ -103,6 +104,7 @@ class AdminController extends Controller
     {
 
         $article = Article::find($request['post_id']);
+        $this->authorize('update',$article);
 
         $update_result=$article->update([
             "title_fa" => $request->get('title_fa'),
@@ -161,7 +163,9 @@ class AdminController extends Controller
     }
     public function softDelete($id)
     {
-        $result = Article::find($id)->delete();
+        $article = Article::find($id);
+        $this->authorize('delete',$article);
+        $result = $article->delete();
         if ($result) {
             //on success
             session()->flash('status_message', 'delete successful');
@@ -178,6 +182,7 @@ class AdminController extends Controller
     {
 
         $article = Article::withTrashed()->find($id);
+        $this->authorize('forceDelete',$article);
         $images_path = $_SERVER["DOCUMENT_ROOT"] . '/images/posts/';
 
         if ($article->image_url != null) {
@@ -201,7 +206,9 @@ class AdminController extends Controller
     }
     public function restore($id)
     {
-        $result = Article::withTrashed()->find($id)->restore();
+        $article = Article::withTrashed()->find($id);
+        $this->authorize('restore',$article);
+        $result=$article->restore();
         if ($result) {
             //on success
             session()->flash('status_message', 'restore successful');
