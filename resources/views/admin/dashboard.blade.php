@@ -67,6 +67,8 @@
                         <a href="/admin/edit/{{ $post['id'] }}" class="btn btn-warning">{{ __('public.edit') }}</a>
                         <a href="/admin/softDelete/{{ $post['id'] }}"
                             class="btn btn-danger">{{ __('public.delete') }}</a>
+                        <a href="/admin/pending_posts/deactivate/{{$post->id}}"
+                            class="btn btn-secondary">{{ __("public.deactivate") }}</a>
 
                     </div>
                     <div class="card-footer text-muted">

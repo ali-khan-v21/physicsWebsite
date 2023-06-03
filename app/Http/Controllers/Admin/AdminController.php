@@ -11,6 +11,7 @@ use App\Http\Requests\EditRequest;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -33,12 +34,13 @@ class AdminController extends Controller
     {
         $this->authorize('create',Article::class);
 
-        // echo count($request->get('tags'));
-        // foreach($request->get('tags') as $key=>$value){
-        //     echo $value;
-
-        // }
-        // dd($request);
+        $user=Auth::user();
+        $is_admin=Gate::allows('is_admin');
+        if($is_admin){
+            $status=1;
+        }else{
+            $status=0;
+        }
         $article = Article::create([
             "title_fa" => $request->get('title_fa'),
             "title_en" => $request->get('title_en'),
@@ -46,6 +48,7 @@ class AdminController extends Controller
             "text_en" => $request->get('text_en'),
             "category_id" => $request->get('category_id'),
             "user_id" => Auth::user()->id,
+            'status'=>$status,
 
         ]);
 
@@ -105,7 +108,13 @@ class AdminController extends Controller
 
         $article = Article::find($request['post_id']);
         $this->authorize('update',$article);
+        $user=Auth::user();
 
+        if($user->role->role_value<=2){
+            $status=1;
+        }else{
+            $status=0;
+        }
         $update_result=$article->update([
             "title_fa" => $request->get('title_fa'),
             "title_en" => $request->get('title_en'),
@@ -113,6 +122,7 @@ class AdminController extends Controller
             "text_en" => $request->get('text_en'),
             "category_id" => $request->get('category_id'),
             "user_id" => Auth::user()->id,
+            'status'=>$status,
 
         ]);
         if ($request->get('tags') > 0) {
@@ -310,5 +320,61 @@ class AdminController extends Controller
     {
         dd($id);
         return redirect(route('users'));
+    }
+    public function pendingPosts(){
+        $posts=Article::withoutGlobalScope('order')->where('status',0)->get();
+        return view('admin.pendingposts',['posts'=>$posts]);
+    }
+    public function acceptPendingPost($id){
+        $this->authorize('is_admin');
+        $article=Article::withoutGlobalScope('order')->find($id);
+        $result=$article->update([
+            'status'=>1,
+        ]);
+
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'post acceptance successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'post acceptance failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->pendingPosts();
+
+
+    }public function deletePendingPost($id){
+        $this->authorize('is_admin');
+        $article=Article::withoutGlobalScope('order')->find($id);
+        $result=$article->delete();
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'post delete successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'post delete failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->pendingPosts();
+    }public function deactivatePost($id){
+        $this->authorize('is_admin');
+        $article=Article::find($id);
+        $result=$article->update([
+            'status'=>0,
+        ]);
+
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'post deactivation successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'post deactivation failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->index();
+
     }
 }

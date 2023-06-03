@@ -31,6 +31,7 @@ class ArticleSeeder extends Seeder
                 'text_fa' => $faker_fa->paragraph(2),
                 'title_en' => $faker->text(10),
                 'text_en' => $faker->paragraph(),
+                "status"=>1
 
             ]);
             $res->image()->create(['image_url'=>null]);

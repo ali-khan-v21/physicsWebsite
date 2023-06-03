@@ -1,4 +1,5 @@
 @php
+use App\Models\Article;
     $locale = $app->getLocale();
 @endphp
 <!DOCTYPE html>
@@ -105,10 +106,14 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('pendingPosts') }}">
                                 <i class="bi bi-question-octagon"></i>
                                 <span data-feather="file"></span>
                                 {{ __('public.pending_posts') }}
+                                @php
+                                    $res=Article::withoutGlobalScope('order')->where("status",0)->get();
+                                @endphp
+                                <span class="text-danger">{{count($res)}}</span>
                             </a>
                         </li>
                         <li class="nav-item">

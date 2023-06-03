@@ -17,7 +17,7 @@ class Article extends Model
 {
     use HasFactory;
     protected $table ='articles';
-    protected $fillable=['text_fa',"title_fa","title_en","text_en","category_id",'user_id'];
+    protected $fillable=['text_fa',"title_fa","title_en","text_en","category_id",'user_id','status'];
     use SoftDeletes;
 
     protected static function boot(){
@@ -25,7 +25,7 @@ class Article extends Model
 
         static::addGlobalScope('order',function($query){
             // dd($query);
-            $query->orderBy('updated_at','DESC');
+            $query->where('status',1)->orderBy('updated_at','DESC');
         });
 
     }

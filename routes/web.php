@@ -38,6 +38,11 @@ Route::prefix('/admin')->group(function(){
     Route::get("/users",[AdminController::class,'users'])->name('users');
     Route::get("/comments",[AdminController::class,'comments'])->name('comments');
     Route::post("/users",[AdminController::class,'editRole'])->name('editrole');
+    Route::get("/pending_posts",[AdminController::class,'pendingPosts'])->name('pendingPosts');
+    Route::get("/pending_posts/accept/{id}",[AdminController::class,'acceptPendingPost'])->name('acceptPendingPosts');
+    Route::get("/pending_posts/delete/{id}",[AdminController::class,'deletePendingPost'])->name('deletePendingPosts');
+    Route::get("/pending_posts/deactivate/{id}",[AdminController::class,'deactivatePost'])->name('deactivatePosts');
+
     Route::get("/deletecomment/{id}",[AdminController::class,'deletecomment']);
     Route::get("/acceptcomment/{id}",[AdminController::class,'acceptcomment']);
     Route::post("/replytocomment/{id}",[AdminController::class,'replytocomment']);

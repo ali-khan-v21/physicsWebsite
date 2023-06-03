@@ -17,11 +17,12 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("category_id");
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            
+
             $table->char('title_fa',150);
             $table->text('text_fa');
             $table->char('title_en',150)->nullable();
             $table->text('text_en')->nullable();
+            $table->boolean('status')->default(0);
 
             $table->timestamps();
             $table->softDeletes();

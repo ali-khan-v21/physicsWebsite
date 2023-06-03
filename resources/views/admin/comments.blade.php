@@ -72,8 +72,14 @@
         <tbody>
             @forelse ($allcomments as $comment)
                 <tr>
-                    <td><a
-                            href="/article/{{ $comment->article->category->category_key }}/{{ $comment->article->id }}">{{ $comment->article['title_' . $locale] }}</a>
+                    <td>
+                        @php
+                            // if($comment->aritcle==Null){
+                            //     dd($comment->article->id);
+                            // }
+                        @endphp
+                        {{-- <a href="/article/{{ $comment->article->category }}/{{ $comment->article->id }}">{{ $comment->article['title_' . $locale] }}</a> --}}
+                        article link here
                     </td>
                     <td>{{ $comment->name }}</td>
                     <td>{{ $comment->email }}</td>
