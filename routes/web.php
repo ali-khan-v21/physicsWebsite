@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\LocalizationController;
 
@@ -18,6 +19,10 @@ Route::prefix('/article')->group(function(){
 
     Route::get("/{subject}",[ArticleController::class,"all"]);
     Route::get("/{subject}/{id}",[ArticleController::class,"show"]);
+});
+Route::prefix('/profile')->group(function(){
+
+    Route::get("/",[ProfileController::class,"index"])->name('user-profile');
 });
 Route::prefix('/tag')->group(function(){
 

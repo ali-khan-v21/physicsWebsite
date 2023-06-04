@@ -102,6 +102,11 @@ use App\Models\Category;
 
                                 </a>
                             @endif
+                            <a class="dropdown-item" href="{{ route('user-profile') }}">
+                                {{ __('public.profile') }}
+
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">

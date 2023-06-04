@@ -70,7 +70,8 @@ return [
     'tags'=>'tags',
     'noComments'=>'no comments available !',
     'searchresults'=>'search results for ',
-    'noresults'=>'no results were found ! '
+    'noresults'=>'no results were found ! ',
+    'profile'=>'profile',
 
 
 
