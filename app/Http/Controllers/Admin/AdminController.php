@@ -6,10 +6,12 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditRequest;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -308,8 +310,9 @@ class AdminController extends Controller
     }
     public function edituser($id)
     {
-        dd($id);
-        return redirect(route('users'));
+        $profile=Profile::find($id);
+        return view('profile', ['profile' => $profile]);
+        // ProfileController::showProfile($profile);
     }
     public function deleteuser($id)
     {

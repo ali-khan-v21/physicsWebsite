@@ -23,6 +23,7 @@ Route::prefix('/article')->group(function(){
 Route::prefix('/profile')->group(function(){
 
     Route::get("/",[ProfileController::class,"index"])->name('user-profile');
+    Route::post("/",[ProfileController::class,'editProfile'])->name('edit-profile');
 });
 Route::prefix('/tag')->group(function(){
 

@@ -69,5 +69,13 @@ return [
     'noComments'=>'هیچ کامنتی یافت نشد !',
     'searchresults'=>'نتایج جستجو برای',
     'noresults'=>'نتیجه ای یافت نشد !',
-    'profile'=>'پروفایل'
+    'profile'=>'پروفایل',
+    'firstname_fa'=>'نام فارسی',
+    'firstname_en'=>'نام انگلیسی',
+    'lastname_fa'=>'نام خانوادگی فارسی',
+    'lastname_en'=>'نام خانوادگی انگلیسی',
+    'username'=>'نام کابری',
+    'profile-image'=>'تصویر پروفایل',
+    'resume'=>'رزومه',
+    'changepassword'=>'تعویض رمزعبور'
 ];

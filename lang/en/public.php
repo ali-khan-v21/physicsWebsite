@@ -72,6 +72,14 @@ return [
     'searchresults'=>'search results for ',
     'noresults'=>'no results were found ! ',
     'profile'=>'profile',
+    'firstname_fa'=>'persian first name',
+    'firstname_en'=>'english first name',
+    'lastname_fa'=>'persian last name',
+    'lastname_en'=>'english last name',
+    'username'=>'user name',
+    'profile-image'=>'profile image',
+    'resume'=>'resume',
+    'changepassword'=>'change password'
 
 
 
