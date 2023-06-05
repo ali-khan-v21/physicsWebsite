@@ -11,6 +11,7 @@ use App\Http\Controllers\LocalizationController;
 
 Route::get('/', [HomeController::class,"index"])->name('index');
 Route::get('/about', [HomeController::class,"aboutus"])->name('about');
+Route::get('/writer/{id}',[HomeController::class,'writer']);
 Route::post('/postcomment',[HomeController::class,"postcomment"]);
 
 Route::get("/lang/{locale}",[LocalizationController::class,'setLang']);

@@ -89,14 +89,14 @@ use App\Models\Category;
                     <li class="nav-item dropdown mx-5" style="list-style-type: none;">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->username }}
+                            {{ Auth::user()->name }}
 
 
                             <i class="bi bi-person-circle"></i>
                         </a>
 
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            @if (Auth::user()->role['role_value'] <= 2)
+                            @if (Auth::user()->role['role_value'] <= 3)
                                 <a class="dropdown-item" href="{{ route('admin_dashboard') }}">
                                     {{ __('auth.panel') }}
 

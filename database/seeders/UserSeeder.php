@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         $usr=User::create([
             'role_id'=>1,
-            'username'=>'ghanbari',
+            'name'=>'ghanbari',
             'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci',
             "email"=>'alighanbari113@gmail.com'
 
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
 
         $usr=User::create([
             'role_id'=>2,
-            'username'=>'Vahed',
+            'name'=>'Vahed',
             'email'=>'vahedm1382@gmail.com',
             'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci'
         ]);

@@ -13,7 +13,8 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable=[
-        'name','email','body','article_id','status','writer_status','parent_id','replied_to'
+        'name','email','body','article_id','status','writer_status',
+        'parent_id','replied_to',"article_writer_id"
     ];
     protected static function boot(){
         parent::boot();
@@ -27,6 +28,9 @@ class Comment extends Model
 
     public function article(){
         return $this->belongsTo(Article::class,'article_id','id');
+    }
+    public function article_writer(){
+        return $this->belongsTo(User::class,'article_writer_id','id');
     }
     public function getCreatedAtAttribute($value)
     {

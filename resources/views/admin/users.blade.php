@@ -10,23 +10,20 @@
         @forelse ($users as $user)
             <div class="card col-sm-10 col-lg-3" style="width: 18rem;">
                 <div class="card-body p-1">
-                    <img src="{{ asset('images/'.$user->profile->image->image_url) }}" alt="user image" class="card-img-top">
+                    <img src="{{ asset('images/' . $user->profile->image->image_url) }}" alt="user image" class="card-img-top">
 
-                    <h4 class="card-title my-3">{{ $user['firstname_' . $locale]." ".$user['lastname_' . $locale] }}</h4>
+                    <div class="card-text text-danger">
+
+                        {{ $user->role['name_' . $locale] }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                        </li>
+                    </ul>
+                    <h4 class="card-title my-3">
+                        {{ $user->profile['firstname_' . $locale] . ' ' . $user->profile['lastname_' . $locale] }}</h4>
                     <h5 class="card-subtitle my-2 ">{{ $user->email }}</h5>
                     <hr>
-                    <div class="card-text">
-
-
-                        @php
-
-                        $role=$user->role
-
-                        @endphp
-                            <li>{{ $role['name_' . $locale] }}</li>
-
-
-                    </div>
 
                     <div class="container">
 
@@ -41,10 +38,7 @@
 
                                 @foreach (Role::all() as $role)
                                     <option value="{{ $role->role_value }}"
-
-                                        @if ($role->role_value == $user->role->role_value)
-                                        {{"selected"}}
-                                        @endif >
+                                        @if ($role->role_value == $user->role->role_value) {{ 'selected' }} @endif>
                                         {{ $role['name_' . $locale] }}</option>
                                 @endforeach
                             </select>

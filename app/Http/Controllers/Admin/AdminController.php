@@ -8,13 +8,14 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Policies\AdminPolicy;
 use App\Http\Requests\EditRequest;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\ProfileController;
 
 class AdminController extends Controller
 {
@@ -25,6 +26,7 @@ class AdminController extends Controller
     }
     public function index()
     {
+        $this->authorize('admin-dashboard');
         $user=Auth::user();
         if($user->role->role_value<=2){
 
@@ -63,6 +65,7 @@ class AdminController extends Controller
 
 
 
+
         if ($article->exists) {
             // checking for image and adding it to asset('/images/posts/'.$article->id.".jpg"')
             // dd($request->hasFile("post_img"));
@@ -80,20 +83,21 @@ class AdminController extends Controller
 
 
                 $result = move_uploaded_file($tmp_path, $_SERVER["DOCUMENT_ROOT"] . '/images/posts/' . $article->id . "." . $file_extension);
+                // dd($article->id);
                 if ($result) {
                     //upload success
-                    Article::find($article->id)->image()->create([
+                    $article->image()->create([
 
                         'image_url' => $article->id . "." . $file_extension,
                     ]);
                 }else{
-                    Article::find($article->id)->image()->create([
+                    $article->image()->create([
 
                         'image_url' =>null,
                     ]);
                 }
             }else{
-                Article::find($article->id)->image()->create([
+                $article->image()->create([
 
                     'image_url' =>null,
                 ]);
@@ -106,7 +110,8 @@ class AdminController extends Controller
         // $test=Article::where("id",1)->where('name','test')->toSql();
         // dd($test);
 
-        $post = Article::where('id', $id)->get();
+        $post = Article::withoutGlobalScope('order')->where('id', $id)->get();
+
         $post = $post[0];
 
         return view('admin.editPost', ['post' => $post]);
@@ -114,8 +119,12 @@ class AdminController extends Controller
     public function updatePost(EditRequest $request)
     {
 
-        $article = Article::find($request['post_id']);
+
+        $article = Article::withoutGlobalScope('order')->find($request['post_id']);
+        // dd('test4');
         $this->authorize('update',$article);
+        // dd('test5');
+
         $user=Auth::user();
 
         if($user->role->role_value<=2){
@@ -129,7 +138,6 @@ class AdminController extends Controller
             "text_fa" => $request->get('text_fa'),
             "text_en" => $request->get('text_en'),
             "category_id" => $request->get('category_id'),
-            "user_id" => Auth::user()->id,
             'status'=>$status,
 
         ]);
@@ -241,11 +249,13 @@ class AdminController extends Controller
     }
     public function trashed()
     {
+        $this->authorize('is_admin');
         $posts = Article::onlyTrashed()->get();;
         return view('admin.trash', ['posts' => $posts]);
     }
     public function users()
     {
+        $this->authorize('is_admin');
         $users = User::all();
 
         return view('admin.users', ['users' => $users]);
@@ -278,8 +288,23 @@ class AdminController extends Controller
     }
     public function comments()
     {
-        $allcomments = Comment::where('status', 1)->orderBy('created_at', "DESC")->get();
-        $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->orderBy('created_at', "DESC")->get();
+        $user=Auth::user();
+        $allow=Gate::allows('is_admin');
+        if($allow){
+            $allcomments = Comment::where('status', 1)->orderBy('created_at', "DESC")->get();
+
+            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->orderBy('created_at', "DESC")->get();
+
+
+        }else{
+
+            $allcomments = Comment::where('status', 1)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->get();
+
+            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->get();
+
+
+        }
+
         return view('admin.comments', ['allcomments' => $allcomments, 'newcomments' => $newcomments]);
     }
     public function deletecomment($id)
@@ -323,6 +348,7 @@ class AdminController extends Controller
     }
     public function edituser($id)
     {
+        $this->authorize('is_admin');
         $profile=Profile::find($id);
         return view('profile', ['profile' => $profile]);
         // ProfileController::showProfile($profile);
@@ -338,7 +364,16 @@ class AdminController extends Controller
         return redirect(route('users'));
     }
     public function pendingPosts(){
-        $posts=Article::withoutGlobalScope('order')->where('status',0)->get();
+        $user=Auth::user();
+        $allow=Gate::allows('is_admin');
+        if($allow){
+
+            $posts=Article::withoutGlobalScope('order')->where('status',0)->get();
+        }else{
+            $posts=Article::withoutGlobalScope('order')->where('status',0)->
+            where('user_id',$user->id)->get();
+
+        }
         return view('admin.pendingposts',['posts'=>$posts]);
     }
     public function acceptPendingPost($id){

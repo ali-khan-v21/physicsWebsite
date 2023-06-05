@@ -42,7 +42,8 @@
                     <br>
 
                 <li class="list-group-item">{{ __('public.writer') }} :
-                    {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}</li>
+                    <a href="/writer/{{ $writer->id}}"
+                    style="text-decoration: none;"> {{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}</a></li>
 
 
             </ul>

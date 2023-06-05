@@ -40,9 +40,14 @@ class ArticlePolicy
      */
     public function update(User $user, Article $article): bool
     {
+        // dd('test0');
+
         if($user->role->role_value<=2){
+            // dd('test1');
             return true;
         }else{
+            // dd('test2');
+
             if($article->writer->id==$user->id && $user->role->role_value==3){
                 return true;
             }else{

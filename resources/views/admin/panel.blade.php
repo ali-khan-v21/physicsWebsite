@@ -84,6 +84,8 @@ use App\Models\Article;
                                 {{ __('public.comments') }}
                             </a>
                         </li>
+                        @if (Auth::user()->role->role_value<=2)
+
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/trashed">
                                 <i class="bi bi-trash3 "></i>
@@ -91,9 +93,11 @@ use App\Models\Article;
                                 {{ __('public.trashbin') }}
                             </a>
                         </li>
+                        @endif
 
 
                     </ul>
+                    @if (Auth::user()->role->role_value<=2)
 
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -110,23 +114,10 @@ use App\Models\Article;
                                 {{ __('public.members') }}
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="bi bi-people"></i>
-                                <span data-feather="file-text"></span>
-                                {{ __('public.users') }}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="bi bi-pen"></i>
-                                <span data-feather="file-text"></span>
-                                {{ __('public.writers') }}
 
-                            </a>
-                        </li>
 
                     </ul>
+                    @endif
                 </div>
             </nav>
 

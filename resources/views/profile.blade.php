@@ -54,7 +54,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="{{ __('public.username') }}" value="{{ $profile->user->username }}" required>
+                                    placeholder="{{ __('public.username') }}" value="{{ $profile->user->name }}" required>
                                 <button class="btn btn-secondary" type="submit"
                                     id="button">{{ __('public.edit') }}</button>
                             </div>
@@ -128,7 +128,7 @@
 
 
                                 <input type="text" name="lastname_en" id="lastname_en" class="form-control"
-                                    placeholder="{{ __('public.lasename_en') }}" value="{{ $profile->lastname_en }}">
+                                    placeholder="{{ __('public.lastname_en') }}" value="{{ $profile->lastname_en }}">
                                 <button class="btn btn-secondary" type="submit"
                                     id="button">{{ __('public.edit') }}</button>
 

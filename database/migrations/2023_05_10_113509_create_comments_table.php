@@ -24,6 +24,9 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->unsignedBigInteger('writer_status');
             $table->foreign('writer_status')->references('role_value')->on("roles")->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('article_writer_id');
+            $table->foreign('article_writer_id')->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

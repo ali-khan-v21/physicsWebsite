@@ -16,7 +16,7 @@ class CommentSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-      
+
         for ($i=0;$i<20;$i++){
 
             Comment::create([
@@ -26,7 +26,8 @@ class CommentSeeder extends Seeder
                 'body'=>$faker->sentence(1),
                 'article_id'=>rand(1,5),
                 'status'=>1,
-                'writer_status'=>1
+                'writer_status'=>1,
+                'article_writer_id'=>rand(1,2),
             ]);
 
 

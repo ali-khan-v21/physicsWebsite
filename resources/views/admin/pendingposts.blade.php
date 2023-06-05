@@ -49,7 +49,8 @@
                                 <br>
 
                             <li class="list-group-item">{{ __('public.writer') }} :
-                                {{ $post->writer->profile['firstname_' . $locale] . ' ' . $post->writer->profile['lastname_' . $locale] }}</li>
+                                {{ $post->writer->profile['firstname_' . $locale] . ' ' . $post->writer->profile['lastname_' . $locale] }}
+                            </li>
                             <br>
                             {{ __('public.lastupdate') }} :
                             {{ $post['updated_at'] }}
@@ -58,14 +59,19 @@
                         </ul>
 
                         <div class="card-footer text-muted">
-                            <a href="/admin/pending_posts/accept/{{$post->id}}" class="btn btn-success">{{__("public.accept")}}</a>
-                            <a href="/admin/pending_posts/delete/{{$post->id}}" class="btn btn-danger">{{__("public.delete")}}</a>
+
+                            <a href="/admin/pending_posts/accept/{{ $post->id }}"
+                                class="btn btn-success">{{ __('public.accept') }}</a>
+                            <a href="/admin/pending_posts/delete/{{ $post->id }}"
+                                class="btn btn-danger">{{ __('public.delete') }}</a>
+                            <a href="/admin/edit/{{ $post['id'] }}" class="btn btn-warning">{{ __('public.edit') }}</a>
+
                         </div>
                     </div>
                 </a>
             </div>
         @empty
-        no posts found
+            no posts found
         @endforelse
 
     </div>

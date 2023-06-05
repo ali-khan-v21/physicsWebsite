@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Comment;
+
+
 use App\Models\Category;
-
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
 
@@ -33,9 +34,14 @@ class HomeController extends Controller
     }
 
     public function aboutus(){
-        return view ('aboutus');
+        $writers=User::where("role_id","<",4)->get();
+        // dd($writers);
+        return view('aboutus',['writers'=>$writers]);
     }
     public function postcomment(CommentRequest $request){
+        $article=Article::find($request->article_id);
+
+        // dd($request);
 
         if(Auth::check()){
             $writer_status=Auth::user()->role_id;
@@ -64,10 +70,17 @@ class HomeController extends Controller
             "status"=>$status,
             'email'=>$request->email,
             'body'=>$request->body,
-            'article_id'=>$request->article_id
+            'article_id'=>$request->article_id,
+            'article_writer_id'=>$article->writer->id,
 
         ]);
         return redirect()->back();
 
+    }
+    public function writer($id){
+        $writer=User::find($id);
+        // dd($writer);
+        $posts=$writer->articles;
+        return view('writer',['posts'=>$posts,'writer'=>$writer]);
     }
 }

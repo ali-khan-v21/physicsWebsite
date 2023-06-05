@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         ArticlePolicy::class => Article::class,
+        ProfilePolicy::class => Profile::class,
     ];
 
     /**
@@ -45,5 +46,13 @@ class AuthServiceProvider extends ServiceProvider
 
             return true;
         });
+        Gate::define('admin-dashboard',function($user){
+            if($user->role->role_value<=3){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
     }
 }

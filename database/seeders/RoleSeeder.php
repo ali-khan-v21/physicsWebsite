@@ -15,8 +15,8 @@ class RoleSeeder extends Seeder
     {
         Role::create([
             'role_value'=>1,
-            'name_fa'=>'سوپر ادمین',
-            'name_en'=>'super admin'
+            'name_fa'=>'ادمین',
+            'name_en'=>'admin'
 
         ]);
         Role::create([
