@@ -40,7 +40,7 @@
                             <select name="role_id" id="">
 
                                 @foreach (Role::all() as $role)
-                                    <option value="{{ $role->id }}"
+                                    <option value="{{ $role->role_value }}"
 
                                         @if ($role->role_value == $user->role->role_value)
                                         {{"selected"}}

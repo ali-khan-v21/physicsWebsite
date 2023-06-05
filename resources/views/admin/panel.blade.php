@@ -49,48 +49,9 @@ use App\Models\Article;
 <body>
 
 
-    <header class="navbar navbar-dark sticky-top bg-dark text-white p-0 shadow justify-content-evenly">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">{{ __('public.site_name') }}</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+   @include('partials.header')
 
-
-
-
-        <div class="nav-item text-nowrap">
-
-            <a class="nav-link " href="/">{{ __('public.home') }}</a>
-        </div>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                {{ __('public.' . app()->getLocale()) }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                @foreach (config('app.available_lacales') as $locale)
-                    <li><a href=/lang/{{ $locale }}
-                            class="dropdown-item @php if (app()->getLocale()==$locale){echo "border-left active border-dark";} @endphp">
-                            {{ __('public.' . $locale) }} </a></li>
-                @endforeach
-
-            </ul>
-        </li>
-        <div class="nav-item text-nowrap">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                {{ __('auth.Logout') }}
-
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-    </header>
-
-    <div class="container-fluid">
+    <div class="container-fluid section-padding">
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">

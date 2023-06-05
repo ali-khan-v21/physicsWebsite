@@ -25,7 +25,13 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $posts = Article::all();
+        $user=Auth::user();
+        if($user->role->role_value<=2){
+
+            $posts = Article::all();
+        }else{
+            $posts = Article::where('user_id',$user->id)->get();
+        }
         return view('admin.dashboard', $data = ['posts' => $posts]);
     }
     public function newpost()
@@ -248,9 +254,16 @@ class AdminController extends Controller
     {
         $user_id = $request->get('user_id');
         $role_id = $request->get('role_id');
+
         $user = User::find($user_id);
-        $role = Role::find($role_id);
-        $result = $user->roles()->sync($role);
+        $role = Role::where('role_value',$role_id)->get()[0];
+        $this->authorize('edit_role',[$user,$role]);
+        // $this->authorize('userEdit',[$user,$role],Role::class);
+
+        $result = $user->update([
+            'role_id'=>$role->role_value,
+        ]);
+        // dd($result);
         if ($result) {
             // onsuccess
             session()->flash('status_message', 'user role edit successfull');
