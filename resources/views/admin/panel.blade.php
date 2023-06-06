@@ -94,6 +94,26 @@ use App\Models\Article;
                             </a>
                         </li>
                         @endif
+                        @if (Auth::user()->role->role_value<=2)
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/category">
+                                <i class="bi bi-tags"></i>
+                                <span data-feather="trash"></span>
+                                {{ __('public.editCategory') }}
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->role->role_value<=2)
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/tag">
+                                <i class="bi bi-tags"></i>
+                                <span data-feather="trash"></span>
+                                {{ __('public.editSubcats') }}
+                            </a>
+                        </li>
+                        @endif
 
 
                     </ul>

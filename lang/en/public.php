@@ -79,7 +79,11 @@ return [
     'username'=>'user name',
     'profile-image'=>'profile image',
     'resume'=>'resume',
-    'changepassword'=>'change password'
+    'changepassword'=>'change password',
+    'editCategory'=>'edit categories',
+    'editSubcats'=>'edit tags',
+    'newTag'=>'create new tag',
+    'newCat'=>'create new category'
 
 
 

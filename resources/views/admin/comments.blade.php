@@ -78,8 +78,8 @@
                             //     dd($comment->article->id);
                             // }
                         @endphp
-                        {{-- <a href="/article/{{ $comment->article->category }}/{{ $comment->article->id }}">{{ $comment->article['title_' . $locale] }}</a> --}}
-                        article link here
+                        <a href="/article/{{ $comment->article->category }}/{{ $comment->article->id }}">{{ $comment->article['title_'.$locale]}}</a>
+
                     </td>
                     <td>{{ $comment->name }}</td>
                     <td>{{ $comment->email }}</td>

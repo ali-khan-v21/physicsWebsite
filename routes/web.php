@@ -56,6 +56,14 @@ Route::prefix('/admin')->group(function(){
     Route::get("/users/edit/{id}",[AdminController::class,'edituser']);
     Route::get("/users/deactivate/{id}",[AdminController::class,'deactivateuser']);
     Route::get("/users/delete/{id}",[AdminController::class,'deleteuser']);
+    Route::get("/category",[AdminController::class,'showCategories']);
+    Route::post("/category",[AdminController::class,'editCat'])->name('category-edit');
+    Route::post("/category/new",[AdminController::class,'newCat'])->name('category-new');
+    Route::get("/category/delete/{id}",[AdminController::class,'delCat']);
+    Route::get("/tag",[AdminController::class,'showTags']);
+    Route::post("/tag",[AdminController::class,'editTag'])->name('tag-edit');
+    Route::post("/tag/new",[AdminController::class,'newTag'])->name('tag-new');
+    Route::get("/tag/delete/{id}",[AdminController::class,'delTag']);
 
 });
 

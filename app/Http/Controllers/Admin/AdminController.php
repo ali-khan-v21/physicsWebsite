@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Tag;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Profile;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Policies\AdminPolicy;
 use App\Http\Requests\EditRequest;
@@ -16,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProfileController;
+use PhpParser\Node\Stmt\TryCatch;
 
 class AdminController extends Controller
 {
@@ -355,8 +358,25 @@ class AdminController extends Controller
     }
     public function deleteuser($id)
     {
-        dd($id);
-        return redirect(route('users'));
+        $this->authorize('is_admin');
+
+        $user=User::find($id);
+        if($user->role->role_value>2){
+            $result=$user->delete;
+        }else{
+            $result=Null;
+        }
+
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'user deleted successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'user deletion failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->users();
     }
     public function deactivateuser($id)
     {
@@ -428,4 +448,255 @@ class AdminController extends Controller
         return $this->index();
 
     }
+    public function showCategories(){
+        $this->authorize('is_admin');
+        $categories=Category::all();
+        return view('admin.categories',['categories'=>$categories]);
+    }
+    public function delCat($id){
+        $this->authorize('is_admin');
+
+        $result=Category::find($id)->delete();
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'category deleted successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'category deleted failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->showCategories();
+    }
+    public function editCat(Request $request){
+        $this->authorize('is_admin');
+        $category_id=$request->get('category_id');
+        if($request->has('category_title_fa')){
+            $result=Category::find($category_id)->update([
+                'name_fa'=>$request->input('category_title_fa')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'category update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'category delete failed');
+                session()->flash('status_type', 'danger');
+            }
+
+
+        }
+        if($request->has('category_title_en')){
+            $result=Category::find($category_id)->update([
+                'name_en'=>$request->input('category_title_en')
+
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'category update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'category update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+
+
+        }
+        if($request->has('category_desc_fa')){
+            $result=Category::find($category_id)->update([
+                'desc_fa'=>$request->input('category_desc_fa')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'category update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'category update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+
+
+        }
+        if($request->has('category_desc_en')){
+            $result=Category::find($category_id)->update([
+                'desc_en'=>$request->input('category_desc_en')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'category update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'category update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+        }
+        return $this->showCategories();
+    }public function newCat(Request $request){
+        $this->authorize('is_admin');
+        $category_key=explode(" ",$request->input('category_title_en'));
+        $category_key=implode('_',$category_key);
+        // dd($category_key);
+        $result=Category::create([
+            'category_key'=>$category_key,
+            'name_fa'=>$request->input('category_title_fa'),
+            'name_en'=>$request->input('category_title_en'),
+            'desc_fa'=>$request->input('category_desc_fa'),
+            'desc_en'=>$request->input('category_desc_en'),
+        ]);
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'category creation successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'category creation failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->showCategories();
+    }
+    public function showTags(){
+        $this->authorize('is_admin');
+        $categories=Category::all();
+        return view('admin.tags',['categories'=>$categories]);
+    }
+    public function editTag(Request $request){
+        $this->authorize('is_admin');
+        // dd($request);
+        $tag_id=$request->get('tag_id');
+        
+        if($request->has('category_id')){
+            $result=Tag::find($tag_id)->update([
+                'category_id'=>$request->input('category_id')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'tags category updated successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'tags category update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+        }
+        if($request->has('tag_title_fa')){
+            $result=Tag::find($tag_id)->update([
+                'name_fa'=>$request->input('tag_title_fa')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'tag update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'tag update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+
+        }
+        if($request->has('tag_title_en')){
+            $result=Tag::find($tag_id)->update([
+                'name_en'=>$request->input('tag_title_en')
+
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'tag update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'tag update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+
+
+        }
+        if($request->has('tag_desc_fa')){
+            $result=Tag::find($tag_id)->update([
+                'desc_fa'=>$request->input('tag_desc_fa')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'tag update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'tag update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+
+
+        }
+        if($request->has('tag_desc_en')){
+            $result=Tag::find($tag_id)->update([
+                'desc_en'=>$request->input('tag_desc_en')
+            ]);
+            if ($result) {
+                //on success
+                session()->flash('status_message', 'tag update successful');
+                session()->flash('status_type', 'success');
+            } else {
+                //on failure
+                session()->flash('status_message', 'tag update failed');
+                session()->flash('status_type', 'danger');
+            }
+
+        }
+        return $this->showTags();
+    }
+    public function delTag($id){
+        $this->authorize('is_admin');
+
+        try {
+            $result=Tag::find($id)->delete();
+            //code...
+        } catch (\Throwable $th) {
+            $result=Null;
+            throw $th;
+        }
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'tag deleted successfuly');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'tag deleted failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->showTags();
+    }public function newTag(Request $request){
+        $this->authorize('is_admin');
+        $tag_key=explode(" ",$request->input('tag_title_en'));
+        $tag_key=implode('_',$tag_key);
+        // dd($category_key);
+        $result=Tag::create([
+            'category_id'=>$request->input('category_id'),
+            'tag_key'=>$tag_key,
+            'name_fa'=>$request->input('tag_title_fa'),
+            'name_en'=>$request->input('tag_title_en'),
+            'desc_fa'=>$request->input('tag_desc_fa'),
+            'desc_en'=>$request->input('tag_desc_en'),
+        ]);
+        if ($result) {
+            //on success
+            session()->flash('status_message', 'tag creation successful');
+            session()->flash('status_type', 'success');
+        } else {
+            //on failure
+            session()->flash('status_message', 'tag creation failed');
+            session()->flash('status_type', 'danger');
+        }
+        return $this->showTags();
+    }
+
 }

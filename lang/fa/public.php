@@ -77,5 +77,10 @@ return [
     'username'=>'نام کابری',
     'profile-image'=>'تصویر پروفایل',
     'resume'=>'رزومه',
-    'changepassword'=>'تعویض رمزعبور'
+    'changepassword'=>'تعویض رمزعبور',
+    'editCategory'=>'مدیریت دسته بندی ها',
+    'editSubcats'=>'مدیریت زیر دسته ها',
+    'newTag'=>'ساخت زیرشاخه جدید',
+    'newCat'=>'ساخت دسته بندی جدید'
+
 ];
