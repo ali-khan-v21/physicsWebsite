@@ -71,6 +71,7 @@
         @empty
             no users found
         @endforelse
+        {{$users->links()}}
     </div>
 
 @endsection

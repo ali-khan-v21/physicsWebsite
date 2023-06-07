@@ -13,7 +13,7 @@ class ArticleController extends Controller
         $category=Category::where("category_key",$subject)->get();
         $category=$category[0];
 
-        $posts=Article::where('category_id',$category['id'])->get();
+        $posts=Article::where('category_id',$category['id'])->paginate(6);
 
         return view('page',["category"=>$category,'posts'=>$posts]);
     }
@@ -21,26 +21,20 @@ class ArticleController extends Controller
         $tags=Tag::where("tag_key",$subject)->get();
         $tag=$tags[0];
 
-        // $posts=Article::where('tag_id',$category['id'])->orderBy('updated_at','DESC')->get();
-        $posts=$tag->articles;
+        $posts=$tag->articles()->paginate(8);
 
         return view('tag',["tag"=>$tag,'posts'=>$posts]);
     }
 
     // public function tag_show($subject,$id){
-    //     $tags=Tag::where("tag_key",$subject)->get();
-    //     $tag=$tags[0];
 
-    //     $post=Article::where('id',$id)->with('comments')->get();
-    //     $post=$post[0];
-    //     return view('tagarticle',['post'=>$post,"tag"=>$tag]);
-    // }
     public function show($subject,$id){
 
         $categories=Category::where("category_key",$subject)->get();
         $category=$categories[0];
 
         $post=Article::where('id',$id)->with('comments.replies','comments.replies.replies')->get();
+        
         $post=$post[0];
         if(request()->has('tagId')){
             $tag=Tag::find(request()->input('tagId'));

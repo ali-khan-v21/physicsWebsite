@@ -16,9 +16,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if(request()->has('s')){
-            $query=request()->input('s');
-            $posts=Article::where('title_'.app()->getLocale(),'LIKE','%'.$query.'%')->get();
+        if(request()->has('q')){
+            $query=request()->input('q');
+            $posts=Article::where('title_'.app()->getLocale(),'LIKE','%'.$query.'%')->paginate(6);
             return view('search',['posts'=>$posts]);
         }else{
             $categories = Category::all();
@@ -26,10 +26,6 @@ class HomeController extends Controller
 
         }
 
-        // $posts = array();
-        // foreach ($categories as $category) {
-        //     $posts->array_push();
-        // }
 
     }
 

@@ -73,6 +73,7 @@
         @empty
             no posts found
         @endforelse
+        {{$posts->links()}}
 
     </div>
 @endsection

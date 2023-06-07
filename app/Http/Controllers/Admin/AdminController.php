@@ -33,9 +33,9 @@ class AdminController extends Controller
         $user=Auth::user();
         if($user->role->role_value<=2){
 
-            $posts = Article::all();
+            $posts = Article::paginate(8);
         }else{
-            $posts = Article::where('user_id',$user->id)->get();
+            $posts = Article::where('user_id',$user->id)->paginate(8);
         }
         return view('admin.dashboard', $data = ['posts' => $posts]);
     }
@@ -256,13 +256,13 @@ class AdminController extends Controller
     public function trashed()
     {
         $this->authorize('is_admin');
-        $posts = Article::onlyTrashed()->get();;
+        $posts = Article::onlyTrashed()->paginate(8);
         return view('admin.trash', ['posts' => $posts]);
     }
     public function users()
     {
         $this->authorize('is_admin');
-        $users = User::all();
+        $users = User::paginate(8);
 
         return view('admin.users', ['users' => $users]);
     }
@@ -297,21 +297,33 @@ class AdminController extends Controller
         $user=Auth::user();
         $allow=Gate::allows('is_admin');
         if($allow){
-            $allcomments = Comment::where('status', 1)->orderBy('created_at', "DESC")->get();
+            $allcomments = Comment::where('status', 1)->orderBy('created_at', "DESC")->paginate(10);
 
-            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->orderBy('created_at', "DESC")->get();
+            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->orderBy('created_at', "DESC")->paginate(10);
 
 
         }else{
 
-            $allcomments = Comment::where('status', 1)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->get();
+            $allcomments = Comment::where('status', 1)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->paginate(10);
 
-            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->get();
+            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->paginate(10);
 
 
         }
 
         return view('admin.comments', ['allcomments' => $allcomments, 'newcomments' => $newcomments]);
+    }
+    public function pendingComments(){
+        $user=Auth::user();
+        $allow=Gate::allows('is_admin');
+        if($allow){
+            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->orderBy('created_at', "DESC")->paginate(10);
+        }else{
+
+            $newcomments = Comment::withoutGlobalScope('status')->where('status', 0)->where('article_writer_id',$user->id)->orderBy('created_at', "DESC")->paginate(10);
+        }
+
+        return view('admin.pendingComments', [ 'newcomments' => $newcomments]);
     }
     public function deletecomment($id)
     {
@@ -423,10 +435,10 @@ class AdminController extends Controller
         $allow=Gate::allows('is_admin');
         if($allow){
 
-            $posts=Article::withoutGlobalScope('order')->where('status',0)->get();
+            $posts=Article::withoutGlobalScope('order')->where('status',0)->paginate(8);
         }else{
             $posts=Article::withoutGlobalScope('order')->where('status',0)->
-            where('user_id',$user->id)->get();
+            where('user_id',$user->id)->paginate(8);
 
         }
         return view('admin.pendingposts',['posts'=>$posts]);

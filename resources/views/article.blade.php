@@ -218,7 +218,7 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="comment-section">
                 @forelse ($post->comments as $comment)
                     <div class="container col-12 my-3" style="">
 
@@ -268,7 +268,7 @@
                                             </div>
                                             <div class="card-footer text-muted d-flex justify-content-between">
                                                 {{ $reply->created_at }}
-                                                <button class="card-link reply-btn"
+                                                <button class="card-link reply-btn btn"
                                                     id="reply-{{ $reply->id }}">{{ __('public.reply') }}<i
                                                         class="bi bi-reply"></i></button>
 
@@ -372,7 +372,7 @@
                             @endif
                             <div class="card-footer text-muted d-flex justify-content-between">
                                 {{ $comment->created_at }}
-                                <button class="card-link reply-btn"
+                                <button class="card-link reply-btn btn"
                                     id="reply-{{ $comment->id }}">{{ __('public.reply') }}<i
                                         class="bi bi-reply"></i></button>
                             </div>
@@ -466,20 +466,8 @@
 
                         @endguest
                     </div>
-                    {{-- </div>
-                            <div class="container test2" style="display: none" id="form-{{ $comment->id }}">
 
-                                <form action="" method="post">
-                                    <div class="form-group">
-                                        <label for="name">name</label>
-                                        <input type="text" name="name" id="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">email</label>
-                                        <input type="text" name="email" id="email">
-                                    </div>
-                                </form>
-                            </div> --}}
+
 
                 @empty
 

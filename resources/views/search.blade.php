@@ -15,9 +15,9 @@
                     <h4 class="text-white mt-3">{{ __('public.hero_text') }}</h4>
                     <div class="mt-5 col-sm-12 col-lg-5 mx-auto">
                         <form class="d-flex mt-3">
-                            <input class="form-control me-2" name="s" type="search"
+                            <input class="form-control me-2" name="q" type="search"
                                 placeholder="{{ __('public.search') }}" aria-label="Search"
-                                value="{{ request()->input('s') }}">
+                                value="{{ request()->input('q') }}">
                             <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                         </form>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="display-5 fw-semibold d-inline">{{ __('public.searchresults') }} :</h2>
-                        <h3 class="d-inline"> {{ request()->input('s') }}</h3>
+                        <h3 class="d-inline"> {{ request()->input('q') }}</h3>
 
                         <div class="line m-0 mt-4"></div>
 
@@ -59,6 +59,7 @@
                 @empty
                 <h3>{{__('public.noresults')}}</h3>
                 @endforelse
+                {{$posts->withQueryString()->links()}}
 
 
             </div>

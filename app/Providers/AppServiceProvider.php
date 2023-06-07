@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Validator as BaseValidator;
 
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrap();
         Schema::defaultStringLength(190);
         Validator::extend('password_validator', function ($attr, $value, $params = [], BaseValidator $validator) {
             $uppercase    = preg_match('@[A-Z]@', $value);

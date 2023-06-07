@@ -15,7 +15,7 @@
                     <h4 class="text-white mt-3">{{ __('public.hero_text') }}</h4>
                     <div class="mt-5 col-sm-12 col-lg-5 mx-auto">
                         <form class="d-flex mt-3">
-                            <input class="form-control me-2" name="s" type="search"
+                            <input class="form-control me-2" name="q" type="search"
                                 placeholder="{{ __('public.search') }}" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                         </form>
@@ -79,10 +79,42 @@
                 </div>
             </div>
             @php
-                $posts = $category->articles->take(4);
+                $posts = $category->articles->take(3);
 
             @endphp
             <div class="row justify-content-start align-items-start mx-auto">
+                <div class="col-3 fixed">
+
+                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+                        <a href="#{{$category->category_key}}"
+                            class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                            <svg class="bi me-2" width="30" height="24">
+                                <use xlink:href="#bootstrap" />
+                            </svg>
+                            <span class="fs-5 fw-semibold">{{ $category['name_' . app()->getLocale()] }}</span>
+                        </a>
+
+
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            @foreach ($category->tags as $tag)
+                                <a href="/tag/{{ $tag->tag_key }}" class="list-group-item list-group-item-action py-3 lh-tight"
+                                    aria-current="true">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <strong class="mb-1">{{ $tag['name_' . app()->getLocale()] }}</strong>
+                                        <small>{{ count($tag->articles) }}</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">{{ $tag['desc_' . app()->getLocale()] }}</div>
+                                </a>
+                            @endforeach
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
                 @foreach ($posts as $post)
                     @php
 

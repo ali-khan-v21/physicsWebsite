@@ -48,6 +48,7 @@ Route::prefix('/admin')->group(function(){
     Route::get("/trashed",[AdminController::class,"trashed"]);
     Route::get("/users",[AdminController::class,'users'])->name('users');
     Route::get("/comments",[AdminController::class,'comments'])->name('comments');
+    Route::get("/pendingComments",[AdminController::class,'pendingComments'])->name('pending-comments');
     Route::post("/users",[AdminController::class,'editRole'])->name('editrole');
     Route::get("/pending_posts",[AdminController::class,'pendingPosts'])->name('pendingPosts');
     Route::get("/pending_posts/accept/{id}",[AdminController::class,'acceptPendingPost'])->name('acceptPendingPosts');

@@ -92,7 +92,8 @@ return [
     'titleEn'=>'english title',
     'descFa'=>'persian description',
     'descEn'=>'english description',
-    'noresume'=>'no resume found for writer'
+    'noresume'=>'no resume found for writer',
+    'pendingComments'=>'pending comments'
 
 
 

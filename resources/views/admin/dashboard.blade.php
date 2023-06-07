@@ -78,5 +78,6 @@
                 </div>
             </div>
         @endforeach
+        {{$posts->onEachside(2)->links()}}
     </div>
 @endsection

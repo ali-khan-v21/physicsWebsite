@@ -85,6 +85,18 @@ use App\Models\Comment;
 
                                 {{ __('public.comments') }}
                                 @php
+                                    $res=Comment::all();
+                                @endphp
+                                <span class="text-success">{{count($res)}}</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pending-comments') }}">
+                                <i class="bi bi-chat-right-text"></i>
+
+                                {{ __('public.pendingComments') }}
+                                @php
                                     $res=Comment::withoutGlobalScope('status')->where("status",0)->get();
                                 @endphp
                                 <span class="text-danger">{{count($res)}}</span>

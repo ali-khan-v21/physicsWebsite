@@ -100,6 +100,7 @@
                 @endcomponent
 
             @endforeach
+            {{$posts->links()}}
 
 
 
