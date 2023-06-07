@@ -362,7 +362,7 @@ class AdminController extends Controller
 
         $user=User::find($id);
         if($user->role->role_value>2){
-            $result=$user->delete;
+            $result=$user->delete();
         }else{
             $result=Null;
         }
@@ -570,7 +570,7 @@ class AdminController extends Controller
         $this->authorize('is_admin');
         // dd($request);
         $tag_id=$request->get('tag_id');
-        
+
         if($request->has('category_id')){
             $result=Tag::find($tag_id)->update([
                 'category_id'=>$request->input('category_id')

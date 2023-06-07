@@ -11,22 +11,47 @@
 
         <div class="row jostify-content-beetween align-items-center">
             <div class="col-lg-6">
-                <img src="{{asset('images').'/'.$writer->profile->image->image_url}}" class="rounded img-thumbnail" alt="writer-image">
+                <img src="{{ asset('images') . '/' . $writer->profile->image->image_url }}" class="rounded img-thumbnail w-75"
+                    alt="writer-image">
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-6">
+
                 <h1>{{ __('public.about_writer') }}</h1>
                 <br>
-                <h4>{{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}</h4>
+                <h3>{{ $writer->profile['firstname_' . $locale] . ' ' . $writer->profile['lastname_' . $locale] }}
+                </h3>
+                <div class="row">
+                    @forelse ($writer->resumes as $resume)
+                        <div class="col-sm-10 col-lg-10">
 
-                <div class="d-flex pt-3 mb-2">
-                    <div class="iconbox mx-4">
-                        <i class="bi bi-bookmark-star"></i>
-                    </div>
-                    <div>
-                        <h4> resume here</h4>
-                        <p class="mt-3 mb-4"></p>
-                    </div>
+                            <div class="d-flex pt-3 mb-2">
+                                <div class="iconbox mx-4">
+                                    <i class="bi bi-bookmark-star"></i>
+                                </div>
+                                <div>
+
+
+                                    <h4>{{ $resume['title_' . $locale] }}</h4>
+                                    {{-- <h5>{{$resume['desc_'.$locale]}}</h5> --}}
+                                    <p class="mt-3 mb-4">{{ $resume['desc_' . $locale] }}</p>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    @empty
+                        <div class="d-flex pt-3 mb-2">
+                            <div class="iconbox mx-4">
+                                <i class="bi bi-bookmark-star"></i>
+                            </div>
+                            <div>
+                                <h5>{{ __('public.noresume') }}</h5>
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
+
 
 
             </div>

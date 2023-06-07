@@ -16,6 +16,21 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $usr=User::create([
+            'role_id'=>2,
+            'name'=>'Vahed',
+            'email'=>'vahedm1382@gmail.com',
+            'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci'
+        ]);
+        $prf=$usr->profile()->create([
+            'firstname_fa'=>'محمدرضا',
+            'lastname_fa'=>'واحد',
+            'firstname_en'=>'mohammadreza',
+            'lastname_en'=>'Vahed',
+        ]);
+        $prf->image()->create(['image_url'=>'users/default.jpg']);
+
+        
+        $usr=User::create([
             'role_id'=>1,
             'name'=>'ghanbari',
             'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci',
@@ -35,19 +50,7 @@ class UserSeeder extends Seeder
 
 
 
-        $usr=User::create([
-            'role_id'=>2,
-            'name'=>'Vahed',
-            'email'=>'vahedm1382@gmail.com',
-            'password'=>'$2y$10$zvd3ScZw4VgCuCOqjx8L8.IdF9SxRT1tqEELgxXY7TmR7ex9Dokci'
-        ]);
-        $prf=$usr->profile()->create([
-            'firstname_fa'=>'محمدرضا',
-            'lastname_fa'=>'واحد',
-            'firstname_en'=>'mohammadreza',
-            'lastname_en'=>'Vahed',
-        ]);
-        $prf->image()->create(['image_url'=>'users/default.jpg']);
+
 
 
     }
