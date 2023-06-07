@@ -27,7 +27,7 @@ class Comment extends Model
     }
 
     public function article(){
-        return $this->belongsTo(Article::class,'article_id','id');
+        return $this->belongsTo(Article::class,'article_id','id')->withTrashed();
     }
     public function article_writer(){
         return $this->belongsTo(User::class,'article_writer_id','id');
