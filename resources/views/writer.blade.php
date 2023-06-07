@@ -9,7 +9,7 @@
 @section('content')
     <section class="section-padding">
 
-        <div class="row jostify-content-beetween align-items-center">
+        <div class="row jostify-content-beetween align-items-start">
             <div class="col-lg-6">
                 <img src="{{ asset('images') . '/' . $writer->profile->image->image_url }}" class="rounded img-thumbnail w-75"
                     alt="writer-image">

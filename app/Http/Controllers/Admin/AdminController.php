@@ -115,6 +115,9 @@ class AdminController extends Controller
 
         $post = Article::withoutGlobalScope('order')->where('id', $id)->get();
 
+
+        // dd('test4');
+        $this->authorize('update',$post);
         $post = $post[0];
 
         return view('admin.editPost', ['post' => $post]);
@@ -312,7 +315,10 @@ class AdminController extends Controller
     }
     public function deletecomment($id)
     {
-        $result = Comment::find($id)->delete();
+        $comment = Comment::withoutGlobalScope('status')->find($id);
+        $this->authorize('delete',$comment);
+
+        $result=$comment->delete();
 
         if ($result) {
             //on success
@@ -328,7 +334,11 @@ class AdminController extends Controller
     }
     public function acceptcomment($id)
     {
-        $result = Comment::withoutGlobalScope('status')->find($id)->update([
+        $comment=Comment::withoutGlobalScope('status')->find($id);
+        $this->authorize('update',$comment);
+
+
+        $result =$comment->update([
             "status" => 1,
         ]);
         if ($result) {
@@ -344,9 +354,28 @@ class AdminController extends Controller
 
         return redirect(route('comments'));
     }
-    public function replytocomment($id)
+    public function replytocomment(Request $request)
     {
-        dd('reply managment here in admin controller ');
+        $user=Auth::user();
+        $allow=Gate::allows('is_admin');
+        if($allow){
+            $status=1;
+        }else{
+            $status=0;
+
+        }
+        Comment::create([
+            'name'=>$user->name,
+            'writer_status'=>$user->role->role_value,
+            "parent_id"=>$request->get('parent_id',null),
+            "replied_to"=>$request->get('replied_to',null),
+            "status"=>$status,
+            'email'=>$user->email,
+            'body'=>$request->body,
+            'article_id'=>$request->article_id,
+            'article_writer_id'=>$request->article_writer_id,
+
+        ]);
         return redirect(route('comments'));
     }
     public function edituser($id)

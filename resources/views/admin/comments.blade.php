@@ -35,8 +35,7 @@
 
                     <td><a href="/admin/deletecomment/{{ $comment->id }}"
                             class="btn btn-danger">{{ __('public.delete') }}</a>
-                        <a href="/admin/replytocomment/{{ $comment->id }}"
-                            class="btn btn-primary">{{ __('public.reply') }}</a>
+                        
                         <a href="/admin/acceptcomment/{{ $comment->id }}"
                             class="btn btn-success">{{ __('public.accept') }}</a>
                     </td>
@@ -78,7 +77,7 @@
                             //     dd($comment->article->id);
                             // }
                         @endphp
-                        <a href="/article/{{ $comment->article->category }}/{{ $comment->article->id }}">{{ $comment->article['title_'.$locale]}}</a>
+                        <a href="/article/{{ $comment->article->category->category_key }}/{{ $comment->article->id }}">{{ $comment->article['title_'.$locale]}}</a>
 
                     </td>
                     <td>{{ $comment->name }}</td>
@@ -109,8 +108,11 @@
                                         <form action="/admin/replytocomment/{{ $comment->id }}" method="post">
                                             {{ csrf_field() }}
                                             <div class="form-group">
-
-                                                <textarea name="answer" id="answer" cols="30" rows="5" placeholder="answer here"></textarea>
+                                                <input type="hidden" name="parent_id" value="@if(is_null($comment->parent_id)){{$comment->id}}@else {{$comment->parent_id}}@endif">
+                                                <input type="hidden" name="replied_to" value="@if(is_null($comment->parent_id))@else {{$comment->id}}@endif">
+                                               <input type="hidden" name="article_id" value="{{$comment->article_id}}">
+                                               <input type="hidden" name="article_writer_id" value="{{$comment->article_writer_id}}">
+                                                <textarea name="body" id="body" cols="30" rows="5" placeholder="{{__('public.enter_message')}}"></textarea>
                                             </div>
                                             <button type="submit"
                                                 class="btn btn-primary">{{ __('public.submit') }}</button>

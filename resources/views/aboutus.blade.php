@@ -25,14 +25,14 @@
 
                 </div>
             </div>
-            <div class="row jostify-content-beetween align-items-center">
+            <div class="row jostify-content-beetween align-items-start">
                 <div class="col-lg-6">
                     <img src="{{ asset('images') . '/' . $writers[0]->profile->image->image_url }}"
                         class="rounded img-thumbnail" alt="writers image">
                 </div>
                 <div class="col-lg-5">
                     <h1>{{ __('public.about_writer') }}</h1>
-                    <h3>{{ $writers[0]->profile['firstname_' . $locale] . ' ' . $writers[0]->profile['lastname_' . $locale] }}</h3>
+                    <h3 class="my-4">{{ $writers[0]->profile['firstname_' . $locale] . ' ' . $writers[0]->profile['lastname_' . $locale] }}</h3>
 
                     <div class="row">
                         @forelse ($writers[0]->resumes as $resume)
