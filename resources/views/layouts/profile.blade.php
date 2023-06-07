@@ -54,7 +54,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('password.request')}}">
                                 <i class="bi bi-key"></i>
 
                                 {{ __('public.changepassword') }}
