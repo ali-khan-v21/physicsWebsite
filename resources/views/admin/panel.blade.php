@@ -1,5 +1,7 @@
 @php
+use App\Models\User;
 use App\Models\Article;
+use App\Models\Comment;
     $locale = $app->getLocale();
 @endphp
 <!DOCTYPE html>
@@ -80,9 +82,14 @@ use App\Models\Article;
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('comments') }}">
                                 <i class="bi bi-chat-right-text"></i>
-                                <span data-feather="shopping-cart"></span>
+
                                 {{ __('public.comments') }}
+                                @php
+                                    $res=Comment::withoutGlobalScope('status')->where("status",0)->get();
+                                @endphp
+                                <span class="text-danger">{{count($res)}}</span>
                             </a>
+
                         </li>
                         @if (Auth::user()->role->role_value<=2)
 
@@ -91,6 +98,10 @@ use App\Models\Article;
                                 <i class="bi bi-trash3 "></i>
                                 <span data-feather="trash"></span>
                                 {{ __('public.trashbin') }}
+                                @php
+                                    $res=Article::onlyTrashed()->get();
+                                @endphp
+                                <span class="text-danger">{{count($res)}}</span>
                             </a>
                         </li>
                         @endif
@@ -132,6 +143,10 @@ use App\Models\Article;
                                 <i class="bi bi-person-bounding-box"></i>
                                 <span data-feather="file-text"></span>
                                 {{ __('public.members') }}
+                                @php
+                                    $res=User::all();
+                                @endphp
+                                <span class="text-success">{{count($res)}}</span>
                             </a>
                         </li>
 

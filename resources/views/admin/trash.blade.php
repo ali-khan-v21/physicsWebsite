@@ -25,7 +25,7 @@
                 @endphp
                 <div class="col-lg-3 col-sm-10 col-md-6">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{asset('images/posts/'.$post['image_url'])}}" class="card-img-top" alt="writer">
+                        <img src="{{asset('images/')."/".$post->image->image_url}}" class="card-img-top" alt="writer">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @if ($post['title_' . $locale] != null)

@@ -361,7 +361,13 @@ class AdminController extends Controller
         if($allow){
             $status=1;
         }else{
-            $status=0;
+            $comment=Comment::find($request->input('parent_id'));
+            if($comment->article_writer_id==$user->id){
+                $status=1;
+
+            }else{
+                $status=0;
+            }
 
         }
         Comment::create([
