@@ -83,7 +83,10 @@ return [
     'editCategory'=>'edit categories',
     'editSubcats'=>'edit tags',
     'newTag'=>'create new tag',
-    'newCat'=>'create new category'
+    'newCat'=>'create new category',
+    'verifyEmail'=>'verify email address',
+    'confirmed'=>'confirmed',
+    'notconfirmed'=>'not confirmed'
 
 
 

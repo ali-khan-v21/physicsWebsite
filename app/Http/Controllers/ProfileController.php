@@ -63,7 +63,9 @@ class ProfileController extends Controller
         if ($request->has('useremail')) {
             $profile->user->update([
                 'email'=>$request->get('useremail'),
+                "email_verified_at"=>Null,
             ]);
+
         }
         if ($request->has('firstname_fa')) {
             $profile->update([

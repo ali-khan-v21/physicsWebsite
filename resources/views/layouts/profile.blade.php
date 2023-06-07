@@ -1,3 +1,7 @@
+@php
+
+use Illuminate\Support\Facades\Auth;
+@endphp
 <!DOCTYPE html>
 <html lang="en" dir=@php if(app()->getLocale()=='fa'){echo 'rtl';}else{echo 'ltr';} @endphp>
 
@@ -59,6 +63,26 @@
 
                                 {{ __('public.changepassword') }}
                             </a>
+                        </li>
+                        <li class="nav-item">
+
+                            @if(is_null(Auth::user()->email_verified_at))
+                            <a class="nav-link" href="{{route('verification.notice')}}">
+                                <i class="bi bi-key"></i>
+
+                                {{ __('public.verifyEmail') }}
+                            </a>
+                            <span class="text-danger">{{__('public.notconfirmed')}}</span>
+                            @else
+                            <a class="nav-link" deactive>
+                                <i class="bi bi-key"></i>
+
+                                {{ __('public.verifyEmail') }}
+                            </a>
+                            <span class="text-success">{{__('public.confirmed')}}</span>
+
+
+                            @endif
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
