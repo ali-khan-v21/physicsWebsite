@@ -85,7 +85,7 @@ use Illuminate\Support\Facades\Auth;
                             @endif
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('show-resume')}}">
                                 <i class="bi bi-card-checklist"></i>
 
                                 {{ __('public.resume') }}

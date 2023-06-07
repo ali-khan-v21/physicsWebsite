@@ -25,6 +25,10 @@ Route::prefix('/profile')->group(function(){
 
     Route::get("/",[ProfileController::class,"index"])->name('user-profile');
     Route::post("/",[ProfileController::class,'editProfile'])->name('edit-profile');
+    Route::get('/resume',[ProfileController::class,'showResume'])->name('show-resume');
+    Route::post('/edit',[ProfileController::class,'editResume'])->name('edit-resume');
+    Route::post('/create',[ProfileController::class,'createResume'])->name('create-resume');
+
 });
 Route::prefix('/tag')->group(function(){
 

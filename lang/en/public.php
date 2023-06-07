@@ -86,7 +86,12 @@ return [
     'newCat'=>'create new category',
     'verifyEmail'=>'verify email address',
     'confirmed'=>'confirmed',
-    'notconfirmed'=>'not confirmed'
+    'notconfirmed'=>'not confirmed',
+    'newResume'=>'new Resume',
+    "titleFa"=>'persian title',
+    'titleEn'=>'english title',
+    'descFa'=>'persian description',
+    'descEn'=>'english description',
 
 
 

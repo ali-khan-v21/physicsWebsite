@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Resume;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,6 +91,64 @@ class ProfileController extends Controller
         }
 
         return $this->showProfile($profile);
+
+    }
+    public function showResume(){
+        $user = Auth::user();
+        $resumes = $user->resumes;
+        return view('userresume',['resumes'=>$resumes,'user'=>$user]);
+    }
+    public function editResume(Request $request){
+        $resume_id = $request->get('resume_id');
+        $resume = Resume::find($resume_id);
+        $this->authorize('editResume',$resume->user->profile);
+
+        if($request->has('title_fa')){
+            $resume->update([
+                'title_fa'=>$request->input('title_fa')
+            ]);
+
+        }
+        if($request->has('title_en')){
+            $resume->update([
+                'title_en'=>$request->input('title_en')
+            ]);
+
+        }
+        if($request->has('desc_fa')){
+            $resume->update([
+                'desc_fa'=>$request->input('desc_fa')
+            ]);
+
+        }
+        if($request->has('desc_en')){
+            $resume->update([
+                'desc_en'=>$request->input('desc_en')
+            ]);
+
+        }
+        if($request->has('delete_id')){
+            $resume->delete();
+
+        }
+        return $this->showResume();
+
+    }
+    public function createResume(Request $request){
+        $user_id = $request->get('user_id');
+        $user = User::find($user_id);
+        $this->authorize('createResume',$user->profile);
+        // dd($user_id);
+
+        $resume=Resume::create([
+            'user_id'=>$user_id,
+            'title_fa'=>$request->input('title_fa'),
+            'title_en'=>$request->input('title_en'),
+            'desc_fa'=>$request->input('desc_fa'),
+            'desc_en'=>$request->input('desc_en'),
+        ]);
+        return $this->showResume();
+
 
     }
 }

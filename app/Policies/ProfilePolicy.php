@@ -88,4 +88,24 @@ class ProfilePolicy
             return false;
         }
     }
+    public function editResume(User $user,Profile $profile): bool{
+        if($user->role->role_value<=2){
+            return true;
+        }else{
+            if($user->profile->id==$profile->id){
+                return true;
+            }
+        }
+
+    }
+    public function createResume(User $user,Profile $profile): bool{
+
+        if($user->role->role_value<=2){
+            return true;
+        }else{
+            if($user->profile->id==$profile->id){
+                return true;
+            }
+        }
+    }
 }
